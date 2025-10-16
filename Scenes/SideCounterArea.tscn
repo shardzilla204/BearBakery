@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://curox557xawcm"]
+
+[ext_resource type="PackedScene" uid="uid://cq6adeknsii4q" path="res://Scenes/CounterArea.tscn" id="1_vugec"]
+[ext_resource type="Shape2D" uid="uid://2lggwbdx38o3" path="res://Scenes/SideCounterArea.tres" id="2_v38gp"]
+
+[node name="SideCounterArea" instance=ExtResource("1_vugec")]
+
+[node name="CollisionShape2D" parent="InteractComponent" index="0"]
+position = Vector2(16, 16)
+shape = ExtResource("2_v38gp")
+
+[node name="CollisionShape2D" parent="SwapComponent" index="0"]
+position = Vector2(16, 16)
+shape = ExtResource("2_v38gp")

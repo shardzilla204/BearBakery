@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://xf4qj4x47a5m"]
+
+[ext_resource type="Script" uid="uid://douu7keambxbh" path="res://Resources/Scripts/PreGameBackground.cs" id="1_ke5io"]
+[ext_resource type="Texture2D" uid="uid://dct53srwsjff8" path="res://Assets/Images/Background.png" id="2_nfxto"]
+
+[node name="PreGameBackground" type="ParallaxBackground" node_paths=PackedStringArray("_backgroundParallaxLayer")]
+script = ExtResource("1_ke5io")
+_backgroundParallaxLayer = NodePath("Background")
+
+[node name="Background" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(756, 756)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+position = Vector2(757, 757)
+scale = Vector2(2, 2)
+texture = ExtResource("2_nfxto")

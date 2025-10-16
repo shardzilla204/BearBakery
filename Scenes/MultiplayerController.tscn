@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://dx6sbjwgam5vf"]
+
+[ext_resource type="Script" uid="uid://dh316nl0yab8k" path="res://Resources/Scripts/Multiplayer/MultiplayerController.cs" id="1_3dufo"]
+
+[node name="MultiplayerController" type="MarginContainer" node_paths=PackedStringArray("_nameLineEdit", "_hostButton", "_joinButton", "_leaveButton")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_3dufo")
+_nameLineEdit = NodePath("VBoxContainer/LineEdit")
+_hostButton = NodePath("VBoxContainer/Host")
+_joinButton = NodePath("VBoxContainer/Join")
+_leaveButton = NodePath("VBoxContainer/Leave")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+placeholder_text = "Name"
+alignment = 1
+
+[node name="Host" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Host"
+
+[node name="Join" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Join"
+
+[node name="Leave" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Leave"

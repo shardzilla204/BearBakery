@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdvuo56r5qgtr"]
+
+[ext_resource type="Texture2D" uid="uid://da5uig1sjdm3n" path="res://Assets/Images/RoundSquare.png" id="1_qdva4"]
+[ext_resource type="Script" uid="uid://c48iv3do3j0dl" path="res://Resources/Scripts/Component/SlotComponent.cs" id="3_77pik"]
+[ext_resource type="Script" uid="uid://rk0rclvtbw53" path="res://Resources/Scripts/Component/DisplayComponent.cs" id="4_igvl8"]
+
+[node name="SlotComponent" type="NinePatchRect" node_paths=PackedStringArray("_displayComponent")]
+modulate = Color(0.9, 0.9, 0.9, 1)
+self_modulate = Color(0.9, 0.7845, 0.585, 1)
+custom_minimum_size = Vector2(65, 65)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+texture = ExtResource("1_qdva4")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+script = ExtResource("3_77pik")
+_displayComponent = NodePath("MarginContainer/DisplayComponent")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="DisplayComponent" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("4_igvl8")

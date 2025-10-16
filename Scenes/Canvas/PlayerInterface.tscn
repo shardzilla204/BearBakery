@@ -1,0 +1,147 @@
+[gd_scene load_steps=9 format=3 uid="uid://ch1gb0y0b6xvs"]
+
+[ext_resource type="Script" uid="uid://cfs5e3sus7ma3" path="res://Resources/Scripts/Canvas/PlayerInterface.cs" id="1_aeld8"]
+[ext_resource type="Theme" uid="uid://lmaol1axo6wl" path="res://Scenes/Miscellaneous/DefaultTheme.tres" id="2_b4g0u"]
+[ext_resource type="Script" uid="uid://doegw4sld0ars" path="res://Resources/Scripts/PlayerInventoryInterface.cs" id="3_wca54"]
+[ext_resource type="PackedScene" uid="uid://cdvuo56r5qgtr" path="res://Scenes/InventorySlot.tscn" id="4_jkk72"]
+[ext_resource type="Texture2D" uid="uid://da5uig1sjdm3n" path="res://Assets/Images/RoundSquare.png" id="5_5tbjq"]
+[ext_resource type="Script" uid="uid://cilgsnvhfpnpf" path="res://Resources/Scripts/PlayerStaminaInterface.cs" id="6_638xf"]
+[ext_resource type="Texture2D" uid="uid://1oxcl51tjvxf" path="res://Assets/Images/Square.png" id="7_r4d1r"]
+[ext_resource type="Script" uid="uid://b8msoghr6q4im" path="res://Resources/Scripts/CustomButton.cs" id="8_ug01r"]
+
+[node name="PlayerInterface" type="CanvasLayer" node_paths=PackedStringArray("_settingsButton", "_interfaceContainer", "_keybindActionContainer")]
+script = ExtResource("1_aeld8")
+_settingsButton = NodePath("InterfaceContainer/SettingsButton")
+_interfaceContainer = NodePath("InterfaceContainer")
+_keybindActionContainer = NodePath("InterfaceContainer/VBoxContainer/KeybindActionContainer")
+
+[node name="InterfaceContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_b4g0u")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PlayerInventoryInterface" type="Control" parent="InterfaceContainer" node_paths=PackedStringArray("_inventorySlots")]
+custom_minimum_size = Vector2(250, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+script = ExtResource("3_wca54")
+_inventorySlots = [NodePath("HBoxContainer/MiddleSlot"), NodePath("HBoxContainer/LeftSlot"), NodePath("HBoxContainer/RightSlot")]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InterfaceContainer/PlayerInventoryInterface"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -125.0
+offset_top = -100.0
+offset_right = 125.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="LeftSlot" parent="InterfaceContainer/PlayerInventoryInterface/HBoxContainer" instance=ExtResource("4_jkk72")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="MiddleSlot" parent="InterfaceContainer/PlayerInventoryInterface/HBoxContainer" instance=ExtResource("4_jkk72")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="RightSlot" parent="InterfaceContainer/PlayerInventoryInterface/HBoxContainer" instance=ExtResource("4_jkk72")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InterfaceContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+mouse_filter = 2
+theme_override_constants/separation = 15
+
+[node name="KeybindActionContainer" type="VBoxContainer" parent="InterfaceContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PlayerStaminaInterface" type="NinePatchRect" parent="InterfaceContainer/VBoxContainer" node_paths=PackedStringArray("_textureProgressBar")]
+self_modulate = Color(0.819608, 0.709804, 0.462745, 1)
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+texture = ExtResource("5_5tbjq")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+script = ExtResource("6_638xf")
+_textureProgressBar = NodePath("MarginContainer/Mask/TextureProgressBar")
+
+[node name="MarginContainer" type="MarginContainer" parent="InterfaceContainer/VBoxContainer/PlayerStaminaInterface"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Mask" type="NinePatchRect" parent="InterfaceContainer/VBoxContainer/PlayerStaminaInterface/MarginContainer"]
+clip_children = 1
+layout_mode = 2
+texture = ExtResource("5_5tbjq")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="InterfaceContainer/VBoxContainer/PlayerStaminaInterface/MarginContainer/Mask"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+nine_patch_stretch = true
+texture_progress = ExtResource("7_r4d1r")
+tint_progress = Color(0.882353, 0.788235, 0.572549, 1)
+
+[node name="SettingsButton" type="Button" parent="InterfaceContainer" node_paths=PackedStringArray("_texture")]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Settings"
+flat = true
+script = ExtResource("8_ug01r")
+_texture = NodePath("NinePatchRect")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="InterfaceContainer/SettingsButton"]
+self_modulate = Color(0.819608, 0.709804, 0.462745, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_5tbjq")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15

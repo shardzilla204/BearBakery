@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://bc66uck87skc5"]
+
+[ext_resource type="Script" uid="uid://cy3yg25kl84vy" path="res://Resources/Scripts/Appliance/Oven/OvenSlot.cs" id="1_7x4vh"]
+[ext_resource type="Texture2D" uid="uid://da5uig1sjdm3n" path="res://Assets/Images/RoundSquare.png" id="1_yrkm2"]
+[ext_resource type="Texture2D" uid="uid://dywxylb6qegsq" path="res://Assets/Images/Donut.png" id="2_umjgw"]
+[ext_resource type="Texture2D" uid="uid://1oxcl51tjvxf" path="res://Assets/Images/Square.png" id="3_gn77x"]
+[ext_resource type="Script" uid="uid://c48iv3do3j0dl" path="res://Resources/Scripts/Component/SlotComponent.cs" id="3_pi40h"]
+[ext_resource type="Script" uid="uid://rk0rclvtbw53" path="res://Resources/Scripts/Component/DisplayComponent.cs" id="4_k27aa"]
+
+[node name="OvenSlot" type="HBoxContainer" node_paths=PackedStringArray("_cookingBar", "_slotComponent")]
+theme_override_constants/separation = 10
+alignment = 1
+script = ExtResource("1_7x4vh")
+_cookingBar = NodePath("NinePatchRect/Mask/CookingBar")
+_slotComponent = NodePath("SlotComponent")
+
+[node name="SlotComponent" type="NinePatchRect" parent="." node_paths=PackedStringArray("_displayComponent")]
+self_modulate = Color(0.6, 0.6, 0.6, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_yrkm2")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+script = ExtResource("3_pi40h")
+_displayComponent = NodePath("MarginContainer/DisplayComponent")
+
+[node name="MarginContainer" type="MarginContainer" parent="SlotComponent"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="DisplayComponent" type="TextureRect" parent="SlotComponent/MarginContainer"]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("4_k27aa")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+self_modulate = Color(0.36, 0.36, 0.36, 1)
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2_umjgw")
+
+[node name="Mask" type="NinePatchRect" parent="NinePatchRect"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_umjgw")
+
+[node name="CookingBar" type="TextureProgressBar" parent="NinePatchRect/Mask"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("3_gn77x")
+tint_progress = Color(0.5, 1, 0.25, 1)

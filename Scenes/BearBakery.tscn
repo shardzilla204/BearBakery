@@ -1,0 +1,86 @@
+[gd_scene load_steps=27 format=3 uid="uid://brias4u71808i"]
+
+[ext_resource type="Script" uid="uid://leegvrvm4bkq" path="res://Resources/Scripts/BearBakery.cs" id="1_x10j2"]
+[ext_resource type="Script" uid="uid://dnjwypdmfoq4x" path="res://Resources/Scripts/Game/GameManager.cs" id="1_yc0h7"]
+[ext_resource type="TileSet" uid="uid://nc2qb8ln6brs" path="res://Scenes/Tilemap/Building.tres" id="3_bufrg"]
+[ext_resource type="PackedScene" uid="uid://cm8q4w45c4ru8" path="res://Scenes/Canvas/SettingsCanvas.tscn" id="3_ckd2w"]
+[ext_resource type="PackedScene" uid="uid://plrkv8itmuxm" path="res://Scenes/GameCanvas.tscn" id="4_w8its"]
+[ext_resource type="PackedScene" uid="uid://dmetol16hex2f" path="res://LobbyCanvas.tscn" id="5_pmsnq"]
+[ext_resource type="PackedScene" uid="uid://c6ayufny7gbex" path="res://Scenes/MenuCanvas.tscn" id="6_5rte1"]
+[ext_resource type="Script" uid="uid://bia6efalnpatg" path="res://Resources/Scripts/Manager/InventoryManager.cs" id="7_4aix0"]
+[ext_resource type="Script" uid="uid://cuh437grfr4vp" path="res://Resources/Scripts/Manager/StaminaManager.cs" id="8_nuyim"]
+[ext_resource type="Script" uid="uid://ctgtwqnx556vo" path="res://Resources/Scripts/Appliance/Oven/OvenManager.cs" id="9_6a0vv"]
+[ext_resource type="Script" uid="uid://dbu7a32ngcm83" path="res://Resources/Scripts/MixerManager.cs" id="9_gbtsg"]
+[ext_resource type="PackedScene" uid="uid://c6pcgsi4ud4cb" path="res://Scenes/PlayerPlate.tscn" id="10_ny6xy"]
+[ext_resource type="Script" uid="uid://drlklyf0uae7" path="res://Resources/Scripts/Debug.cs" id="12_0mgr6"]
+[ext_resource type="PackedScene" uid="uid://bc66uck87skc5" path="res://Scenes/OvenSlot.tscn" id="12_5rte1"]
+[ext_resource type="Script" uid="uid://ekv2k1ajnukn" path="res://Resources/Scripts/PackedScenes.cs" id="12_w8its"]
+[ext_resource type="Script" uid="uid://bueygolc46wij" path="res://Resources/Scripts/Appliance/Fridge/FridgeManager.cs" id="13_ny6xy"]
+[ext_resource type="PackedScene" uid="uid://cs6uyrmy6efvx" path="res://Scenes/OvenRack.tscn" id="14_28qvm"]
+[ext_resource type="PackedScene" uid="uid://dw4wostth7mk6" path="res://Scenes/FridgeSlot.tscn" id="15_t2hxd"]
+[ext_resource type="Script" uid="uid://bvkeit8p4a5uv" path="res://Resources/Scripts/Game/GameFileManager.cs" id="16_ndsd0"]
+[ext_resource type="PackedScene" uid="uid://dvtmf6g0olyti" path="res://Scenes/ItemObject.tscn" id="18_bufrg"]
+[ext_resource type="PackedScene" uid="uid://bv7l4xefjso5l" path="res://Scenes/ItemContentInterface.tscn" id="20_4aix0"]
+[ext_resource type="Script" uid="uid://0pv8jb33qf58" path="res://Resources/Scripts/PrintRich.cs" id="20_28qvm"]
+[ext_resource type="PackedScene" uid="uid://c66pa4pbn1m4t" path="res://Scenes/MixerSlot.tscn" id="20_gbtsg"]
+[ext_resource type="PackedScene" uid="uid://or07o8v4v66u" path="res://Scenes/Player.tscn" id="24_5rte1"]
+[ext_resource type="PackedScene" uid="uid://brstf68ibd6au" path="res://Scenes/KeybindAction.tscn" id="24_ckd2w"]
+[ext_resource type="Script" uid="uid://c6ja64d2vgtug" path="res://Resources/Scripts/Multiplayer/MultiplayerManager.cs" id="26_ckd2w"]
+
+[node name="BearBakery" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_x10j2")
+
+[node name="PackedScenes" type="Node" parent="."]
+script = ExtResource("12_w8its")
+_settingsCanvas = ExtResource("3_ckd2w")
+_gameCanvas = ExtResource("4_w8its")
+_lobbyCanvas = ExtResource("5_pmsnq")
+_menuCanvas = ExtResource("6_5rte1")
+_itemObject = ExtResource("18_bufrg")
+_itemContentInterface = ExtResource("20_4aix0")
+_keybindAction = ExtResource("24_ckd2w")
+_player = ExtResource("24_5rte1")
+_playerPlate = ExtResource("10_ny6xy")
+_ovenRack = ExtResource("14_28qvm")
+_ovenSlot = ExtResource("12_5rte1")
+_fridgeSlot = ExtResource("15_t2hxd")
+_mixerSlot = ExtResource("20_gbtsg")
+
+[node name="Debug" type="Node" parent="."]
+script = ExtResource("12_0mgr6")
+
+[node name="PrintRich" type="Node" parent="."]
+script = ExtResource("20_28qvm")
+_areFileMessagesEnabled = true
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="GameManager" type="Node" parent="Managers"]
+script = ExtResource("1_yc0h7")
+_buildingTileset = ExtResource("3_bufrg")
+
+[node name="InventoryManager" type="Node" parent="Managers"]
+script = ExtResource("7_4aix0")
+
+[node name="StaminaManager" type="Node" parent="Managers"]
+script = ExtResource("8_nuyim")
+_rechargeAmount = 5.0
+_sprintCost = 25.0
+
+[node name="OvenManager" type="Node" parent="Managers"]
+script = ExtResource("9_6a0vv")
+
+[node name="FridgeManager" type="Node" parent="Managers"]
+script = ExtResource("13_ny6xy")
+
+[node name="MixerManager" type="Node" parent="Managers"]
+script = ExtResource("9_gbtsg")
+
+[node name="GameFileManager" type="Node" parent="Managers"]
+script = ExtResource("16_ndsd0")
+
+[node name="MultiplayerManager" type="Node" parent="Managers"]
+script = ExtResource("26_ckd2w")

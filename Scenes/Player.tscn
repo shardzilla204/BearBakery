@@ -1,0 +1,192 @@
+[gd_scene load_steps=26 format=3 uid="uid://or07o8v4v66u"]
+
+[ext_resource type="Script" uid="uid://bp7skh7lv8e4g" path="res://Resources/Scripts/Player/Player.cs" id="1_u5ijx"]
+[ext_resource type="Script" uid="uid://c2sdhym0isc7k" path="res://Resources/Scripts/PlayerCamera.cs" id="2_yoq75"]
+[ext_resource type="Script" uid="uid://rc6l7ieeuf5w" path="res://Resources/Scripts/Player/PlayerController.cs" id="3_cknen"]
+[ext_resource type="Script" uid="uid://cymg65robcmjt" path="res://Resources/Scripts/Player/PlayerAnimation.cs" id="3_nyagh"]
+[ext_resource type="Script" uid="uid://dhwgvh5jsgf61" path="res://Resources/Scripts/Player/PlayerInventory.cs" id="4_gyab6"]
+[ext_resource type="SpriteFrames" uid="uid://copslxj1irm7h" path="res://Resources/Animation/BearSF.tres" id="4_megsn"]
+[ext_resource type="Script" uid="uid://denqvwiuy8jdx" path="res://Resources/Scripts/Player/PlayerItem.cs" id="8_8d0lh"]
+[ext_resource type="AnimationLibrary" uid="uid://bqxx3oxfxacra" path="res://Resources/Animation/BearAL.res" id="8_npnho"]
+[ext_resource type="Script" uid="uid://b3eyykcgjxtm7" path="res://Resources/Scripts/Player/PlayerStamina.cs" id="11_f82my"]
+
+[sub_resource type="Animation" id="Animation_8x0vf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAnimation:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerAnimation:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dpdr3"]
+_data = {
+&"RESET": SubResource("Animation_8x0vf")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_megsn"]
+animation = &"Bear/BearIdle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yoq75"]
+animation = &"Bear/BearLeap"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ksbbd"]
+animation = &"Bear/BearWalk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_miouo"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o3h8g"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1e7my"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_arntx"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lslt6"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ulo2v"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_glx4g"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lvrvf"]
+states/Idle/node = SubResource("AnimationNodeAnimation_megsn")
+states/Idle/position = Vector2(360, -123)
+states/Leap/node = SubResource("AnimationNodeAnimation_yoq75")
+states/Leap/position = Vector2(524, -72)
+states/Start/position = Vector2(190, -30)
+states/Walk/node = SubResource("AnimationNodeAnimation_ksbbd")
+states/Walk/position = Vector2(360, -18)
+transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_miouo"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_o3h8g"), "Idle", "Leap", SubResource("AnimationNodeStateMachineTransition_1e7my"), "Leap", "Idle", SubResource("AnimationNodeStateMachineTransition_arntx"), "Leap", "Walk", SubResource("AnimationNodeStateMachineTransition_lslt6"), "Walk", "Leap", SubResource("AnimationNodeStateMachineTransition_ulo2v"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_glx4g")]
+graph_offset = Vector2(-82, -190)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_axe8g"]
+size = Vector2(2, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2yw5u"]
+size = Vector2(18, 8)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_megsn"]
+properties/0/path = NodePath("PlayerController:_syncPosition")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("PlayerAnimation:flip_h")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("PlayerAnimation:position")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_interactArea", "_collisionTimer", "_itemHeld", "_multiplayerSynchronizer", "Controller", "Animation", "Inventory", "Stamina")]
+y_sort_enabled = true
+collision_mask = 130
+script = ExtResource("1_u5ijx")
+_interactArea = NodePath("PlayerInteractionArea")
+_collisionTimer = NodePath("PlayerBodyCollision/CollisionTimer")
+_itemHeld = NodePath("ItemHeld")
+_multiplayerSynchronizer = NodePath("MultiplayerSynchronizer")
+Controller = NodePath("PlayerController")
+Animation = NodePath("PlayerAnimation")
+Inventory = NodePath("PlayerInventory")
+Stamina = NodePath("PlayerStamina")
+
+[node name="PlayerCamera" type="Camera2D" parent="." node_paths=PackedStringArray("_multiplayerSynchronizer")]
+zoom = Vector2(3, 3)
+script = ExtResource("2_yoq75")
+_multiplayerSynchronizer = NodePath("../MultiplayerSynchronizer")
+
+[node name="PlayerController" type="Node2D" parent="." node_paths=PackedStringArray("_multiplayerSynchronizer")]
+script = ExtResource("3_cknen")
+MovementSpeed = 100.0
+_multiplayerSynchronizer = NodePath("../MultiplayerSynchronizer")
+
+[node name="PlayerAnimation" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("_animationTree", "_multiplayerSynchronizer")]
+y_sort_enabled = true
+sprite_frames = ExtResource("4_megsn")
+animation = &"Idle"
+script = ExtResource("3_nyagh")
+_animationTree = NodePath("AnimationTree")
+_multiplayerSynchronizer = NodePath("../MultiplayerSynchronizer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerAnimation"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_dpdr3"),
+&"Bear": ExtResource("8_npnho")
+}
+autoplay = "Bear/Idle"
+
+[node name="AnimationTree" type="AnimationTree" parent="PlayerAnimation"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeStateMachine_lvrvf")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="ItemHeld" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 7.5)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("8_8d0lh")
+_itemDistance = 10.0
+
+[node name="PlayerInventory" type="Node2D" parent="."]
+y_sort_enabled = true
+script = ExtResource("4_gyab6")
+
+[node name="PlayerStamina" type="Node2D" parent="." node_paths=PackedStringArray("_rechargeDelay", "_rechargeTimer")]
+position = Vector2(0, 1)
+script = ExtResource("11_f82my")
+_rechargeDelay = NodePath("RechargeDelay")
+_rechargeTimer = NodePath("RechargeTimer")
+
+[node name="RechargeDelay" type="Timer" parent="PlayerStamina"]
+
+[node name="RechargeTimer" type="Timer" parent="PlayerStamina"]
+wait_time = 0.5
+autostart = true
+
+[node name="PlayerInteractionArea" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 0
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerInteractionArea"]
+shape = SubResource("RectangleShape2D_axe8g")
+debug_color = Color(0, 0.64, 0.354, 0.5)
+
+[node name="PlayerBodyCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_2yw5u")
+
+[node name="CollisionTimer" type="Timer" parent="PlayerBodyCollision"]
+one_shot = true
+autostart = true
+
+[node name="PlayerBodyArea" type="Area2D" parent="."]
+collision_layer = 33
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBodyArea"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_2yw5u")
+debug_color = Color(0.712, 0.261, 1, 0.15)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_megsn")

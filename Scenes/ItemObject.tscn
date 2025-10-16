@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvtmf6g0olyti"]
+
+[ext_resource type="Script" uid="uid://bxvbnwbctnov6" path="res://Resources/Scripts/ItemObject.cs" id="1_roqi4"]
+[ext_resource type="Texture2D" uid="uid://wmwfef0gl6mr" path="res://Assets/Images/Food/Bread.png" id="1_sywcm"]
+[ext_resource type="Script" uid="uid://cxm3e0cjll3h" path="res://Resources/Scripts/Component/InteractComponent.cs" id="2_068vs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o7rmu"]
+radius = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sywcm"]
+
+[node name="ItemObject" type="StaticBody2D" node_paths=PackedStringArray("_interactComponent", "_sprite", "_pickUpTimer")]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_roqi4")
+_interactComponent = NodePath("Sprite2D/InteractComponent")
+_sprite = NodePath("Sprite2D")
+_pickUpTimer = NodePath("Sprite2D/PickUpTimer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_sywcm")
+
+[node name="InteractComponent" type="Area2D" parent="Sprite2D"]
+collision_layer = 2
+collision_mask = 32
+script = ExtResource("2_068vs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/InteractComponent"]
+shape = SubResource("CircleShape2D_o7rmu")
+
+[node name="PickUpTimer" type="Timer" parent="Sprite2D"]
+wait_time = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sywcm")
+debug_color = Color(0.512383, 0.565082, 0.338913, 0.42)

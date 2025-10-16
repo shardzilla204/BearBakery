@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs6uyrmy6efvx"]
+
+[ext_resource type="PackedScene" uid="uid://bc66uck87skc5" path="res://Scenes/OvenSlot.tscn" id="1_7cud7"]
+[ext_resource type="Script" uid="uid://rjknkij82ri1" path="res://Resources/Scripts/Appliance/Oven/OvenRack.cs" id="1_go0ko"]
+
+[node name="OvenRack" type="HBoxContainer"]
+mouse_filter = 2
+theme_override_constants/separation = 15
+alignment = 1
+script = ExtResource("1_go0ko")
+
+[node name="OvenSlot" parent="." instance=ExtResource("1_7cud7")]
+layout_mode = 2
+
+[node name="OvenSlot2" parent="." instance=ExtResource("1_7cud7")]
+layout_mode = 2

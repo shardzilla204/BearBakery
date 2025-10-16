@@ -1,0 +1,44 @@
+"Cheese Cake": {
+    "Description": "A dessert of freah cheese with a nice golden graham cracker crust.",
+    "Flavors": [ "Normal", "Matcha" ],
+    "Options": [ "Whole", "Half & Half", "Swirl" ],
+    "Filling":
+    {
+        "Default": "res://Assets/Images/Food/CheeseCake.png"
+    },
+    "Crust":
+    {
+        "Default": "res://Assets/Images/Food/CheeseCakeCrust.png"
+    },
+    "Addons": 
+    {
+        "Blueberry": "res://Assets/Images/Food/CheeseCakeBlueberry.png",
+        "Strawberry": "res://Assets/Images/Food/CheeseCakeStrawberry.png",
+        "Blackberry": "res://Assets/Images/Food/CheeseCakeBlackberry.png",
+        "Matcha Swirl": "res://Assets/Images/Food/CheeseCakeBlackberry.png"
+    },
+    "Cook Time": 5.0
+},
+"Cookie": {
+    "Description": "Round and flat, but is quite the treat to snack on.",
+    "Flavors": [ "Plain", "Chocolate", "Matcha", "Ube" ],
+    "Options": [ "Whole", "Half & Half", "Stuffed" ],
+    "Addons": 
+    {
+        "Chocolate Chips": "res://Assets/Images/Food/CookieChocolate.png",
+        "White Chocolate Chips": "res://Assets/Images/Food/CookieWhiteChocolate.png"
+    },
+    "Cook Time": 5.0
+},
+"Pie": 
+{
+    "Description": "A vessel made of pastry whilst holding a scrumptious filling.",
+    "Flavors": [ "Apple", "Pumpkin" ],
+    "Options": [ "None" ],
+    "Addons":
+    {
+        "Whipped Cream":
+        "Ice Cream":
+        "Crumble":
+    }
+}

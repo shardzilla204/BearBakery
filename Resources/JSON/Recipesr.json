@@ -1,0 +1,21 @@
+[
+    {
+        "Name": "Cheese Cake",
+        "CookingMethods":
+        [
+            {
+                "Name": "Oven",
+                "CookTime": 5.0
+            }
+        ],
+        "Ingredients": 
+        [
+            "Cheese Cake Filling",
+            "Graham Cracker Crust"
+        ],
+        "ProductOptions":
+        {
+
+        }
+    }
+]

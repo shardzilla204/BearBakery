@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://dw4wostth7mk6"]
+
+[ext_resource type="Texture2D" uid="uid://da5uig1sjdm3n" path="res://Assets/Images/RoundSquare.png" id="1_a71d6"]
+[ext_resource type="Script" uid="uid://djcheb5ox7bkk" path="res://Resources/Scripts/Appliance/Fridge/FridgeSlot.cs" id="2_0r4ta"]
+[ext_resource type="Script" uid="uid://rk0rclvtbw53" path="res://Resources/Scripts/Component/DisplayComponent.cs" id="3_4133l"]
+[ext_resource type="Script" uid="uid://c48iv3do3j0dl" path="res://Resources/Scripts/Component/SlotComponent.cs" id="3_gyhgb"]
+[ext_resource type="Texture2D" uid="uid://drgxylhox4pvo" path="res://Assets/Images/Food/Blueberry.png" id="4_m3nhv"]
+
+[node name="FridgeSlot" type="NinePatchRect" node_paths=PackedStringArray("_slotComponent")]
+self_modulate = Color(0.75, 0.65375, 0.4875, 1)
+clip_contents = true
+custom_minimum_size = Vector2(74, 74)
+offset_right = 50.0
+offset_bottom = 50.0
+mouse_filter = 1
+texture = ExtResource("1_a71d6")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+script = ExtResource("2_0r4ta")
+_slotComponent = NodePath("SlotComponent")
+
+[node name="SlotComponent" type="MarginContainer" parent="." node_paths=PackedStringArray("_displayComponent")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+script = ExtResource("3_gyhgb")
+_displayComponent = NodePath("DisplayComponent")
+
+[node name="DisplayComponent" type="TextureRect" parent="SlotComponent"]
+layout_mode = 2
+texture = ExtResource("4_m3nhv")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("3_4133l")

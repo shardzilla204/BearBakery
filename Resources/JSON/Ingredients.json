@@ -1,0 +1,104 @@
+{
+    "Blueberry":
+    {
+        "Description": "Small blue orbs that come either sweet or tart",
+        "Tier": 1,
+        "Texture": "res://Assets/Images/Food/Blueberry.png"
+    },
+    "Bread":
+    {
+        "Description": "A hot steamy loaf of baked dough",
+        "Tier": 1,
+        "Texture": "res://Assets/Images/Food/Bread.png"
+    },
+    "Butter":
+    {
+        "Description": "A yellow block of churned cream",
+        "Tier": 1,
+        "Texture": "res://Assets/Images/Food/Butter.png"
+    },
+    "Chocolate Chips":
+    {
+        "Description": "",
+        "Tier": 1,
+        "Texture": "res://Assets/Images/Food/ChocolateChips.png"
+    },
+    "Cocoa Powder":
+    {
+        "Description": "",
+        "Tier": 1,
+        "Texture": "res://Assets/Images/Food/CocoaPowder.png"
+    },
+    "Cream Cheese":
+    {
+        "Description": "",
+        "Tier": 1,
+        "Texture": "res://Assets/Images/Food/CreamCheese.png"
+    },
+    "Dough":
+    {
+        "Description": "A sticky ball of flour and water",
+        "Tier": 1,
+        "Texture": "res://Assets/Images/Food/Dough.png"
+    },
+    "Egg":
+    {
+        "Description": "Did the egg or bird come first?",
+        "Tier": 1,
+        "Texture": "res://Assets/Images/Food/Egg.png"
+    },
+    "Egg (Broken)":
+    {
+        "Description": "",
+        "Tier": 1,
+        "Texture": "res://Assets/Images/Food/Egg(Broken).png"
+    },
+    "Flour":
+    {
+        "Description": "A bag a milled wheat",
+        "Tier": 1,
+        "Texture": "res://Assets/Images/Food/Flour.png"
+    },
+    "Milk":
+    {
+        "Description": "",
+        "Tier": 1,
+        "Texture": "res://Assets/Images/Food/Milk.png"
+    },
+    "Salt":
+    {
+        "Description": "The ocean's seasoning",
+        "Tier": 1,
+        "Texture": "res://Assets/Images/Food/Salt.png"
+    },
+    "Strawberry":
+    {
+        "Description": "",
+        "Tier": 1,
+        "Texture": "res://Assets/Images/Food/Strawberry.png"
+    },
+    "Sugar":
+    {
+        "Description": "Processed sugar cane that adds sweetness",
+        "Tier": 1,
+        "Texture": "res://Assets/Images/Food/Sugar.png"
+    },
+    "Water":
+    {
+        "Description": "A necessary resource that every living being needs",
+        "Tier": 1,
+        "Texture": "res://Assets/Images/Food/Water.png"
+    },
+    "White Chocolate Chips":
+    {
+        "Description": "",
+        "Tier": 1,
+        "Texture": "res://Assets/Images/Food/WhiteChocolateChips.png"
+    },
+    "Cookie Dough":
+    {
+        "Description": "",
+        "Tier": 2,
+        "Texture": "res://Assets/Images/Food/CookieDough.png"
+    }
+}

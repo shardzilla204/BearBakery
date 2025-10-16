@@ -1,0 +1,430 @@
+[gd_scene load_steps=9 format=3 uid="uid://cm8q4w45c4ru8"]
+
+[ext_resource type="Theme" uid="uid://lmaol1axo6wl" path="res://Scenes/Miscellaneous/DefaultTheme.tres" id="1_imiaj"]
+[ext_resource type="Script" uid="uid://dmlbbvrqthsjk" path="res://Resources/Scripts/Canvas/SettingsCanvas.cs" id="2_80aq5"]
+[ext_resource type="Texture2D" uid="uid://bxv0numkdq32x" path="res://Assets/Images/BorderedRoundSquare.png" id="3_8aeqo"]
+[ext_resource type="Script" uid="uid://b8msoghr6q4im" path="res://Resources/Scripts/CustomButton.cs" id="4_dddpy"]
+[ext_resource type="Texture2D" uid="uid://da5uig1sjdm3n" path="res://Assets/Images/RoundSquare.png" id="4_gvl80"]
+[ext_resource type="PackedScene" uid="uid://dqq4v2elonhil" path="res://Scenes/AudioThing.tscn" id="5_bp5rf"]
+[ext_resource type="Script" uid="uid://pnusc1fsjiqu" path="res://Resources/Scripts/QuitOptions.cs" id="6_bu61d"]
+[ext_resource type="Script" uid="uid://cc28hydianud6" path="res://Resources/Scripts/Game/GameSettings.cs" id="6_ig825"]
+
+[node name="SettingsCanvas" type="Node" node_paths=PackedStringArray("_exitButton", "_gameSettings")]
+script = ExtResource("2_80aq5")
+_exitButton = NodePath("MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer2/ExitButton")
+_gameSettings = NodePath("MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GameSettings")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.196078)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_imiaj")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
+self_modulate = Color(0.85, 0.7378, 0.476, 1)
+layout_mode = 2
+texture = ExtResource("3_8aeqo")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Control" type="Control" parent="MarginContainer/NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/NinePatchRect/MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitButton" type="Button" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer2" node_paths=PackedStringArray("_texture")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.8, 0.688533, 0.448, 1)
+theme_override_colors/font_color = Color(0.8, 0.6944, 0.448, 1)
+theme_override_colors/font_pressed_color = Color(0.8, 0.688533, 0.448, 1)
+theme_override_font_sizes/font_size = 25
+text = "X"
+flat = true
+script = ExtResource("4_dddpy")
+_texture = NodePath("NinePatchRect")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer2/ExitButton"]
+self_modulate = Color(0.85, 0.7378, 0.476, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("4_gvl80")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="GameSettings" type="NinePatchRect" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("_saveButton", "_loadButton", "_eraseButton", "_quitButton", "_quitOptions")]
+self_modulate = Color(0.8, 0.6944, 0.448, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.75
+texture = ExtResource("4_gvl80")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+script = ExtResource("6_ig825")
+_saveButton = NodePath("MarginContainer/Game/VBoxContainer/SaveButton")
+_loadButton = NodePath("MarginContainer/Game/VBoxContainer/LoadButton")
+_eraseButton = NodePath("MarginContainer/Game/VBoxContainer/EraseButton")
+_quitButton = NodePath("MarginContainer/Game/VBoxContainer/QuitButton")
+_quitOptions = NodePath("MarginContainer/Game/VBoxContainer/QuitOptions")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GameSettings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Game" type="VBoxContainer" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GameSettings/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GameSettings/MarginContainer/Game"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GameSettings/MarginContainer/Game"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="SaveButton" type="Button" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GameSettings/MarginContainer/Game/VBoxContainer" node_paths=PackedStringArray("_texture")]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Save"
+flat = true
+script = ExtResource("4_dddpy")
+_texture = NodePath("NinePatchRect")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GameSettings/MarginContainer/Game/VBoxContainer/SaveButton"]
+self_modulate = Color(0.85, 0.7378, 0.476, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("4_gvl80")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="LoadButton" type="Button" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GameSettings/MarginContainer/Game/VBoxContainer" node_paths=PackedStringArray("_texture")]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Load"
+flat = true
+script = ExtResource("4_dddpy")
+_texture = NodePath("NinePatchRect")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GameSettings/MarginContainer/Game/VBoxContainer/LoadButton"]
+self_modulate = Color(0.85, 0.7378, 0.476, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("4_gvl80")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="EraseButton" type="Button" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GameSettings/MarginContainer/Game/VBoxContainer" node_paths=PackedStringArray("_texture")]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Erase"
+flat = true
+script = ExtResource("4_dddpy")
+_texture = NodePath("NinePatchRect")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GameSettings/MarginContainer/Game/VBoxContainer/EraseButton"]
+self_modulate = Color(0.85, 0.7378, 0.476, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("4_gvl80")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="QuitButton" type="Button" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GameSettings/MarginContainer/Game/VBoxContainer" node_paths=PackedStringArray("_texture")]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Quit"
+flat = true
+script = ExtResource("4_dddpy")
+_texture = NodePath("NinePatchRect")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GameSettings/MarginContainer/Game/VBoxContainer/QuitButton"]
+self_modulate = Color(0.85, 0.7378, 0.476, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("4_gvl80")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="QuitOptions" type="VBoxContainer" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GameSettings/MarginContainer/Game/VBoxContainer" node_paths=PackedStringArray("_toMenuButton", "_toDesktopButton")]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+alignment = 1
+script = ExtResource("6_bu61d")
+_toMenuButton = NodePath("MenuButton")
+_toDesktopButton = NodePath("DesktopButton")
+
+[node name="MenuButton" type="Button" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GameSettings/MarginContainer/Game/VBoxContainer/QuitOptions" node_paths=PackedStringArray("_texture")]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Menu"
+flat = true
+script = ExtResource("4_dddpy")
+_texture = NodePath("NinePatchRect")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GameSettings/MarginContainer/Game/VBoxContainer/QuitOptions/MenuButton"]
+self_modulate = Color(0.85, 0.7378, 0.476, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("4_gvl80")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="DesktopButton" type="Button" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GameSettings/MarginContainer/Game/VBoxContainer/QuitOptions" node_paths=PackedStringArray("_texture")]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Desktop"
+flat = true
+script = ExtResource("4_dddpy")
+_texture = NodePath("NinePatchRect")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GameSettings/MarginContainer/Game/VBoxContainer/QuitOptions/DesktopButton"]
+self_modulate = Color(0.85, 0.7378, 0.476, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("4_gvl80")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="AudioSettings" type="NinePatchRect" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer"]
+self_modulate = Color(0.8, 0.6944, 0.448, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_gvl80")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/AudioSettings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Audio" type="VBoxContainer" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/AudioSettings/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/AudioSettings/MarginContainer2/Audio"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Audio"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MasterAudio" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/AudioSettings/MarginContainer2/Audio" instance=ExtResource("5_bp5rf")]
+layout_mode = 2
+
+[node name="MusicAudio" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/AudioSettings/MarginContainer2/Audio" instance=ExtResource("5_bp5rf")]
+layout_mode = 2
+
+[node name="Label" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/AudioSettings/MarginContainer2/Audio/MusicAudio" index="1"]
+text = "Music
+(100%)"
+
+[node name="SoundAudio" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/AudioSettings/MarginContainer2/Audio" instance=ExtResource("5_bp5rf")]
+layout_mode = 2
+
+[node name="Label" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/AudioSettings/MarginContainer2/Audio/SoundAudio" index="1"]
+text = "Sound
+(100%)"
+
+[node name="GraphicSettings" type="NinePatchRect" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer"]
+self_modulate = Color(0.8, 0.6944, 0.448, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.5
+texture = ExtResource("4_gvl80")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GraphicSettings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Graphics" type="VBoxContainer" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GraphicSettings/MarginContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GraphicSettings/MarginContainer3/Graphics"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Graphics"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GraphicSettings/MarginContainer3/Graphics"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GraphicSettings/MarginContainer3/Graphics"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GraphicSettings/MarginContainer3/Graphics/HBoxContainer"]
+layout_mode = 2
+text = "Window Mode: "
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/GraphicSettings/MarginContainer3/Graphics/HBoxContainer"]
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Windowed Fullscreen"
+popup/item_1/id = 1
+popup/item_2/text = "Fullscreen"
+popup/item_2/id = 2
+
+[editable path="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/AudioSettings/MarginContainer2/Audio/MasterAudio"]
+[editable path="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/AudioSettings/MarginContainer2/Audio/MusicAudio"]
+[editable path="MarginContainer/NinePatchRect/MarginContainer/Control/VBoxContainer/HBoxContainer/AudioSettings/MarginContainer2/Audio/SoundAudio"]

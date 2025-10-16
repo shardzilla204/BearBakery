@@ -1,0 +1,127 @@
+[gd_scene load_steps=7 format=3 uid="uid://bf437ui7a4j0w"]
+
+[ext_resource type="Theme" uid="uid://lmaol1axo6wl" path="res://Scenes/Miscellaneous/DefaultTheme.tres" id="1_xdabm"]
+[ext_resource type="Texture2D" uid="uid://bxv0numkdq32x" path="res://Assets/Images/BorderedRoundSquare.png" id="2_8s4li"]
+[ext_resource type="Script" uid="uid://bxmq680cwyedw" path="res://Resources/Scripts/Appliance/Fridge/FridgeWindow.cs" id="3_64f1c"]
+[ext_resource type="Script" uid="uid://b8msoghr6q4im" path="res://Resources/Scripts/CustomButton.cs" id="4_npoxw"]
+[ext_resource type="Texture2D" uid="uid://da5uig1sjdm3n" path="res://Assets/Images/RoundSquare.png" id="5_agi8q"]
+[ext_resource type="Script" uid="uid://c7e5n4ftsi1bo" path="res://Resources/Scripts/Appliance/Fridge/FridgeContainer.cs" id="6_qc3wi"]
+
+[node name="FridgeWindow" type="NinePatchRect" node_paths=PackedStringArray("_exitButton", "_fridgeSlotCounter", "_fridgeContainer")]
+self_modulate = Color(0.854902, 0.745098, 0.556863, 1)
+custom_minimum_size = Vector2(272.5, 427.5)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -272.5
+offset_bottom = 347.5
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme = ExtResource("1_xdabm")
+texture = ExtResource("2_8s4li")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+script = ExtResource("3_64f1c")
+_exitButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer/ExitButton")
+_fridgeSlotCounter = NodePath("MarginContainer/VBoxContainer/FridgeSlotCounter")
+_fridgeContainer = NodePath("MarginContainer/VBoxContainer/ScrollContainer/NinePatchRect/MarginContainer/FridgeContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 15
+placeholder_text = "Search..."
+
+[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("_texture")]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_colors/font_hover_pressed_color = Color(0.72549, 0.635294, 0.47451, 1)
+theme_override_colors/font_hover_color = Color(0.72549, 0.635294, 0.47451, 1)
+theme_override_colors/font_color = Color(0.72549, 0.635294, 0.47451, 1)
+theme_override_colors/font_pressed_color = Color(0.72549, 0.635294, 0.47451, 1)
+theme_override_font_sizes/font_size = 20
+text = "X"
+flat = true
+script = ExtResource("4_npoxw")
+_texture = NodePath("NinePatchRect")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/HBoxContainer/ExitButton"]
+self_modulate = Color(0.85, 0.740917, 0.5525, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("5_agi8q")
+
+[node name="FridgeSlotCounter" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "0 / 25"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+self_modulate = Color(0.8, 0.698039, 0.521569, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("5_agi8q")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="FridgeContainer" type="FlowContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/NinePatchRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+script = ExtResource("6_qc3wi")

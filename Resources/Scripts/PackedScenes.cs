@@ -1,0 +1,166 @@
+using Godot;
+
+namespace BearBakery;
+
+public partial class PackedScenes : Node
+{
+    [Export]
+    private PackedScene _settingsCanvas;
+
+    [Export]
+    private PackedScene _gameCanvas;
+
+    [Export]
+    private PackedScene _lobbyCanvas;
+
+    [Export]
+    private PackedScene _menuCanvas;
+
+    [Export]
+    private PackedScene _itemObject;
+
+    [Export]
+    private PackedScene _itemContentInterface;
+
+    [Export]
+    private PackedScene _keybindAction;
+
+    [Export]
+    private PackedScene _player;
+
+    [Export]
+    private PackedScene _playerPlate;
+
+    [ExportGroup("Oven")]
+    [Export]
+    private PackedScene _ovenWindow;
+
+    [Export]
+    private PackedScene _ovenRack;
+
+    [Export]
+    private PackedScene _ovenSlot;
+
+    [ExportGroup("Fridge")]
+    [Export]
+    private PackedScene _fridgeWindow;
+
+    [Export]
+    private PackedScene _fridgeSlot;
+
+    [ExportGroup("Mixer")]
+    [Export]
+    private PackedScene _mixerWindow;
+
+    [Export]
+    private PackedScene _mixerSlot;
+    
+    public override void _EnterTree()
+    {
+        BearBakery.PackedScenes = this;
+    }
+
+    // Canvas
+    public SettingsCanvas GetSettingsCanvas()
+    {
+        return _settingsCanvas.Instantiate<SettingsCanvas>();
+    }
+
+    public GameCanvas GetGameCanvas()
+    {
+        return _gameCanvas.Instantiate<GameCanvas>();
+    }
+
+    public MenuCanvas GetMenuCanvas()
+    {
+        return _menuCanvas.Instantiate<MenuCanvas>();
+    }
+
+    public LobbyCanvas GetLobbyCanvas()
+    {
+        return _lobbyCanvas.Instantiate<LobbyCanvas>();
+    }
+
+    // Oven
+    public OvenInterface GetOvenInterface(OvenArea ovenArea)
+    {
+        OvenInterface ovenInterface = _ovenWindow.Instantiate<OvenInterface>();
+        ovenInterface.TreeExiting += ovenArea.CloseOven;
+        return _ovenWindow.Instantiate<OvenInterface>();
+    }
+
+    public OvenRack GetOvenRack()
+    {
+        return _ovenRack.Instantiate<OvenRack>();
+    }
+
+    public OvenSlot GetOvenSlot()
+    {
+        return _ovenSlot.Instantiate<OvenSlot>();
+    }
+
+    // Fridge
+    public FridgeInterface GetFridgeInterface(FridgeArea fridgeArea)
+    {
+        FridgeInterface fridgeInterface = _fridgeWindow.Instantiate<FridgeInterface>();
+        fridgeInterface.TreeExiting += fridgeArea.CloseFridge;
+        return fridgeInterface;
+    }
+
+    public FridgeSlot GetFridgeSlot(Item item)
+    {
+        FridgeSlot fridgeSlot = _fridgeSlot.Instantiate<FridgeSlot>();
+        fridgeSlot.SetItem(item);
+        return fridgeSlot;
+    }
+
+    // Mixer
+    public MixerInterface GetMixerInterface(MixerArea mixerArea)
+    {
+        MixerInterface mixerInterface = _mixerWindow.Instantiate<MixerInterface>();
+        mixerInterface.TreeExiting += mixerArea.CloseMixer;
+        return mixerInterface;
+    }
+
+    public MixerSlot GetMixerSlot()
+    {
+        MixerSlot mixerSlot = _mixerSlot.Instantiate<MixerSlot>();
+        return mixerSlot;
+    }
+
+    // Miscellaneous
+    public ItemObject GetItemObject(Item item)
+    {
+        ItemObject itemObject = _itemObject.Instantiate<ItemObject>();
+        itemObject.Item = item;
+        itemObject.Name = item.Name;
+        return itemObject;
+    }
+
+    public ItemContentInterface GetItemContentInterface(StorageItem storageItem)
+    {
+        ItemContentInterface itemContentInterface = _itemContentInterface.Instantiate<ItemContentInterface>();
+        itemContentInterface.SetStorageItem(storageItem);
+        return itemContentInterface;
+    }
+
+    public KeybindAction GetKeybindAction(Key keybind, string actionName)
+    {
+        KeybindAction keybindAction = _keybindAction.Instantiate<KeybindAction>();
+        keybindAction.Set(keybind, actionName);
+        return keybindAction;
+    }
+
+    public Player GetPlayer()
+    {
+        return _player.Instantiate<Player>();
+    }
+
+    public PlayerPlate GetPlayerPlate(int id, string text)
+    {
+        PlayerPlate playerPlate = _playerPlate.Instantiate<PlayerPlate>();
+        playerPlate.Name = $"{id}";
+        playerPlate.SetText(text);
+        return playerPlate;
+    }
+}

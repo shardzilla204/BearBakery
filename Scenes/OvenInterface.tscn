@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4gxjgkiepwn4"]
+
+[ext_resource type="Theme" uid="uid://lmaol1axo6wl" path="res://Scenes/Miscellaneous/DefaultTheme.tres" id="1_gj4c2"]
+[ext_resource type="Texture2D" uid="uid://bxv0numkdq32x" path="res://Assets/Images/BorderedRoundSquare.png" id="1_m0sni"]
+[ext_resource type="Script" uid="uid://b76qp2ot3ykd1" path="res://Resources/Scripts/Appliance/Oven/OvenWindow.cs" id="2_fa58y"]
+[ext_resource type="Texture2D" uid="uid://da5uig1sjdm3n" path="res://Assets/Images/RoundSquare.png" id="2_rtv8f"]
+[ext_resource type="Script" uid="uid://b8msoghr6q4im" path="res://Resources/Scripts/CustomButton.cs" id="3_jt4xj"]
+
+[node name="OvenInterface" type="NinePatchRect" node_paths=PackedStringArray("_exitButton", "_ovenContainer")]
+self_modulate = Color(0.7, 0.7, 0.7, 1)
+custom_minimum_size = Vector2(250, 250)
+offset_left = 1015.0
+offset_top = 15.0
+offset_right = 1265.0
+offset_bottom = 265.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme = ExtResource("1_gj4c2")
+texture = ExtResource("1_m0sni")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+script = ExtResource("2_fa58y")
+_exitButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer/ExitButton")
+_ovenContainer = NodePath("MarginContainer/VBoxContainer/OvenContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 15
+text = "Oven"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("_texture")]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_colors/font_hover_pressed_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_colors/font_hover_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_colors/font_pressed_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_font_sizes/font_size = 20
+text = "X"
+flat = true
+script = ExtResource("3_jt4xj")
+_texture = NodePath("NinePatchRect")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/HBoxContainer/ExitButton"]
+self_modulate = Color(0.7, 0.7, 0.7, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("2_rtv8f")
+
+[node name="OvenContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 15

@@ -1,0 +1,8 @@
+Multiplayer Notes:
+- Use RpcId() when you want to communicate with a specific client
+- Use CallLocal when you want the caller to also use the method
+- Don't use Rpc when CallLocal is true as it will create an infinite loop
+
+Two methods to communicate with server to clients:
+1. Call the method, but use Rpc to call the clients. Make sure it's nested in an if statement for Multiplayer.IsServer() as the condition (Only for server -> client communication)
+2. Call the rpc, but have CallLocal = true, so that the caller will also use the method (More flexible as any client can use it)

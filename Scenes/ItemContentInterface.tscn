@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://bv7l4xefjso5l"]
+
+[ext_resource type="Texture2D" uid="uid://da5uig1sjdm3n" path="res://Assets/Images/RoundSquare.png" id="1_oky30"]
+[ext_resource type="Texture2D" uid="uid://b6bsky3wesnpu" path="res://Assets/Images/Items/Bowl.png" id="2_ai6om"]
+[ext_resource type="Script" uid="uid://20lte6xdssq" path="res://Resources/Scripts/ItemContentInterface.cs" id="2_awmjf"]
+
+[node name="ItemContentInterface" type="NinePatchRect" node_paths=PackedStringArray("_itemSprite", "_marginContainer", "_content")]
+self_modulate = Color(0.811765, 0.705882, 0.52549, 1)
+custom_minimum_size = Vector2(65, 65)
+offset_right = 65.0
+offset_bottom = 65.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("1_oky30")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+script = ExtResource("2_awmjf")
+_itemSprite = NodePath("VBoxContainer/Item")
+_marginContainer = NodePath("VBoxContainer/MarginContainer")
+_content = NodePath("VBoxContainer/MarginContainer/NinePatchRect/Content")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Item" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+texture = ExtResource("2_ai6om")
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/MarginContainer"]
+self_modulate = Color(0.7, 0.610167, 0.455, 1)
+layout_mode = 2
+texture = ExtResource("1_oky30")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="Content" type="VBoxContainer" parent="VBoxContainer/MarginContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0

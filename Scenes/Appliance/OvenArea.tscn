@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://rqrua578fsgd"]
+
+[ext_resource type="Texture2D" uid="uid://1oxcl51tjvxf" path="res://Assets/Images/Square.png" id="1_1sfxr"]
+[ext_resource type="Script" uid="uid://blg43il7xk06c" path="res://Resources/Scripts/Appliance/Oven/OvenArea.cs" id="2_jxrd3"]
+[ext_resource type="Script" uid="uid://cxm3e0cjll3h" path="res://Resources/Scripts/Component/InteractComponent.cs" id="3_5sjwl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_idjyt"]
+size = Vector2(30, 30.7692)
+
+[node name="OvenArea" type="Sprite2D" node_paths=PackedStringArray("_interactComponent")]
+self_modulate = Color(1, 1, 1, 0)
+scale = Vector2(1, 1.375)
+texture = ExtResource("1_1sfxr")
+script = ExtResource("2_jxrd3")
+_interactComponent = NodePath("InteractComponent")
+metadata/_edit_group_ = true
+
+[node name="InteractComponent" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 64
+script = ExtResource("3_5sjwl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractComponent"]
+z_index = 1
+shape = SubResource("RectangleShape2D_idjyt")
