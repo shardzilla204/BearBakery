@@ -84,7 +84,7 @@ public partial class PlayerInventory : Node2D
             }
             else
             {
-                Item item = BearBakery.Items.GetItem(itemName);
+                Item item = ItemManager.GetItem(itemName);
                 Items.Add(item);
             }
         }
@@ -92,13 +92,10 @@ public partial class PlayerInventory : Node2D
 
     private Bowl GetBowl(GC.Array<string> ingredientNames)
     {
-        Item bowlData = BearBakery.Items.GetItem("Bowl");
         Bowl bowl = new Bowl();
-        bowl.SetItem(bowlData);
-
         foreach (string ingredientName in ingredientNames)
         {
-            Ingredient ingredient = BearBakery.Ingredients.GetIngredient(ingredientName);
+            Ingredient ingredient = IngredientManager.GetIngredient(ingredientName);
             bowl.AddIngredient(ingredient);
         }
 

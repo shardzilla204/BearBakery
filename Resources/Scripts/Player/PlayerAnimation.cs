@@ -45,7 +45,8 @@ public partial class PlayerAnimation : AnimatedSprite2D
 
 	public override void _Process(double delta)
 	{
-		if (MultiplayerManager.Peer != null && _multiplayerSynchronizer.GetMultiplayerAuthority() == Multiplayer.GetUniqueId())
+		if (MultiplayerManager.Peer == null ||
+			(MultiplayerManager.Peer != null && _multiplayerSynchronizer.GetMultiplayerAuthority() == Multiplayer.GetUniqueId()))
 		{
 			if (_player.Direction == Vector2.Right)
 			{

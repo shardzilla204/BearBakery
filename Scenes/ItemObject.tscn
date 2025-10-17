@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dvtmf6g0olyti"]
 
-[ext_resource type="Script" uid="uid://bxvbnwbctnov6" path="res://Resources/Scripts/ItemObject.cs" id="1_roqi4"]
-[ext_resource type="Texture2D" uid="uid://wmwfef0gl6mr" path="res://Assets/Images/Food/Bread.png" id="1_sywcm"]
+[ext_resource type="Script" uid="uid://bxvbnwbctnov6" path="res://Resources/Scripts/Item/ItemObject.cs" id="1_roqi4"]
+[ext_resource type="Texture2D" uid="uid://wmwfef0gl6mr" path="res://Assets/Images/Items/Bread.png" id="1_sywcm"]
 [ext_resource type="Script" uid="uid://cxm3e0cjll3h" path="res://Resources/Scripts/Component/InteractComponent.cs" id="2_068vs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7rmu"]

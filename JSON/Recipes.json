@@ -1,0 +1,94 @@
+{
+    "Recipes":
+    [
+        {
+            "Name": "Cheese Cake",
+            "Methods": 
+            {
+                "Oven": 5.0
+            },
+            "Ingredients": [ "Cheese Cake Filling", "Graham Cracker Crust" ],
+            "Options": 
+            { 
+                "Plain": 
+                [
+                    "res://Assets/Images/Food/CheeseCake.png"
+                ]
+            },
+            "Addons": 
+            {
+                "Blueberry Sauce": "res://Assets/Images/Food/CheeseCakeBlueberry.png",
+                "Strawberry Sauce": "res://Assets/Images/Food/CheeseCakeStrawberry.png",
+                "Blackberry Sauce": "res://Assets/Images/Food/CheeseCakeBlackberry.png"
+            },
+            "Container": "Circular Baking Pan"
+        },
+        {
+            "Name": "Cheese Cake Filling", 
+            "Methods": 
+            {
+                "Oven": 5.0
+            },
+            "Ingredients": [ "Cream Cheese", "Egg", "Sour Cream" ],
+            "Container": "Circular Baking Pan"
+        },
+        {
+            "Name": "Pumpkin Pie",
+            "Methods": 
+            {
+                "Oven": 5.0
+            },
+            "Ingredients": [ "Pumpkin Pie Filling", "Graham Cracker Crust" ],
+            "Container": "Circular Baking Pan"
+        },
+        {
+            "Name": "Pumpkin Pie Filling",
+            "Methods":  
+            {
+                "Hand": 5.0,
+                "Mixer": 3.0
+            },
+            "Ingredients": [ "Pumpkin", "Cinnamon", "Milk", "Sugar"],
+            "Container": "Bowl"
+        },
+        {
+            "Name": "Pie Dough",
+            "Methods":  
+            {
+                "Hand": 5.0,
+                "Mixer": 3.0
+            },
+            "Ingredients": [ "Water", "Flour", "Butter" ],
+            "Container": "Bowl"
+        },
+        {
+            "Name": "Graham Cracker Crust",
+            "Methods": 
+            {
+                "Hand": 2.0
+            },
+            "Ingredients": [ "Graham Cracker", "Butter", "Sugar" ],
+            "Container": "Bowl"
+        },
+        {
+            "Name": "Cookie Dough",
+            "Methods":  
+            {
+                "Hand": 5.0,
+                "Mixer": 3.0
+            },
+            "Ingredients": [ "Flour", "Milk", "Butter", "Sugar", "Egg" ],
+            "Options": 
+            { 
+                "Plain": [ "res://Assets/Images/Food/Cookie.png" ],
+                "Chocolate": [ "res://Assets/Images/Food/ChocolateCookie.png" ]
+            },
+            "Addons": 
+            {
+                "Chocolate Chips": "res://Assets/Images/Food/CookieChocolateChips.png",
+                "White Chocolate Chips": "res://Assets/Images/Food/CookieWhiteChocolateChips.png"
+            },
+            "Container": "Bowl"
+        }
+    ]
+}

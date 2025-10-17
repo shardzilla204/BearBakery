@@ -21,8 +21,6 @@ public partial class QuitOptions : VBoxContainer
 	// ? Save the game first then quit
 	private void QuitToMenu()
 	{
-		BearBakery.GameManager.InGame = false;
-		
 		MenuCanvas menuCanvas = BearBakery.PackedScenes.GetMenuCanvas();
 		AddSibling(menuCanvas);
 		// GameCanvas.Instance.QueueFree();

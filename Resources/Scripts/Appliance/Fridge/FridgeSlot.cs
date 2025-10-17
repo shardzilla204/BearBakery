@@ -34,7 +34,7 @@ public partial class FridgeSlot : Control
 	{
 		_isDragging = true;
 
-		Control dragPreview = BearBakery.GameManager.GetDragPreview(Item);
+		Control dragPreview = GameManager.GetDragPreview(Item);
 		SetDragPreview(dragPreview);
 
 		Dictionary<string, Variant> dragDictionary = new Dictionary<string, Variant>()

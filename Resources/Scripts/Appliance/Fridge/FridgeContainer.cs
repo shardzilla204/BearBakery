@@ -37,8 +37,8 @@ public partial class FridgeContainer : Container
 			// Check if item can cast to specified classes
 			if (item is not Ingredient ingredient && item is not Food food) return false;
 
-			int maxSlotCount = BearBakery.FridgeManager.MaxSlotCount;
-			int ingredientCount = BearBakery.FridgeManager.Items.Count;
+			int maxSlotCount = FridgeManager.MaxSlotCount;
+			int ingredientCount = FridgeManager.Items.Count;
 			return ingredientCount < maxSlotCount;
 		}
 		catch (NullReferenceException)
@@ -68,7 +68,7 @@ public partial class FridgeContainer : Container
 	private void AddSlots()
 	{
 		int index = 0;
-		foreach (Item item in BearBakery.FridgeManager.Items)
+		foreach (Item item in FridgeManager.Items)
 		{
 			FridgeSlot fridgeSlot = BearBakery.PackedScenes.GetFridgeSlot(item);
 			fridgeSlot.ID = index;
@@ -98,18 +98,18 @@ public partial class FridgeContainer : Container
 		string refreshingMessage = "Refreshing The Fridge";
 		PrintRich.PrintLine(TextColor.Blue, refreshingMessage);
 
-		BearBakery.FridgeManager.Items.Clear();
+		FridgeManager.Items.Clear();
 
 		foreach (FridgeSlot fridgeSlot in GetChildren())
 		{
 			Item fridgeSlotItem = fridgeSlot.Item;
 			if (fridgeSlotItem is Ingredient fridgeSlotIngredient)
 			{
-				BearBakery.FridgeManager.Items.Add(fridgeSlotIngredient);
+				FridgeManager.Items.Add(fridgeSlotIngredient);
 			}
 			else if (fridgeSlotItem is Food fridgeSlotFood)
 			{
-				BearBakery.FridgeManager.Items.Add(fridgeSlotFood);
+				FridgeManager.Items.Add(fridgeSlotFood);
 			}
 		}
 

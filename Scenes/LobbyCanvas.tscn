@@ -1,0 +1,153 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmetol16hex2f"]
+
+[ext_resource type="Script" uid="uid://bw0wlmd56jrn5" path="res://Resources/Scripts/LobbyCanvas.cs" id="1_aecfl"]
+[ext_resource type="PackedScene" uid="uid://xf4qj4x47a5m" path="res://Scenes/PreGameBackground.tscn" id="2_si1k3"]
+[ext_resource type="Theme" uid="uid://lmaol1axo6wl" path="res://Scenes/Miscellaneous/DefaultTheme.tres" id="3_atha8"]
+[ext_resource type="Texture2D" uid="uid://da5uig1sjdm3n" path="res://Assets/Images/RoundSquare.png" id="4_ng1uv"]
+[ext_resource type="Script" uid="uid://b8msoghr6q4im" path="res://Resources/Scripts/CustomButton.cs" id="5_ba2dn"]
+
+[node name="LobbyCanvas" type="Control" node_paths=PackedStringArray("_leaveButton", "_startButton", "_nameLineEdit", "_lobbyNameLabel", "_playerPlateContainer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_aecfl")
+_leaveButton = NodePath("MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/MarginContainer/Leave")
+_startButton = NodePath("MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/Start")
+_nameLineEdit = NodePath("MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/MarginContainer/Name")
+_lobbyNameLabel = NodePath("MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/LobbyName")
+_playerPlateContainer = NodePath("MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/PlayerPlateContainer")
+
+[node name="PreGameBackground" parent="." instance=ExtResource("2_si1k3")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("3_atha8")
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
+self_modulate = Color(0.8, 0.694118, 0.447059, 1)
+layout_mode = 2
+texture = ExtResource("4_ng1uv")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/NinePatchRect/MarginContainer"]
+self_modulate = Color(0.7, 0.6076, 0.392, 1)
+layout_mode = 2
+texture = ExtResource("4_ng1uv")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="LobbyName" type="Label" parent="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 65)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "Player 1's Lobby"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerPlateContainer" type="VBoxContainer" parent="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Start" type="Button" parent="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer" node_paths=PackedStringArray("_texture")]
+custom_minimum_size = Vector2(250, 65)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 20
+text = "Start"
+flat = true
+script = ExtResource("5_ba2dn")
+_texture = NodePath("NinePatchRect")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/Start"]
+self_modulate = Color(0.8, 0.6944, 0.448, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("4_ng1uv")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="Name" type="LineEdit" parent="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/MarginContainer"]
+custom_minimum_size = Vector2(300, 65)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "Player 1"
+placeholder_text = "Name"
+alignment = 1
+
+[node name="Leave" type="Button" parent="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/MarginContainer" node_paths=PackedStringArray("_texture")]
+custom_minimum_size = Vector2(250, 65)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "Leave"
+flat = true
+script = ExtResource("5_ba2dn")
+_texture = NodePath("NinePatchRect")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/MarginContainer/Leave"]
+self_modulate = Color(0.8, 0.6944, 0.448, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("4_ng1uv")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15

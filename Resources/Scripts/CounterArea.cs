@@ -85,7 +85,7 @@ public partial class CounterArea : Node2D
 	private void GetItem()
 	{
 		int playerInventoryCount = BearBakery.Player.Inventory.Items.Count;
-		int maxInventorySize = BearBakery.InventoryManager.MaxSize;
+		int maxInventorySize = InventoryManager.MaxSize;
 
 		if (playerInventoryCount >= maxInventorySize) return;
 

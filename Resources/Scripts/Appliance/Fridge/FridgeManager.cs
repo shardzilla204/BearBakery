@@ -23,14 +23,12 @@ public partial class FridgeManager : Node
 	[Export]
 	private int _maxSlotCount = 25;
 
-	public List<Item> Items = new List<Item>();
-	public int MaxSlotCount = 25;
+	public static List<Item> Items = new List<Item>();
+	public static int MaxSlotCount = 25;
 
 	public override void _EnterTree()
 	{
-		BearBakery.FridgeManager = this;
-
-		BearBakery.Signals.FridgeOpened += AddFridgeInterface;
+		BearBakery.Signals.FridgeOpened += AddFridgeWindow;
 		BearBakery.Signals.IngredientAddedToFridge += AddIngredient;
 		BearBakery.Signals.IngredientRemovedFromFridge += RemoveIngredient;
 
@@ -50,10 +48,10 @@ public partial class FridgeManager : Node
 		AddStartingFood();
 	}
 
-	private void AddFridgeInterface(FridgeArea fridgeArea)
+	private void AddFridgeWindow(FridgeArea fridgeArea)
 	{
-		FridgeInterface fridgeInterface = BearBakery.PackedScenes.GetFridgeInterface(fridgeArea);
-		BearBakery.GameManager.Interface.AddInterface(fridgeInterface);
+		FridgeWindow fridgeWindow = BearBakery.PackedScenes.GetFridgeWindow(fridgeArea);
+		BearBakery.Signals.EmitSignal(Signals.SignalName.WindowOpened, fridgeWindow);
 	}
 
 	private void AddStartingIngredients()
@@ -61,7 +59,7 @@ public partial class FridgeManager : Node
 		List<string> startingIngredients = _startingIngredients.ToList();
 		foreach (string startingIngredient in startingIngredients)
 		{
-			Ingredient ingredient = BearBakery.Ingredients.GetIngredient(startingIngredient);
+			Ingredient ingredient = IngredientManager.GetIngredient(startingIngredient);
 			Items.Add(ingredient);
 		}
 	}

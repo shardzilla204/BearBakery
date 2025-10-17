@@ -1,0 +1,73 @@
+{
+	"Ingredients":
+	[
+		{
+			"Name": "Blueberry",
+			"Description": "Small blue orbs that come either sweet or tart"
+		},
+		{
+			"Name": "Bread",
+			"Description": "A hot steamy loaf of baked dough"
+		},
+		{
+			"Name": "Butter",
+			"Description": "A yellow block of churned cream"
+		},
+		{
+			"Name": "Chocolate",
+			"Description": ""
+		},
+		{
+			"Name": "Cocoa Powder",
+			"Description": ""
+		},
+		{
+			"Name": "Cream Cheese",
+			"Description": ""
+		},
+		{
+			"Name": "Dough",
+			"Description": "A sticky ball of flour and water"
+		},
+		{
+			"Name": "Egg",
+			"Description": "Did the egg or bird come first?"
+		},
+		{
+			"Name": "Broken Egg",
+			"Description": ""
+		},
+		{
+			"Name": "Flour",
+			"Description": "A bag a milled wheat"
+		},
+		{
+			"Name": "Milk",
+			"Description": ""
+		},
+		{
+			"Name": "Salt",
+			"Description": "The ocean's seasoning"
+		},
+		{
+			"Name": "Strawberry",
+			"Description": ""
+		},
+		{
+			"Name": "Sugar",
+			"Description": "Processed sugar cane that adds sweetness"
+		},
+		{
+			"Name": "Water",
+			"Description": "A necessary resource that every living being needs"
+		},
+		{
+			"Name": "White Chocolate",
+			"Description": ""
+		},
+		{
+			"Name": "Cookie Dough",
+			"Description": ""
+		}
+	]
+}

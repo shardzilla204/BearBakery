@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c6pcgsi4ud4cb"]
 
 [ext_resource type="Texture2D" uid="uid://da5uig1sjdm3n" path="res://Assets/Images/RoundSquare.png" id="1_nbsj4"]
-[ext_resource type="Script" uid="uid://c581b0sxqrlyw" path="res://Resources/Scripts/PlayerPlate.cs" id="2_7bs24"]
+[ext_resource type="Script" uid="uid://c581b0sxqrlyw" path="res://Resources/Scripts/Player/PlayerPlate.cs" id="2_7bs24"]
 [ext_resource type="Script" uid="uid://b8msoghr6q4im" path="res://Resources/Scripts/CustomButton.cs" id="3_7bs24"]
 
 [node name="PlayerPlate" type="HBoxContainer" node_paths=PackedStringArray("_nameLabel", "_kickButton")]

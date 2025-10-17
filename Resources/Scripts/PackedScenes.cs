@@ -82,11 +82,11 @@ public partial class PackedScenes : Node
     }
 
     // Oven
-    public OvenInterface GetOvenInterface(OvenArea ovenArea)
+    public OvenWindow GetOvenWindow(OvenArea ovenArea)
     {
-        OvenInterface ovenInterface = _ovenWindow.Instantiate<OvenInterface>();
-        ovenInterface.TreeExiting += ovenArea.CloseOven;
-        return _ovenWindow.Instantiate<OvenInterface>();
+        OvenWindow ovenWindow = _ovenWindow.Instantiate<OvenWindow>();
+        ovenWindow.TreeExiting += ovenArea.CloseOven;
+        return _ovenWindow.Instantiate<OvenWindow>();
     }
 
     public OvenRack GetOvenRack()
@@ -100,11 +100,11 @@ public partial class PackedScenes : Node
     }
 
     // Fridge
-    public FridgeInterface GetFridgeInterface(FridgeArea fridgeArea)
+    public FridgeWindow GetFridgeWindow(FridgeArea fridgeArea)
     {
-        FridgeInterface fridgeInterface = _fridgeWindow.Instantiate<FridgeInterface>();
-        fridgeInterface.TreeExiting += fridgeArea.CloseFridge;
-        return fridgeInterface;
+        FridgeWindow fridgeWindow = _fridgeWindow.Instantiate<FridgeWindow>();
+        fridgeWindow.TreeExiting += fridgeArea.CloseFridge;
+        return fridgeWindow;
     }
 
     public FridgeSlot GetFridgeSlot(Item item)
@@ -115,11 +115,11 @@ public partial class PackedScenes : Node
     }
 
     // Mixer
-    public MixerInterface GetMixerInterface(MixerArea mixerArea)
+    public MixerWindow GetMixerWindow(MixerArea mixerArea)
     {
-        MixerInterface mixerInterface = _mixerWindow.Instantiate<MixerInterface>();
-        mixerInterface.TreeExiting += mixerArea.CloseMixer;
-        return mixerInterface;
+        MixerWindow mixerWindow = _mixerWindow.Instantiate<MixerWindow>();
+        mixerWindow.TreeExiting += mixerArea.CloseMixer;
+        return mixerWindow;
     }
 
     public MixerSlot GetMixerSlot()

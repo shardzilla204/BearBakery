@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c66pa4pbn1m4t"]
 
-[ext_resource type="Script" uid="uid://dky5cdsd30xe0" path="res://Resources/Scripts/MixerSlot.cs" id="1_aieyv"]
+[ext_resource type="Script" uid="uid://dky5cdsd30xe0" path="res://Resources/Scripts/Appliance/Mixer/MixerSlot.cs" id="1_aieyv"]
 [ext_resource type="Texture2D" uid="uid://da5uig1sjdm3n" path="res://Assets/Images/RoundSquare.png" id="2_rldqu"]
 [ext_resource type="Script" uid="uid://c48iv3do3j0dl" path="res://Resources/Scripts/Component/SlotComponent.cs" id="3_8khjo"]
 [ext_resource type="Script" uid="uid://rk0rclvtbw53" path="res://Resources/Scripts/Component/DisplayComponent.cs" id="4_3a3tj"]

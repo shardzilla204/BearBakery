@@ -26,6 +26,6 @@ public partial class SettingsCanvas : Node
 	{
 		_exitButton.Pressed += QueueFree;
 
-		_gameSettings.Visible = BearBakery.GameManager.InGame;
+		_gameSettings.Visible = CanvasManager.CanvasType == CanvasType.Game;
 	}
 }

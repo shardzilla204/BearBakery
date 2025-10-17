@@ -1,5 +1,6 @@
 using Godot;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
 namespace BearBakery;
@@ -21,28 +22,28 @@ public enum TextColor
 public partial class PrintRich : Node
 {
    [Export]
-   private bool _areConsoleMessagesEnabled = true;
+   private bool _isConsoleEnabled = true;
 
    [Export]
-   private bool _areFileMessagesEnabled = false;
+   private bool _areFileMessagesVisible = false;
 
    [Export]
    private bool _areFilePathsVisible = false;
 
-   public static bool AreConsoleMessagesEnabled;
-   public static bool AreFileMessagesEnabled;
+   public static bool IsConsoleEnabled;
+   public static bool AreFileMessagesVisible;
    public static bool AreFilePathsVisible;
 
    public override void _EnterTree()
    {
-      AreConsoleMessagesEnabled = _areConsoleMessagesEnabled;
-      AreFileMessagesEnabled = _areFileMessagesEnabled;
+      IsConsoleEnabled = _isConsoleEnabled;
+      AreFileMessagesVisible = _areFileMessagesVisible;
       AreFilePathsVisible = _areFilePathsVisible;
    }
 
    public static void Print(TextColor textColor, string text)
    {
-      if (!AreConsoleMessagesEnabled) return;
+      if (!IsConsoleEnabled) return;
 
       string textColorString = GetColorHex(textColor);
       GD.PrintRich($"[color={textColorString}]{text}[/color]");
@@ -50,11 +51,18 @@ public partial class PrintRich : Node
 
    public static void PrintLine(TextColor textColor, string text)
    {
-      if (!AreConsoleMessagesEnabled) return;
+      if (!IsConsoleEnabled) return;
 
       string textColorString = GetColorHex(textColor);
       GD.PrintRich($"[color={textColorString}]{text}[/color]");
       GD.Print(); // Spacing
+   }
+
+   public static void PrintFileSuccess(string text)
+   {
+      if (!AreFileMessagesVisible) return;
+
+      PrintLine(TextColor.Green, text);
    }
 
    public static void PrintServer()
@@ -80,7 +88,7 @@ public partial class PrintRich : Node
    public static void PrintFridge()
    {
       Print(TextColor.LightBlue, "Ingredients In The Fridge:");
-      foreach (Item item in BearBakery.FridgeManager.Items)
+      foreach (Item item in FridgeManager.Items)
       {
          if (item is Food food)
          {
@@ -92,6 +100,13 @@ public partial class PrintRich : Node
          Print(TextColor.Yellow, $"\t{item.Name}");
       }
       GD.Print(); // Print Spacing
+   }
+
+   public static void PrintError(string className, string message, string result = "", [CallerMemberName] string memberName = "", [CallerLineNumber] int lineNumber = 0)
+   {
+      result = string.IsNullOrEmpty(result) ? "" : $"| {result}";
+      string errorMessage = $"{className}.cs | {memberName} (Line {lineNumber}) | {message} {result}";
+      GD.PrintErr(errorMessage);
    }
 
    public static string GetColorHex(TextColor textColor) => textColor switch

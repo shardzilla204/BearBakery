@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://lmaol1axo6wl" path="res://Scenes/Miscellaneous/DefaultTheme.tres" id="1_af54u"]
 [ext_resource type="Texture2D" uid="uid://bxv0numkdq32x" path="res://Assets/Images/BorderedRoundSquare.png" id="2_5k4p5"]
-[ext_resource type="Script" uid="uid://byd54dxosqmpi" path="res://Resources/Scripts/Player/MixerWindow.cs" id="3_5k4p5"]
+[ext_resource type="Script" uid="uid://byd54dxosqmpi" path="res://Resources/Scripts/Appliance/Mixer/MixerWindow.cs" id="3_5k4p5"]
 [ext_resource type="Script" uid="uid://b8msoghr6q4im" path="res://Resources/Scripts/CustomButton.cs" id="4_hwfnf"]
 [ext_resource type="Texture2D" uid="uid://da5uig1sjdm3n" path="res://Assets/Images/RoundSquare.png" id="5_0y5nv"]
 [ext_resource type="PackedScene" uid="uid://c66pa4pbn1m4t" path="res://Scenes/MixerSlot.tscn" id="6_5k4p5"]

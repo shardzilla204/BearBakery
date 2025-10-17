@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://g1rnit65nhdr"]
 
 [ext_resource type="PackedScene" uid="uid://dvtmf6g0olyti" path="res://Scenes/ItemObject.tscn" id="1_gp35a"]
-[ext_resource type="Script" uid="uid://4n1btoeb3yms" path="res://Resources/Scripts/IngredientObject.cs" id="2_vdifq"]
+[ext_resource type="Script" uid="uid://4n1btoeb3yms" path="res://Resources/Scripts/Ingredient/IngredientObject.cs" id="2_vdifq"]
 
 [node name="IngredientObject" instance=ExtResource("1_gp35a")]
 y_sort_enabled = true

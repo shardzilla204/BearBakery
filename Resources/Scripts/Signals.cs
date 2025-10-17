@@ -99,4 +99,7 @@ public partial class Signals : Node
 
     [Signal]
     public delegate void CanvasClosedEventHandler(CanvasType canvasType, Node canvas);
+
+    [Signal]
+    public delegate void WindowOpenedEventHandler(Node window);
 }

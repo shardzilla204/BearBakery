@@ -11,7 +11,7 @@ public partial class OvenArea : ObjectArea
 
 	public override void _EnterTree()
 	{
-		BearBakery.OvenManager.Ovens.Add(this);
+		OvenManager.Ovens.Add(this);
 	}
 
 	public override void _Ready()

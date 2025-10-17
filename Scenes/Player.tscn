@@ -1,7 +1,7 @@
 [gd_scene load_steps=26 format=3 uid="uid://or07o8v4v66u"]
 
 [ext_resource type="Script" uid="uid://bp7skh7lv8e4g" path="res://Resources/Scripts/Player/Player.cs" id="1_u5ijx"]
-[ext_resource type="Script" uid="uid://c2sdhym0isc7k" path="res://Resources/Scripts/PlayerCamera.cs" id="2_yoq75"]
+[ext_resource type="Script" uid="uid://c2sdhym0isc7k" path="res://Resources/Scripts/Player/PlayerCamera.cs" id="2_yoq75"]
 [ext_resource type="Script" uid="uid://rc6l7ieeuf5w" path="res://Resources/Scripts/Player/PlayerController.cs" id="3_cknen"]
 [ext_resource type="Script" uid="uid://cymg65robcmjt" path="res://Resources/Scripts/Player/PlayerAnimation.cs" id="3_nyagh"]
 [ext_resource type="Script" uid="uid://dhwgvh5jsgf61" path="res://Resources/Scripts/Player/PlayerInventory.cs" id="4_gyab6"]

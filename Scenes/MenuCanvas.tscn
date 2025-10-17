@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://c6ayufny7gbex"]
 
 [ext_resource type="Script" uid="uid://27g6e8bk85mb" path="res://Resources/Scripts/Canvas/MenuCanvas.cs" id="1_q51ga"]
-[ext_resource type="PackedScene" uid="uid://xf4qj4x47a5m" path="res://PreGameBackground.tscn" id="2_twga0"]
+[ext_resource type="PackedScene" uid="uid://xf4qj4x47a5m" path="res://Scenes/PreGameBackground.tscn" id="2_twga0"]
 [ext_resource type="Theme" uid="uid://lmaol1axo6wl" path="res://Scenes/Miscellaneous/DefaultTheme.tres" id="3_c1c3l"]
 [ext_resource type="Script" uid="uid://b8msoghr6q4im" path="res://Resources/Scripts/CustomButton.cs" id="4_8txh3"]
 [ext_resource type="Texture2D" uid="uid://da5uig1sjdm3n" path="res://Assets/Images/RoundSquare.png" id="5_r1xqh"]

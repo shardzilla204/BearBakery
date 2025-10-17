@@ -64,7 +64,11 @@ public partial class Player : CharacterBody2D
 
 	public override void _Ready()
 	{
-		_multiplayerSynchronizer.SetMultiplayerAuthority(int.Parse(Name));
+		if (MultiplayerManager.Peer != null)
+		{
+			_multiplayerSynchronizer.SetMultiplayerAuthority(int.Parse(Name));
+		}
+		
 		SetPlayerItem();
 	}
 

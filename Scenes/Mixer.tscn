@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://b7ypnxm5omyhm"]
 
-[ext_resource type="Script" uid="uid://c6k265ylh4wk2" path="res://Resources/Scripts/Player/MixerArea.cs" id="1_arr5q"]
+[ext_resource type="Script" uid="uid://c6k265ylh4wk2" path="res://Resources/Scripts/Appliance/Mixer/MixerArea.cs" id="1_arr5q"]
 [ext_resource type="Texture2D" uid="uid://1oxcl51tjvxf" path="res://Assets/Images/Square.png" id="1_q61va"]
 [ext_resource type="Script" uid="uid://cxm3e0cjll3h" path="res://Resources/Scripts/Component/InteractComponent.cs" id="2_q61va"]
-[ext_resource type="Shape2D" uid="uid://j7xh4786icy2" path="res://Scenes/NormalCounterArea.tres" id="3_ki2r1"]
+[ext_resource type="Shape2D" uid="uid://j7xh4786icy2" path="res://Resources/Area/NormalCounterArea.tres" id="3_ki2r1"]
 
 [node name="Mixer" type="Sprite2D" node_paths=PackedStringArray("_interactComponent")]
 self_modulate = Color(1, 1, 1, 0)

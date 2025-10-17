@@ -5,12 +5,12 @@
 [ext_resource type="TileSet" uid="uid://nc2qb8ln6brs" path="res://Scenes/Tilemap/Building.tres" id="3_bufrg"]
 [ext_resource type="PackedScene" uid="uid://cm8q4w45c4ru8" path="res://Scenes/Canvas/SettingsCanvas.tscn" id="3_ckd2w"]
 [ext_resource type="PackedScene" uid="uid://plrkv8itmuxm" path="res://Scenes/GameCanvas.tscn" id="4_w8its"]
-[ext_resource type="PackedScene" uid="uid://dmetol16hex2f" path="res://LobbyCanvas.tscn" id="5_pmsnq"]
+[ext_resource type="PackedScene" uid="uid://dmetol16hex2f" path="res://Scenes/LobbyCanvas.tscn" id="5_pmsnq"]
 [ext_resource type="PackedScene" uid="uid://c6ayufny7gbex" path="res://Scenes/MenuCanvas.tscn" id="6_5rte1"]
-[ext_resource type="Script" uid="uid://bia6efalnpatg" path="res://Resources/Scripts/Manager/InventoryManager.cs" id="7_4aix0"]
-[ext_resource type="Script" uid="uid://cuh437grfr4vp" path="res://Resources/Scripts/Manager/StaminaManager.cs" id="8_nuyim"]
+[ext_resource type="Script" uid="uid://bia6efalnpatg" path="res://Resources/Scripts/InventoryManager.cs" id="7_4aix0"]
+[ext_resource type="Script" uid="uid://cuh437grfr4vp" path="res://Resources/Scripts/StaminaManager.cs" id="8_nuyim"]
 [ext_resource type="Script" uid="uid://ctgtwqnx556vo" path="res://Resources/Scripts/Appliance/Oven/OvenManager.cs" id="9_6a0vv"]
-[ext_resource type="Script" uid="uid://dbu7a32ngcm83" path="res://Resources/Scripts/MixerManager.cs" id="9_gbtsg"]
+[ext_resource type="Script" uid="uid://dbu7a32ngcm83" path="res://Resources/Scripts/Appliance/Mixer/MixerManager.cs" id="9_gbtsg"]
 [ext_resource type="PackedScene" uid="uid://c6pcgsi4ud4cb" path="res://Scenes/PlayerPlate.tscn" id="10_ny6xy"]
 [ext_resource type="Script" uid="uid://drlklyf0uae7" path="res://Resources/Scripts/Debug.cs" id="12_0mgr6"]
 [ext_resource type="PackedScene" uid="uid://bc66uck87skc5" path="res://Scenes/OvenSlot.tscn" id="12_5rte1"]
@@ -54,7 +54,6 @@ script = ExtResource("12_0mgr6")
 
 [node name="PrintRich" type="Node" parent="."]
 script = ExtResource("20_28qvm")
-_areFileMessagesEnabled = true
 
 [node name="Managers" type="Node" parent="."]
 

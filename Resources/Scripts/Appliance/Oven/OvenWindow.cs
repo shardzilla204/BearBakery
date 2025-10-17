@@ -2,7 +2,7 @@ using Godot;
 
 namespace BearBakery;
 
-public partial class OvenInterface : Control
+public partial class OvenWindow : Control
 {
 	[Export]
 	private CustomButton _exitButton;

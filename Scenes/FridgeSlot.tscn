@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://djcheb5ox7bkk" path="res://Resources/Scripts/Appliance/Fridge/FridgeSlot.cs" id="2_0r4ta"]
 [ext_resource type="Script" uid="uid://rk0rclvtbw53" path="res://Resources/Scripts/Component/DisplayComponent.cs" id="3_4133l"]
 [ext_resource type="Script" uid="uid://c48iv3do3j0dl" path="res://Resources/Scripts/Component/SlotComponent.cs" id="3_gyhgb"]
-[ext_resource type="Texture2D" uid="uid://drgxylhox4pvo" path="res://Assets/Images/Food/Blueberry.png" id="4_m3nhv"]
+[ext_resource type="Texture2D" uid="uid://drgxylhox4pvo" path="res://Assets/Images/Items/Blueberry.png" id="4_m3nhv"]
 
 [node name="FridgeSlot" type="NinePatchRect" node_paths=PackedStringArray("_slotComponent")]
 self_modulate = Color(0.75, 0.65375, 0.4875, 1)

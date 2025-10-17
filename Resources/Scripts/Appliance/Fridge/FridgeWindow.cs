@@ -2,7 +2,7 @@ using Godot;
 
 namespace BearBakery;
 
-public partial class FridgeInterface : Control
+public partial class FridgeWindow : Control
 {
 	[Export]
 	private CustomButton _exitButton;
@@ -49,6 +49,6 @@ public partial class FridgeInterface : Control
 
 	private void SetCounter()
 	{
-		_fridgeSlotCounter.Text = $"{BearBakery.FridgeManager.Items.Count} / {BearBakery.FridgeManager.MaxSlotCount}";
+		_fridgeSlotCounter.Text = $"{FridgeManager.Items.Count} / {FridgeManager.MaxSlotCount}";
 	}
 }

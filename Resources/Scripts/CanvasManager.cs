@@ -12,8 +12,8 @@ public enum CanvasType
 
 public partial class CanvasManager : Node
 {
-    public CanvasType CanvasType;
-    public Node Canvas;
+    public static CanvasType CanvasType;
+    public static Node Canvas;
 
     public override void _Ready()
     {

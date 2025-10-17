@@ -26,24 +26,22 @@ public enum FoodAddon
 
 public partial class Food : Item
 {
+    public Food() { }
+
+    public Food(GC.Dictionary<string, Variant> foodDictionary)
+    {
+        Name = foodDictionary["Name"].As<string>(); ;
+        Description = foodDictionary["Description"].As<string>();
+
+        _dictionary = foodDictionary;
+    }
+    
     public FoodOption Option = FoodOption.Plain;
     public FoodAddon Addon = FoodAddon.None;
 
     public bool IsBurnt = false;
 
     private GC.Dictionary<string, Variant> _dictionary;
-    
-    public override void SetItem(string foodName, GC.Dictionary<string, Variant> foodDictionary)
-    {
-        try
-        {
-            Name = foodName;
-            Description = foodDictionary["Description"].As<string>();
-
-            _dictionary = foodDictionary; // Save dictionary for setting the Option, Addon and Texture variables
-        }
-        catch (KeyNotFoundException) { }
-    }
 
     public void SetOption(FoodOption foodOption)
     {

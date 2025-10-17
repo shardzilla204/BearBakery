@@ -32,22 +32,22 @@ public partial class PlayerStamina : Node2D
 	{
 		if (!_canRecharge || _player.IsSprinting || _player.IsLeaping) return;
 
-		BearBakery.StaminaManager.Fill(BearBakery.StaminaManager.RechargeAmount);
+		StaminaManager.Fill(StaminaManager.RechargeAmount);
 	}
 
 	private void Sprinting(float delta)
 	{
 		if (!_canRecharge || !_player.IsSprinting) return;
 
-		float sprintCost = delta * BearBakery.StaminaManager.SprintCost;
-		BearBakery.StaminaManager.Deplete(sprintCost);
+		float sprintCost = delta * StaminaManager.SprintCost;
+		StaminaManager.Deplete(sprintCost);
 	}
 
 	private void Leaping()
 	{
 		if (!_canRecharge || !_player.IsLeaping) return;
 
-		BearBakery.StaminaManager.Deplete(BearBakery.StaminaManager.GetLeapCost());
+		StaminaManager.Deplete(StaminaManager.GetLeapCost());
 		DelayRecharge(1);
 	}
 

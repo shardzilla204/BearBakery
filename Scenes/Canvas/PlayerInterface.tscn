@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cfs5e3sus7ma3" path="res://Resources/Scripts/Canvas/PlayerInterface.cs" id="1_aeld8"]
 [ext_resource type="Theme" uid="uid://lmaol1axo6wl" path="res://Scenes/Miscellaneous/DefaultTheme.tres" id="2_b4g0u"]
-[ext_resource type="Script" uid="uid://doegw4sld0ars" path="res://Resources/Scripts/PlayerInventoryInterface.cs" id="3_wca54"]
+[ext_resource type="Script" uid="uid://doegw4sld0ars" path="res://Resources/Scripts/Player/PlayerInventoryInterface.cs" id="3_wca54"]
 [ext_resource type="PackedScene" uid="uid://cdvuo56r5qgtr" path="res://Scenes/InventorySlot.tscn" id="4_jkk72"]
 [ext_resource type="Texture2D" uid="uid://da5uig1sjdm3n" path="res://Assets/Images/RoundSquare.png" id="5_5tbjq"]
-[ext_resource type="Script" uid="uid://cilgsnvhfpnpf" path="res://Resources/Scripts/PlayerStaminaInterface.cs" id="6_638xf"]
+[ext_resource type="Script" uid="uid://cilgsnvhfpnpf" path="res://Resources/Scripts/Player/PlayerStaminaInterface.cs" id="6_638xf"]
 [ext_resource type="Texture2D" uid="uid://1oxcl51tjvxf" path="res://Assets/Images/Square.png" id="7_r4d1r"]
 [ext_resource type="Script" uid="uid://b8msoghr6q4im" path="res://Resources/Scripts/CustomButton.cs" id="8_ug01r"]
 

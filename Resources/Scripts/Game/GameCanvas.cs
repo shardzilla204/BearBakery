@@ -15,7 +15,6 @@ public partial class GameCanvas : Node2D
 	public override void _ExitTree()
 	{
 		BearBakery.Signals.PlayerThrew -= AddItemToWorld;
-		BearBakery.GameManager.InGame = false;
 
 		BearBakery.Signals.EmitSignal(Signals.SignalName.CanvasClosed, (int) _canvasType, this);
 	}
@@ -23,14 +22,8 @@ public partial class GameCanvas : Node2D
     public override void _EnterTree()
     {
 		BearBakery.Signals.PlayerThrew += AddItemToWorld;
-		BearBakery.GameManager.InGame = true;
 
 		BearBakery.Signals.EmitSignal(Signals.SignalName.CanvasOpened, (int)_canvasType, this);
-		
-		if (MultiplayerManager.Peer != null)
-        {
-			// Name = Multiplayer.GetUniqueId().ToString();
-        }
     }
 
 	public override void _Ready()

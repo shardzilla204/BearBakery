@@ -10,27 +10,25 @@ public partial class OvenManager : Node
 	private int _maxCount = 4;
 
 	[Export]
-	public int _maxRackCount = 3;
+	private int _maxRackCount = 3;
 
 	[Export]
-	public int _maxSlotCount = 2;
+	private int _maxSlotCount = 2;
 
 	[Export]
 	private float _burnTime = 30f;
 	
-	public List<OvenArea> Ovens = new List<OvenArea>();
-	public int MaxCount; 
-	public int MaxRackCount;
-	public int MaxSlotCount;
-	public float BurnTime;
+	public static List<OvenArea> Ovens = new List<OvenArea>();
+	public static int MaxCount; 
+	public static int MaxRackCount;
+	public static int MaxSlotCount;
+	public static float BurnTime;
 
-	public Color CookColor = new Color(0.5f, 1f, 0.25f);
-	public Color BurnColor = new Color(1f, 0.25f, 0.25f);
+	public static Color CookColor = new Color(0.5f, 1f, 0.25f);
+	public static Color BurnColor = new Color(1f, 0.25f, 0.25f);
 
 	public override void _EnterTree()
 	{
-		BearBakery.OvenManager = this;
-
         BearBakery.Signals.OvenOpened += AddOvenInterface;
 
 		MaxCount = _maxCount;
@@ -41,8 +39,8 @@ public partial class OvenManager : Node
 
 	private void AddOvenInterface(OvenArea ovenArea)
 	{
-		OvenInterface ovenInterface = BearBakery.PackedScenes.GetOvenInterface(ovenArea);
-		BearBakery.GameManager.Interface.AddInterface(ovenInterface);
+		OvenWindow ovenWindow = BearBakery.PackedScenes.GetOvenWindow(ovenArea);
+		BearBakery.Signals.EmitSignal(Signals.SignalName.WindowOpened, ovenWindow);
 	}
 
 	public List<OvenSlot> GetOvenSlots()
@@ -73,11 +71,6 @@ public partial class OvenManager : Node
 		}
 		return ovenDictionaries;
 	}
-
-	public void SetData()
-	{
-
-	}
 	
 	private GC.Dictionary<string, Variant> GetOvenDictionary(OvenArea oven)
 	{
@@ -107,5 +100,4 @@ public partial class OvenManager : Node
 			// { "IsCooking" }
 		};
 	}
-
 }

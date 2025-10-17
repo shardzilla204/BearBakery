@@ -32,11 +32,11 @@ public partial class OvenSlot : HBoxContainer
     {
         if (_isCooking) 
 		{
-			UpdateCookingBar(_cookTimer, BearBakery.OvenManager.CookColor);
+			UpdateCookingBar(_cookTimer, OvenManager.CookColor);
 		}
 		else if (_isBurning) 
 		{
-			UpdateCookingBar(_burnTimer, BearBakery.OvenManager.BurnColor);
+			UpdateCookingBar(_burnTimer, OvenManager.BurnColor);
 		}
     }
 	
@@ -50,7 +50,7 @@ public partial class OvenSlot : HBoxContainer
 	{
 		_isDragging = true;
 
-		Control dragPreview = BearBakery.GameManager.GetDragPreview(_ingredient);
+		Control dragPreview = GameManager.GetDragPreview(_ingredient);
 		SetDragPreview(dragPreview);
 
 		Dictionary<string, Variant> dragDictionary = new Dictionary<string, Variant>()

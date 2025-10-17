@@ -18,10 +18,15 @@ public partial class PlayerInterface : Node
 	private ItemContentInterface _itemContentInterface;
 	private List<KeybindAction> _keyQueue = new List<KeybindAction>();
 
+    public override void _ExitTree()
+    {
+        BearBakery.Signals.PlayerItemUpdated -= PlayerItemUpdated;
+		BearBakery.Signals.ShowKeybind -= ShowKeybind;
+		BearBakery.Signals.HideKeybind -= HideKeybind;
+    }
+
 	public override void _EnterTree()
 	{
-		BearBakery.GameManager.Interface = this;
-
 		BearBakery.Signals.PlayerItemUpdated += PlayerItemUpdated;
 		BearBakery.Signals.ShowKeybind += ShowKeybind;
 		BearBakery.Signals.HideKeybind += HideKeybind;
@@ -29,15 +34,17 @@ public partial class PlayerInterface : Node
 
 	public override async void _Ready()
 	{
-		_settingsButton.Pressed += () =>
-		{
-			SettingsCanvas settingsCanvas = BearBakery.PackedScenes.GetSettingsCanvas();
-			AddSibling(settingsCanvas);
-		};
+		_settingsButton.Pressed += OnSettingsButtonPressed;
 
 		await ToSignal(BearBakery.Signals, Signals.SignalName.PlayersSpawned);
 		PlayerItemUpdated();
 	}
+
+	private void OnSettingsButtonPressed()
+    {
+        SettingsCanvas settingsCanvas = BearBakery.PackedScenes.GetSettingsCanvas();
+		AddSibling(settingsCanvas);
+    }
 
 	public void AddInterface(Control control)
 	{
@@ -52,7 +59,6 @@ public partial class PlayerInterface : Node
 		if (BearBakery.Player.Inventory.Items.Count == 0) return;
 
 		BearBakery.Signals.EmitSignal(Signals.SignalName.HideKeybind, 70 /* Key.F */);
-
 		Item playerItem = BearBakery.Player.Inventory.Items[0];
 
 		if (playerItem is not StorageItem storageItem) return;
@@ -62,7 +68,7 @@ public partial class PlayerInterface : Node
 
 		if (storageItem is Bowl bowl)
 		{
-			bool hasRecipe = BearBakery.Recipes.HasRecipe(bowl.Ingredients);
+			bool hasRecipe = RecipeManager.HasRecipe(bowl.Ingredients);
 			if (!hasRecipe) return;
 			
 			BearBakery.Signals.EmitSignal(Signals.SignalName.ShowKeybind, 70 /* Key.F */, "Mix");

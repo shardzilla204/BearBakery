@@ -124,7 +124,7 @@ public partial class PlayerController : Node2D
 		{
 			if (_player.Direction == Vector2.Zero || _player.IsLeaping) return;
 
-			_player.IsSprinting = Input.IsActionPressed("Sprint") && !BearBakery.StaminaManager.IsDepleted() ? true : false;
+			_player.IsSprinting = Input.IsActionPressed("Sprint") && !StaminaManager.IsDepleted() ? true : false;
 
 			if (_player.IsSprinting) BearBakery.Signals.EmitSignal(Signals.SignalName.PlayerSprinting, delta);
 		}
@@ -134,7 +134,7 @@ public partial class PlayerController : Node2D
 	{
 		if (_player.IsLeaping) return;
 
-		_player.IsLeaping = Input.IsActionJustPressed("Leap") && BearBakery.StaminaManager.CanLeap() ? true : false;
+		_player.IsLeaping = Input.IsActionJustPressed("Leap") && StaminaManager.CanLeap() ? true : false;
 		if (_player.IsLeaping)
 		{
 			_player.ZIndex = 1;

@@ -1,0 +1,25 @@
+{
+    "Items":
+    [
+        {
+            "Name": "Square Baking Pan",
+            "Description": "Bake goods with considerable width."
+        },
+        {
+            "Name": "Baking Tray",
+            "Description": "A nice sizable area."
+        },
+        {
+            "Name": "Bowl",
+            "Description": "A vessel to hold ingredients."
+        },
+        {
+            "Name": "Cup",
+            "Description": "Can hold quite a bit of liquid. Probably around one cup."
+        },
+        {
+            "Name": "Plate",
+            "Description": "To place and serve food."
+        }
+    ]
+}

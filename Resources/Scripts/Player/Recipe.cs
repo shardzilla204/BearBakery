@@ -7,9 +7,9 @@ namespace BearBakery;
 
 public partial class Recipe : Node
 {
-    public Recipe(string recipeName, GC.Dictionary<string, Variant> recipeDictionary)
+    public Recipe(GC.Dictionary<string, Variant> recipeDictionary)
     {
-        Name = recipeName;
+        Name = recipeDictionary["Name"].As<string>();
         Methods = recipeDictionary["Methods"].As<GC.Dictionary<string, float>>();
 
         IngredientNames = recipeDictionary["Ingredients"].As<GC.Array<string>>().ToList();

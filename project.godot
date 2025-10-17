@@ -22,9 +22,9 @@ config/icon="res://Assets/Images/GameIcon.png"
 [autoload]
 
 BearBakery="*res://Scenes/BearBakery.tscn"
-Items="*res://Resources/Scripts/Items.cs"
-Ingredients="*res://Resources/Scripts/Object/Ingredients.cs"
-Recipes="*res://Resources/Scripts/Recipes.cs"
+Items="*res://Resources/Scripts/Item/ItemManager.cs"
+Ingredients="*res://Resources/Scripts/Ingredient/IngredientManager.cs"
+Recipes="*res://Resources/Scripts/RecipeManager.cs"
 
 [display]
 

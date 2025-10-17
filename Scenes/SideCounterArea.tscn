@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://curox557xawcm"]
 
 [ext_resource type="PackedScene" uid="uid://cq6adeknsii4q" path="res://Scenes/CounterArea.tscn" id="1_vugec"]
-[ext_resource type="Shape2D" uid="uid://2lggwbdx38o3" path="res://Scenes/SideCounterArea.tres" id="2_v38gp"]
+[ext_resource type="Shape2D" uid="uid://2lggwbdx38o3" path="res://Resources/Area/SideCounterArea.tres" id="2_v38gp"]
 
 [node name="SideCounterArea" instance=ExtResource("1_vugec")]
 
