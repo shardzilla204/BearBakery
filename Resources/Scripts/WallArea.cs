@@ -2,34 +2,36 @@ using Godot;
 
 namespace BearBakery;
 
-public partial class WallArea : Node2D
+public partial class WallArea : Area2D
 {
 	[Export]
-	private TileMapLayer _layerOne;
+	private TileMapLayer _layer;
 
 	[Export]
-	private TileMapLayer _layerTwo;
-
-	[Export]
-	private Area2D _area;
+	private CollisionShape2D _cameraBounds;
 
 	public override void _Ready()
 	{
-		_area.AreaEntered += (area) => SetLayerColors(true);
-		_area.AreaExited += (area) => SetLayerColors(false);
+		AreaEntered += (area) => OnAreaEntered();
+		AreaExited += (area) => SetLayerOpacity(false);
 
 		Visible = true; // Visibility is false in the editor
 	}
 
-	private void SetLayerColors(bool hasEntered)
+	private void OnAreaEntered()
+	{
+		BearBakery.Signals.EmitSignal(Signals.SignalName.CameraBoundsChanged, _cameraBounds);
+		SetLayerOpacity(true);
+
+		GD.Print(GetParent().Name);
+    }
+
+	private void SetLayerOpacity(bool hasEntered)
 	{
 		Color color = Colors.White;
 
 		color.A = hasEntered ? 0 : 1;
-		TweenLayerOpacity(color, _layerOne);
-
-		color.A = hasEntered ? 0.5f : 1f;
-		TweenLayerOpacity(color, _layerTwo);
+		TweenLayerOpacity(color, _layer);
 	}
 
 	private void TweenLayerOpacity(Color color, TileMapLayer layer)

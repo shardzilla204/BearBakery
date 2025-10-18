@@ -1,31 +1,36 @@
 {
-	"Cheese Cake": {
-		"Description": "A dessert of freah cheese with a nice golden graham cracker crust.",
-		"Options": 
-		{ 
-			"Plain": 
-			[
-				"res://Assets/Images/Food/CheeseCake.png"
-			]
-		},
-		"Addons": 
+	"Food":
+	[
 		{
-			"Blueberry Sauce": "res://Assets/Images/Food/CheeseCakeBlueberry.png",
-			"Strawberry Sauce": "res://Assets/Images/Food/CheeseCakeStrawberry.png",
-			"Blackberry Sauce": "res://Assets/Images/Food/CheeseCakeBlackberry.png"
-		}
-	},
-	"Cookie": {
-		"Description": "Round and flat, but is quite the treat to snack on.",
-		"Options": 
-		{ 
-			"Plain": [ "res://Assets/Images/Food/Cookie.png" ],
-			"Chocolate": [ "res://Assets/Images/Food/ChocolateCookie.png" ]
+			"Name": "Cheese Cake",
+			"Description": "A dessert of freah cheese with a nice golden graham cracker crust.",
+			"Options": 
+			{ 
+				"Plain": 
+				[
+					"res://Assets/Images/Food/CheeseCake.png"
+				]
+			},
+			"Addons": 
+			{
+				"Blueberry Sauce": "res://Assets/Images/Food/CheeseCakeBlueberry.png",
+				"Strawberry Sauce": "res://Assets/Images/Food/CheeseCakeStrawberry.png",
+				"Blackberry Sauce": "res://Assets/Images/Food/CheeseCakeBlackberry.png"
+			}
 		},
-		"Addons": 
 		{
-			"Chocolate Chips": "res://Assets/Images/Food/CookieChocolateChips.png",
-			"White Chocolate Chips": "res://Assets/Images/Food/CookieWhiteChocolateChips.png"
+			"Name": "Cookie",
+			"Description": "Round and flat, but is quite the treat to snack on.",
+			"Options": 
+			{ 
+				"Plain": [ "res://Assets/Images/Food/Cookie.png" ],
+				"Chocolate": [ "res://Assets/Images/Food/ChocolateCookie.png" ]
+			},
+			"Addons": 
+			{
+				"Chocolate": "res://Assets/Images/Food/CookieChocolate.png",
+				"White Chocolate": "res://Assets/Images/Food/CookieWhiteChocolate.png"
+			}
 		}
-	}
+	]
 }

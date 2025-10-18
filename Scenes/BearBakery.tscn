@@ -1,7 +1,8 @@
-[gd_scene load_steps=27 format=3 uid="uid://brias4u71808i"]
+[gd_scene load_steps=32 format=3 uid="uid://brias4u71808i"]
 
 [ext_resource type="Script" uid="uid://leegvrvm4bkq" path="res://Resources/Scripts/BearBakery.cs" id="1_x10j2"]
 [ext_resource type="Script" uid="uid://dnjwypdmfoq4x" path="res://Resources/Scripts/Game/GameManager.cs" id="1_yc0h7"]
+[ext_resource type="Texture2D" uid="uid://bu0v3xjhc0pt" path="res://Assets/Images/Alpha.png" id="2_ndsd0"]
 [ext_resource type="TileSet" uid="uid://nc2qb8ln6brs" path="res://Scenes/Tilemap/Building.tres" id="3_bufrg"]
 [ext_resource type="PackedScene" uid="uid://cm8q4w45c4ru8" path="res://Scenes/Canvas/SettingsCanvas.tscn" id="3_ckd2w"]
 [ext_resource type="PackedScene" uid="uid://plrkv8itmuxm" path="res://Scenes/GameCanvas.tscn" id="4_w8its"]
@@ -14,11 +15,15 @@
 [ext_resource type="PackedScene" uid="uid://c6pcgsi4ud4cb" path="res://Scenes/PlayerPlate.tscn" id="10_ny6xy"]
 [ext_resource type="Script" uid="uid://drlklyf0uae7" path="res://Resources/Scripts/Debug.cs" id="12_0mgr6"]
 [ext_resource type="PackedScene" uid="uid://bc66uck87skc5" path="res://Scenes/OvenSlot.tscn" id="12_5rte1"]
+[ext_resource type="PackedScene" uid="uid://d4gxjgkiepwn4" path="res://Scenes/OvenWindow.tscn" id="12_ny6xy"]
+[ext_resource type="PackedScene" uid="uid://b31r4lydyjd75" path="res://Scenes/TooltipLabel.tscn" id="12_t2hxd"]
 [ext_resource type="Script" uid="uid://ekv2k1ajnukn" path="res://Resources/Scripts/PackedScenes.cs" id="12_w8its"]
 [ext_resource type="Script" uid="uid://bueygolc46wij" path="res://Resources/Scripts/Appliance/Fridge/FridgeManager.cs" id="13_ny6xy"]
 [ext_resource type="PackedScene" uid="uid://cs6uyrmy6efvx" path="res://Scenes/OvenRack.tscn" id="14_28qvm"]
+[ext_resource type="PackedScene" uid="uid://bf437ui7a4j0w" path="res://Scenes/Canvas/FridgeWindow.tscn" id="15_ny6xy"]
 [ext_resource type="PackedScene" uid="uid://dw4wostth7mk6" path="res://Scenes/FridgeSlot.tscn" id="15_t2hxd"]
 [ext_resource type="Script" uid="uid://bvkeit8p4a5uv" path="res://Resources/Scripts/Game/GameFileManager.cs" id="16_ndsd0"]
+[ext_resource type="PackedScene" uid="uid://c5xkkogpkbk52" path="res://Scenes/MixerWindow.tscn" id="17_pmsnq"]
 [ext_resource type="PackedScene" uid="uid://dvtmf6g0olyti" path="res://Scenes/ItemObject.tscn" id="18_bufrg"]
 [ext_resource type="PackedScene" uid="uid://bv7l4xefjso5l" path="res://Scenes/ItemContentInterface.tscn" id="20_4aix0"]
 [ext_resource type="Script" uid="uid://0pv8jb33qf58" path="res://Resources/Scripts/PrintRich.cs" id="20_28qvm"]
@@ -32,6 +37,7 @@ layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
 script = ExtResource("1_x10j2")
+_alphaTexture = ExtResource("2_ndsd0")
 
 [node name="PackedScenes" type="Node" parent="."]
 script = ExtResource("12_w8its")
@@ -44,9 +50,13 @@ _itemContentInterface = ExtResource("20_4aix0")
 _keybindAction = ExtResource("24_ckd2w")
 _player = ExtResource("24_5rte1")
 _playerPlate = ExtResource("10_ny6xy")
+_tooltipLabel = ExtResource("12_t2hxd")
+_ovenWindow = ExtResource("12_ny6xy")
 _ovenRack = ExtResource("14_28qvm")
 _ovenSlot = ExtResource("12_5rte1")
+_fridgeWindow = ExtResource("15_ny6xy")
 _fridgeSlot = ExtResource("15_t2hxd")
+_mixerWindow = ExtResource("17_pmsnq")
 _mixerSlot = ExtResource("20_gbtsg")
 
 [node name="Debug" type="Node" parent="."]

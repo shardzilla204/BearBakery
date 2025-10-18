@@ -11,9 +11,6 @@ public partial class GameManager : Node
 	[Export(PropertyHint.Range, "100,250,5")]
 	private float _dragPreviewSize = 100;
 
-	[Export]
-	private PlayerInterface _playerInterface;
-
 	// public static List<Player> Players = new List<Player>();
 	public static List<PlayerInfo> PlayersInfo = new List<PlayerInfo>();
 
@@ -21,16 +18,6 @@ public partial class GameManager : Node
 
 	private bool _isCollisionOn = false;
 	private Timer _timer;
-
-	public override void _ExitTree()
-	{
-		BearBakery.Signals.WindowOpened -= OnWindowOpened;
-	}
-	
-	public override void _EnterTree()
-	{
-		BearBakery.Signals.WindowOpened += OnWindowOpened;
-	}
 
     public override void _Ready()
     {
@@ -54,9 +41,4 @@ public partial class GameManager : Node
 
 		return dragPreview;
 	}
-	
-	private void OnWindowOpened(Node window)
-    {
-		_playerInterface.AddChild(window);
-    }
 }

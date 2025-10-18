@@ -46,9 +46,9 @@ public partial class PlayerInterface : Node
 		AddSibling(settingsCanvas);
     }
 
-	public void AddInterface(Control control)
+	public void AddWindow(Node window)
 	{
-		_interfaceContainer.AddChild(control);
+		_interfaceContainer.AddChild(window);
 		_interfaceContainer.MoveToFront();
 	}
 

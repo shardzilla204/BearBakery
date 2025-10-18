@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=4 uid="uid://6ay32m2ctebr"]
+
+[ext_resource type="TileSet" uid="uid://nc2qb8ln6brs" path="res://Scenes/Tilemap/Building.tres" id="1_rfoad"]
+[ext_resource type="TileSet" uid="uid://br2miilfhv0i2" path="res://Scenes/Tilemap/Interior.tres" id="2_d14ge"]
+[ext_resource type="PackedScene" uid="uid://curox557xawcm" path="res://Scenes/SideCounterArea.tscn" id="3_2eoyx"]
+[ext_resource type="PackedScene" uid="uid://cq6adeknsii4q" path="res://Scenes/CounterArea.tscn" id="4_cwfy4"]
+
+[node name="Checkout" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Collision" type="TileMapLayer" parent="."]
+z_index = -1
+tile_map_data = PackedByteArray("AAAAAAAAAAAGAAMAAAAAAAIAAAAGAAMAAAAAAAMAAAAGAAMAAAAAAAQAAAAGAAMAAAABAAQAAAAGAAMAAAACAAQAAAAGAAMAAAADAAQAAAAGAAMAAAAEAAQAAAAEAAMAAAAFAAQAAAAEAAMAAAAGAAQAAAAEAAMAAAAHAAQAAAAEAAMAAAAIAAQAAAAGAAMAAAAJAAAAAAAEAAMAAAAJAAEAAAAEAAMAAAAJAAIAAAAGAAMAAAAJAAMAAAAGAAMAAAAJAAQAAAAGAAMAAAA=")
+tile_set = ExtResource("1_rfoad")
+metadata/_edit_lock_ = true
+
+[node name="Floor" type="TileMapLayer" parent="."]
+z_index = -1
+tile_map_data = PackedByteArray("AAABAAAAAAAAAAMAAAABAAEAAAAAAAMAAAABAAIAAAAAAAMAAAABAAMAAAAAAAMAAAABAAQAAAAAAAMAAAACAAAAAAAAAAMAAAACAAEAAAAAAAMAAAACAAIAAAAAAAMAAAACAAMAAAAAAAMAAAACAAQAAAAAAAMAAAADAAAAAAAAAAMAAAADAAEAAAAAAAMAAAADAAIAAAAAAAMAAAADAAMAAAAAAAMAAAADAAQAAAAAAAMAAAAEAAAAAAAAAAMAAAAEAAEAAAAAAAMAAAAEAAIAAAAAAAMAAAAEAAMAAAAAAAMAAAAEAAQAAAAAAAMAAAAFAAAAAAAAAAMAAAAFAAEAAAAAAAMAAAAFAAIAAAAAAAMAAAAFAAMAAAAAAAMAAAAFAAQAAAAAAAMAAAAGAAAAAAAAAAMAAAAGAAEAAAAAAAMAAAAGAAIAAAAAAAMAAAAGAAMAAAAAAAMAAAAGAAQAAAAAAAMAAAAHAAAAAAAAAAMAAAAHAAEAAAAAAAMAAAAHAAIAAAAAAAMAAAAHAAMAAAAAAAMAAAAHAAQAAAAAAAMAAAAIAAAAAAAAAAMAAAAIAAEAAAAAAAMAAAAIAAIAAAAAAAMAAAAIAAMAAAAAAAMAAAAIAAQAAAAAAAMAAAAJAAAAAAAAAAMAAAAJAAEAAAAAAAMAAAAJAAIAAAAAAAMAAAAJAAMAAAAAAAMAAAAJAAQAAAAAAAMAAAAAAAAAAAAAAAMAAAAAAAEAAAAAAAMAAAAAAAIAAAAAAAMAAAAAAAMAAAAAAAMAAAAAAAQAAAAAAAMAAAA=")
+tile_set = ExtResource("1_rfoad")
+metadata/_edit_lock_ = true
+
+[node name="Interior" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAEAAMAAAACAAAAABAEAAQAAAACAAEAABAFAAMAAAABAAAAAAAFAAQAAAABAAEAAAAGAAMAAAABAAAAAAAGAAQAAAABAAEAAAAHAAMAAAACAAAAAAAHAAQAAAACAAEAAAAJAP//AAAAAAAAAAAJAAAAAAAAAAEAAAAJAAEAAAAAAAIAAAA=")
+tile_set = ExtResource("2_d14ge")
+
+[node name="Counter" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAAAP//AAADAAMAAAAAAAAAAAADAAYAAAAAAAEAAAADAAUAAAAAAAIAAAADAAAAAAAAAAMAAAADAAAAAAAAAAQAAAADAAIAAAABAAMAAAADAAMAAAABAAQAAAADAAQAAAACAAMAAAADAAMAAAACAAQAAAADAAQAAAADAAMAAAADAAMAAAADAAQAAAADAAQAAAAIAAMAAAADAAMAAAAIAAQAAAADAAQAAAAJAAEAAAADAAMAAAAJAAIAAAADAAAAAAAJAAMAAAADAAAAAAAJAAQAAAADAAIAABA=")
+tile_set = ExtResource("2_d14ge")
+
+[node name="ForCounterCorners" type="TileMapLayer" parent="Counter"]
+y_sort_enabled = true
+tile_set = ExtResource("2_d14ge")
+metadata/_edit_lock_ = true
+
+[node name="Counter" type="Node2D" parent="Counter"]
+
+[node name="SideCounter" type="Node2D" parent="Counter/Counter"]
+
+[node name="SideCounterArea2" parent="Counter/Counter/SideCounter" instance=ExtResource("3_2eoyx")]
+position = Vector2(0, 93)
+
+[node name="SideCounterArea3" parent="Counter/Counter/SideCounter" instance=ExtResource("3_2eoyx")]
+position = Vector2(0, 67)
+
+[node name="SideCounterArea4" parent="Counter/Counter/SideCounter" instance=ExtResource("3_2eoyx")]
+position = Vector2(0, -16)
+
+[node name="SideCounterArea5" parent="Counter/Counter/SideCounter" instance=ExtResource("3_2eoyx")]
+position = Vector2(288, 93)
+
+[node name="SideCounterArea6" parent="Counter/Counter/SideCounter" instance=ExtResource("3_2eoyx")]
+position = Vector2(288, 67)
+
+[node name="Counter2" parent="Counter/Counter" instance=ExtResource("4_cwfy4")]
+position = Vector2(288, 114)
+scale = Vector2(1, 0.999999)
+
+[node name="Counter3" parent="Counter/Counter" instance=ExtResource("4_cwfy4")]
+position = Vector2(256, 114)
+
+[node name="Counter4" parent="Counter/Counter" instance=ExtResource("4_cwfy4")]
+position = Vector2(96, 114)
+
+[node name="Counter5" parent="Counter/Counter" instance=ExtResource("4_cwfy4")]
+position = Vector2(64, 114)
+
+[node name="Counter6" parent="Counter/Counter" instance=ExtResource("4_cwfy4")]
+position = Vector2(32, 114)
+
+[node name="Counter7" parent="Counter/Counter" instance=ExtResource("4_cwfy4")]
+position = Vector2(0, 114)

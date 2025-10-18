@@ -31,6 +31,9 @@ public partial class PackedScenes : Node
     [Export]
     private PackedScene _playerPlate;
 
+    [Export]
+    private PackedScene _tooltipLabel;
+
     [ExportGroup("Oven")]
     [Export]
     private PackedScene _ovenWindow;
@@ -79,6 +82,11 @@ public partial class PackedScenes : Node
     public LobbyCanvas GetLobbyCanvas()
     {
         return _lobbyCanvas.Instantiate<LobbyCanvas>();
+    }
+
+    public Label GetTooltipLabel()
+    {
+        return _tooltipLabel.Instantiate<Label>();
     }
 
     // Oven

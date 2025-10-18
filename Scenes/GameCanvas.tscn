@@ -1,306 +1,32 @@
-[gd_scene load_steps=14 format=4 uid="uid://plrkv8itmuxm"]
+[gd_scene load_steps=5 format=3 uid="uid://plrkv8itmuxm"]
 
 [ext_resource type="Script" uid="uid://br31i8wxohwxf" path="res://Resources/Scripts/Game/GameCanvas.cs" id="1_nmjms"]
-[ext_resource type="Texture2D" uid="uid://bu0v3xjhc0pt" path="res://Assets/Images/Alpha.png" id="2_mwxve"]
-[ext_resource type="TileSet" uid="uid://nc2qb8ln6brs" path="res://Scenes/Tilemap/Building.tres" id="3_r8u0u"]
-[ext_resource type="Script" uid="uid://dsilrfqy2bypw" path="res://Resources/Scripts/WallArea.cs" id="4_nhufw"]
-[ext_resource type="TileSet" uid="uid://br2miilfhv0i2" path="res://Scenes/Tilemap/Interior.tres" id="5_ogj6o"]
-[ext_resource type="PackedScene" uid="uid://sardrnwqwn2g" path="res://Scenes/TopMiddleCounter.tscn" id="6_eqglb"]
-[ext_resource type="PackedScene" uid="uid://b7ypnxm5omyhm" path="res://Scenes/Mixer.tscn" id="7_e273h"]
-[ext_resource type="PackedScene" uid="uid://curox557xawcm" path="res://Scenes/SideCounterArea.tscn" id="8_vu14j"]
-[ext_resource type="PackedScene" uid="uid://cq6adeknsii4q" path="res://Scenes/CounterArea.tscn" id="9_a8mpn"]
-[ext_resource type="PackedScene" uid="uid://rqrua578fsgd" path="res://Scenes/Appliance/OvenArea.tscn" id="10_x4n7j"]
-[ext_resource type="PackedScene" uid="uid://dox6i6kwslrxn" path="res://Scenes/FridgeArea.tscn" id="11_i1gs2"]
+[ext_resource type="PackedScene" uid="uid://exmdl8usq3fg" path="res://Scenes/Kitchen.tscn" id="2_5jovf"]
+[ext_resource type="PackedScene" uid="uid://cbui1ydk6mr4j" path="res://Scenes/Lobby.tscn" id="4_1nkt7"]
 [ext_resource type="PackedScene" uid="uid://ch1gb0y0b6xvs" path="res://Scenes/Canvas/PlayerInterface.tscn" id="13_syufx"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a0eo8"]
-size = Vector2(512, 208)
-
-[node name="GameCanvas" type="Node2D" node_paths=PackedStringArray("_itemContainer")]
+[node name="GameCanvas" type="Node2D" node_paths=PackedStringArray("_itemContainer", "_playerInterface")]
 y_sort_enabled = true
 script = ExtResource("1_nmjms")
 _itemContainer = NodePath("ItemContainer")
-_alpha = ExtResource("2_mwxve")
+_playerInterface = NodePath("PlayerInterface")
 
-[node name="Tilemap" type="Node2D" parent="."]
-y_sort_enabled = true
+[node name="PlayerInterface" parent="." instance=ExtResource("13_syufx")]
 
-[node name="Kitchen" type="Node2D" parent="Tilemap"]
-y_sort_enabled = true
+[node name="Kitchen" parent="." instance=ExtResource("2_5jovf")]
 
-[node name="Collision" type="TileMapLayer" parent="Tilemap/Kitchen"]
-self_modulate = Color(1, 1, 1, 0)
-tile_map_data = PackedByteArray("AAADAAoAAAABAAEAAAAEAAoAAAABAAEAAAAFAAoAAAABAAEAAAAGAAoAAAABAAEAAAAHAAoAAAABAAEAAAAIAAoAAAABAAEAAAAJAAoAAAABAAEAAAAKAAoAAAABAAEAAAALAAoAAAABAAEAAAAMAAoAAAABAAEAAAANAAoAAAABAAEAAAAOAAoAAAABAAEAAAAPAAoAAAABAAEAAAAQAAoAAAABAAEAAAARAAoAAAABAAEAAAASAAoAAAABAAEAAAASAAsAAAABAAEAAAASAAwAAAABAAEAAAASAA0AAAABAAEAAAASAA4AAAABAAEAAAASAA8AAAABAAEAAAASABAAAAABAAEAAAARABAAAAABAAEAAAAOABAAAAABAAEAAAANABAAAAABAAEAAAAMABAAAAABAAEAAAALABAAAAABAAEAAAAKABAAAAABAAEAAAAJABAAAAABAAEAAAAIABAAAAABAAEAAAAHABAAAAABAAEAAAAGABAAAAABAAEAAAAFABAAAAABAAEAAAAEABAAAAABAAEAAAADABAAAAABAAEAAAADAA4AAAABAAEAAAADAA0AAAABAAEAAAADAAwAAAABAAEAAAADAAsAAAABAAEAAAAEAAsAAAACAAEAAAAFAAsAAAACAAEAAAAGAAsAAAACAAEAAAAHAAsAAAACAAEAAAAIAAsAAAACAAEAAAAJAAsAAAACAAEAAAAKAAsAAAACAAEAAAALAAsAAAACAAEAAAAMAAsAAAACAAEAAAANAAsAAAACAAEAAAAOAAsAAAACAAEAAAAPAAsAAAACAAEAAAAQAAsAAAACAAEAAAARAAsAAAACAAEAAAAHAA0AAAACAAEAAAAIAA0AAAACAAEAAAAJAA0AAAACAAEAAAAKAA0AAAACAAEAAAALAA0AAAACAAEAAAAMAA0AAAACAAEAAAANAA0AAAACAAEAAAAOAA0AAAACAAEAAAAOAA4AAAACAAEAAAANAA4AAAACAAEAAAAMAA4AAAACAAEAAAALAA4AAAACAAEAAAAKAA4AAAACAAEAAAAJAA4AAAACAAEAAAAIAA4AAAACAAEAAAAHAA4AAAACAAEAAAAEAAwAAAACAAEAAAAEAA0AAAACAAEAAAAEAA4AAAACAAEAAAACABAAAAABAAEAAAABABAAAAABAAEAAAAAABAAAAABAAEAAAD//xAAAAABAAEAAAD+/xAAAAABAAEAAAD9/xAAAAABAAEAAAD8/xAAAAABAAEAAAD7/xAAAAABAAEAAAD7/w8AAAABAAEAAAD7/w4AAAABAAEAAAD7/w0AAAABAAEAAAD7/wwAAAABAAEAAAD8/wwAAAABAAEAAAD9/wwAAAABAAEAAAD+/wwAAAABAAEAAAD//wwAAAABAAEAAAAAAAwAAAABAAEAAAABAAwAAAABAAEAAAACAAwAAAABAAEAAAA=")
-tile_set = ExtResource("3_r8u0u")
+[node name="Lobby" parent="." instance=ExtResource("4_1nkt7")]
+position = Vector2(-96, 160)
+
+[node name="CollisionShape2D" parent="Lobby/WallArea" index="1"]
+position = Vector2(288, 488)
+
+[node name="CameraBounds" parent="Lobby" index="5"]
 metadata/_edit_lock_ = true
-
-[node name="Floor" type="TileMapLayer" parent="Tilemap/Kitchen"]
-z_index = -1
-tile_map_data = PackedByteArray("AAAEAAsAAAAAAAEAAAAFAAsAAAAAAAEAAAAGAAsAAAAAAAEAAAAHAAsAAAAAAAEAAAAIAAsAAAAAAAEAAAAJAAsAAAAAAAEAAAAKAAsAAAAAAAEAAAALAAsAAAAAAAEAAAAMAAsAAAAAAAEAAAANAAsAAAAAAAEAAAAOAAsAAAAAAAEAAAAPAAsAAAAAAAEAAAAQAAsAAAAAAAEAAAARAAsAAAAAAAEAAAARAAwAAAAAAAEAAAARAA0AAAAAAAEAAAARAA4AAAAAAAEAAAARAA8AAAAAAAEAAAAQAA8AAAAAAAEAAAAPAA8AAAAAAAEAAAAOAA8AAAAAAAEAAAANAA8AAAAAAAEAAAAMAA8AAAAAAAEAAAALAA8AAAAAAAEAAAAKAA8AAAAAAAEAAAAJAA8AAAAAAAEAAAAIAA8AAAAAAAEAAAAHAA8AAAAAAAEAAAAGAA8AAAAAAAEAAAAFAA8AAAAAAAEAAAAEAA8AAAAAAAEAAAAEAA4AAAAAAAEAAAAEAA0AAAAAAAEAAAAEAAwAAAAAAAEAAAAJAA0AAAAAAAEAAAAJAAwAAAAAAAEAAAAIAAwAAAAAAAEAAAAHAAwAAAAAAAEAAAAGAAwAAAAAAAEAAAAFAAwAAAAAAAEAAAAFAA0AAAAAAAEAAAAFAA4AAAAAAAEAAAAGAA4AAAAAAAEAAAAGAA0AAAAAAAEAAAAHAA0AAAAAAAEAAAAHAA4AAAAAAAEAAAAIAA4AAAAAAAEAAAAIAA0AAAAAAAEAAAAJAA4AAAAAAAEAAAAKAA4AAAAAAAEAAAAKAA0AAAAAAAEAAAAKAAwAAAAAAAEAAAALAAwAAAAAAAEAAAALAA0AAAAAAAEAAAALAA4AAAAAAAEAAAAMAA4AAAAAAAEAAAAMAA0AAAAAAAEAAAAMAAwAAAAAAAEAAAANAAwAAAAAAAEAAAANAA0AAAAAAAEAAAANAA4AAAAAAAEAAAAOAA4AAAAAAAEAAAAOAA0AAAAAAAEAAAAOAAwAAAAAAAEAAAAPAAwAAAAAAAEAAAAPAA0AAAAAAAEAAAAPAA4AAAAAAAEAAAAQAA4AAAAAAAEAAAAQAA0AAAAAAAEAAAAQAAwAAAAAAAEAAAAPABAAAAAAAAEAAAAQABAAAAAAAAEAAAAOABAAAAAAAAEAAAANABAAAAAAAAEAAAAMABAAAAAAAAEAAAALABAAAAAAAAEAAAAKABAAAAAAAAEAAAAJABAAAAAAAAEAAAAIABAAAAAAAAEAAAAHABAAAAAAAAEAAAAGABAAAAAAAAEAAAAFABAAAAAAAAEAAAAEABAAAAAAAAEAAAARABAAAAAAAAEAAAACABAAAAABAAIAAAABABAAAAABAAIAAAAAABAAAAABAAIAAAD//xAAAAABAAIAAAD+/xAAAAABAAIAAAACAA8AAAABAAIAAAABAA8AAAABAAIAAAAAAA8AAAABAAIAAAD//w8AAAABAAIAAAD+/w8AAAABAAIAAAD+/w4AAAABAAIAAAD//w4AAAABAAIAAAAAAA4AAAABAAIAAAABAA4AAAABAAIAAAACAA4AAAABAAIAAAACAA0AAAABAAIAAAABAA0AAAABAAIAAAAAAA0AAAABAAIAAAD//w0AAAABAAIAAAD+/w0AAAABAAIAAAD9/xAAAAABAAIAAAD8/xAAAAABAAIAAAD7/xAAAAABAAIAAAD7/w8AAAABAAIAAAD8/w8AAAABAAIAAAD8/w4AAAABAAIAAAD8/w0AAAABAAIAAAD9/w0AAAABAAIAAAD9/w4AAAABAAIAAAD9/w8AAAABAAIAAAD7/w0AAAABAAIAAAD7/w4AAAABAAIAAAACAAwAAAABAAIAAAABAAwAAAABAAIAAAAAAAwAAAABAAIAAAD//wwAAAABAAIAAAD+/wwAAAABAAIAAAD9/wwAAAABAAIAAAD8/wwAAAABAAIAAAD7/wwAAAABAAIAAAA=")
-tile_set = ExtResource("3_r8u0u")
-metadata/_edit_lock_ = true
-
-[node name="BackWall" type="Node2D" parent="Tilemap/Kitchen"]
-y_sort_enabled = true
-metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
-
-[node name="Top" type="TileMapLayer" parent="Tilemap/Kitchen/BackWall"]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAASAAcAAAACAAIAAAASAAgAAAACAAIAAAASAAkAAAACAAIAAAASAAoAAAACAAIAAAASAAsAAAACAAIAAAASAAwAAAACAAIAAAASAA0AAAADAAIAAAASAA4AAAADAAIAAAASAA8AAAADAAIAAAADAAcAAAACAAIAAAADAAgAAAACAAIAAAADAAkAAAACAAIAAAADAAoAAAACAAIAAAADAAsAAAACAAIAAAADAA0AAAADAAIAAAADAA4AAAADAAIAAAADAA8AAAADAAIAAAAEAAcAAAACAAIAAAAFAAcAAAACAAIAAAAGAAcAAAACAAIAAAAHAAcAAAACAAIAAAAIAAcAAAACAAIAAAAJAAcAAAACAAIAAAAKAAcAAAACAAIAAAALAAcAAAACAAIAAAAMAAcAAAACAAIAAAANAAcAAAACAAIAAAAOAAcAAAACAAIAAAAPAAcAAAACAAIAAAAQAAcAAAACAAIAAAARAAcAAAACAAIAAAADAAwAAAACAAIAAAAEAAgAAAADAAIAAAAEAAkAAAADAAIAAAAFAAkAAAADAAIAAAAGAAkAAAADAAIAAAAHAAkAAAADAAIAAAAIAAkAAAADAAIAAAAJAAkAAAADAAIAAAAKAAkAAAADAAIAAAALAAkAAAADAAIAAAAMAAkAAAADAAIAAAANAAkAAAADAAIAAAAOAAkAAAADAAIAAAAPAAkAAAADAAIAAAAQAAkAAAADAAIAAAARAAkAAAADAAIAAAARAAgAAAADAAIAAAAQAAgAAAADAAIAAAAPAAgAAAADAAIAAAAOAAgAAAADAAIAAAANAAgAAAADAAIAAAAMAAgAAAADAAIAAAALAAgAAAADAAIAAAAKAAgAAAADAAIAAAAJAAgAAAADAAIAAAAIAAgAAAADAAIAAAAHAAgAAAADAAIAAAAGAAgAAAADAAIAAAAFAAgAAAADAAIAAAA=")
-tile_set = ExtResource("3_r8u0u")
-
-[node name="Bottom" type="TileMapLayer" parent="Tilemap/Kitchen/BackWall"]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAEAAoAAAADAAIAAQAFAAoAAAADAAIAAQAGAAoAAAADAAIAAQAHAAoAAAADAAIAAQAIAAoAAAADAAIAAQAJAAoAAAADAAIAAQAKAAoAAAADAAIAAQALAAoAAAADAAIAAQAMAAoAAAADAAIAAQANAAoAAAADAAIAAQAOAAoAAAADAAIAAQAPAAoAAAADAAIAAQAQAAoAAAADAAIAAQARAAoAAAADAAIAAQASABAAAAADAAIAAQADABAAAAADAAIAAQA=")
-tile_set = ExtResource("3_r8u0u")
-
-[node name="FrontWall" type="Node2D" parent="Tilemap/Kitchen" node_paths=PackedStringArray("_layerOne", "_layerTwo", "_area")]
-visible = false
-y_sort_enabled = true
-script = ExtResource("4_nhufw")
-_layerOne = NodePath("Top")
-_layerTwo = NodePath("Bottom")
-_area = NodePath("WallArea")
-metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
-
-[node name="Top" type="TileMapLayer" parent="Tilemap/Kitchen/FrontWall"]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAEAA0AAAADAAIAAAAEAA4AAAADAAIAAAAEAA8AAAADAAIAAAAFAA0AAAADAAIAAAAFAA4AAAADAAIAAAAFAA8AAAADAAIAAAAGAA0AAAADAAIAAAAGAA4AAAADAAIAAAAHAA0AAAADAAIAAAAHAA4AAAADAAIAAAAIAA0AAAADAAIAAAAIAA4AAAADAAIAAAAJAA0AAAADAAIAAAAJAA4AAAADAAIAAAAJAA8AAAADAAIAAAAKAA0AAAADAAIAAAAKAA4AAAADAAIAAAAKAA8AAAADAAIAAAALAA0AAAADAAIAAAALAA4AAAADAAIAAAALAA8AAAADAAIAAAAMAA0AAAADAAIAAAAMAA4AAAADAAIAAAAMAA8AAAADAAIAAAANAA0AAAADAAIAAAANAA4AAAADAAIAAAANAA8AAAADAAIAAAAOAA0AAAADAAIAAAAOAA4AAAADAAIAAAAOAA8AAAADAAIAAAAPAA0AAAADAAIAAAAPAA4AAAADAAIAAAAQAA0AAAADAAIAAAARAA0AAAADAAIAAAAQAA4AAAADAAIAAAARAA4AAAADAAIAAAARAA8AAAADAAIAAAAGAA8AAAADAAIAAAAHAA8AAAADAAIAAAAIAA8AAAADAAIAAAAEAAwAAAACAAIAAAAFAAwAAAACAAIAAAAGAAwAAAACAAIAAAAHAAwAAAACAAIAAAAIAAwAAAACAAIAAAAJAAwAAAACAAIAAAAKAAwAAAACAAIAAAALAAwAAAACAAIAAAAMAAwAAAACAAIAAAANAAwAAAACAAIAAAAOAAwAAAACAAIAAAAPAAwAAAACAAIAAAAQAAwAAAACAAIAAAARAAwAAAACAAIAAAA=")
-tile_set = ExtResource("3_r8u0u")
-
-[node name="Bottom" type="TileMapLayer" parent="Tilemap/Kitchen/FrontWall"]
-tile_map_data = PackedByteArray("AAANABAAAAADAAIAAAAMABAAAAADAAIAAAALABAAAAADAAIAAAAKABAAAAADAAIAAAAJABAAAAADAAIAAAAIABAAAAADAAIAAAAHABAAAAADAAIAAAAGABAAAAADAAIAAAAFABAAAAADAAIAAAAEABAAAAADAAIAAAADABAAAAADAAIAAAAOABAAAAADAAIAAAARABAAAAADAAIAAAASABAAAAADAAIAAAA=")
-tile_set = ExtResource("3_r8u0u")
-
-[node name="WallArea" type="Area2D" parent="Tilemap/Kitchen/FrontWall"]
-top_level = true
-position = Vector2(0, -32)
-collision_layer = 0
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tilemap/Kitchen/FrontWall/WallArea"]
-position = Vector2(352, 440)
-shape = SubResource("RectangleShape2D_a0eo8")
-debug_color = Color(0.768632, 0.330847, 0.7603, 0.42)
-
-[node name="Counter" type="TileMapLayer" parent="Tilemap/Kitchen"]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAARAAoAAAAEAAMAAAAQAAoAAAAEAAMAAAAPAAoAAAAGAAEAAAAOAAoAAAAGAAEAAAANAAoAAAAEAAMAAAAMAAoAAAAEAAMAAAALAAoAAAAEAAMAAAAKAAoAAAAEAAMAAAARAAsAAAAEAAQAAAAQAAsAAAAEAAQAAAANAAsAAAAEAAQAAAAMAAsAAAAEAAQAAAALAAsAAAAEAAQAAAAKAAsAAAAEAAQAAAAHAA4AAAAEAAIAAAAIAA4AAAAEAAQAAAAJAA4AAAAEAAQAAAAKAA4AAAAEAAQAAAALAA4AAAAEAAQAAAAMAA4AAAAEAAQAAAAOAA4AAAAEAAIAABANAA4AAAAEAAQAAAAGAAsAAAAGAAIAAAAHAAsAAAAFAAIAAAAIAAsAAAAGAAIAAAAJAAsAAAAGAAIAAAAJAAoAAAAGAAEAAAAIAAoAAAAGAAEAAAAHAAoAAAAFAAEAAAAGAAoAAAAGAAEAAAAEAAoAAAAGAAEAAAAEAAwAAAAEAAAAAAAEAA0AAAAEAAAAAAAEAAsAAAAEAAAAAAAEAA4AAAAEAAIAABAFAAoAAAAGAAEAAAAFAAsAAAAGAAIAAAAHAAwAAAAEAAEAAgAIAAwAAAAEAAMAAQAJAAwAAAAEAAMAAQAKAAwAAAAEAAMAAQALAAwAAAAEAAMAAQAMAAwAAAAEAAMAAQANAAwAAAAEAAMAAQAOAAwAAAAEAAEAAhAHAA0AAAAEAAAAAAAIAA0AAAAEAAAAAAAJAA0AAAAEAAAAAAAKAA0AAAAEAAAAAAALAA0AAAAEAAAAAAAMAA0AAAAEAAAAAAANAA0AAAAEAAAAAAAOAA0AAAAEAAAAAAAEAA8AAAAEAAEAABAEABAAAAAEAAAAAAAPAAsAAAAEAAQAAAAOAAsAAAAEAAQAAAA=")
-tile_set = ExtResource("5_ogj6o")
-metadata/_edit_lock_ = true
-
-[node name="Counters" type="Node2D" parent="Tilemap/Kitchen/Counter"]
-y_sort_enabled = true
-
-[node name="TopMiddleCounters" type="Node2D" parent="Tilemap/Kitchen/Counter/Counters"]
-y_sort_enabled = true
-
-[node name="TopMiddleCounter" parent="Tilemap/Kitchen/Counter/Counters/TopMiddleCounters" instance=ExtResource("6_eqglb")]
-position = Vector2(448, 398)
-
-[node name="TopMiddleCounter2" parent="Tilemap/Kitchen/Counter/Counters/TopMiddleCounters" instance=ExtResource("6_eqglb")]
-position = Vector2(416, 398)
-
-[node name="TopMiddleCounter3" parent="Tilemap/Kitchen/Counter/Counters/TopMiddleCounters" instance=ExtResource("6_eqglb")]
-position = Vector2(384, 398)
-
-[node name="TopMiddleCounter4" parent="Tilemap/Kitchen/Counter/Counters/TopMiddleCounters" instance=ExtResource("6_eqglb")]
-position = Vector2(352, 398)
-
-[node name="TopMiddleCounter5" parent="Tilemap/Kitchen/Counter/Counters/TopMiddleCounters" instance=ExtResource("6_eqglb")]
-position = Vector2(320, 398)
-
-[node name="TopMiddleCounter6" parent="Tilemap/Kitchen/Counter/Counters/TopMiddleCounters" instance=ExtResource("6_eqglb")]
-position = Vector2(288, 398)
-
-[node name="TopMiddleCounter7" parent="Tilemap/Kitchen/Counter/Counters/TopMiddleCounters" instance=ExtResource("6_eqglb")]
-position = Vector2(256, 398)
-
-[node name="TopMiddleCounter8" parent="Tilemap/Kitchen/Counter/Counters/TopMiddleCounters" instance=ExtResource("6_eqglb")]
-position = Vector2(224, 398)
-
-[node name="Mixer" type="Node2D" parent="Tilemap/Kitchen/Counter/Counters"]
-y_sort_enabled = true
-
-[node name="Mixer" parent="Tilemap/Kitchen/Counter/Counters/Mixer" instance=ExtResource("7_e273h")]
-position = Vector2(496, 346)
-
-[node name="Mixer2" parent="Tilemap/Kitchen/Counter/Counters/Mixer" instance=ExtResource("7_e273h")]
-position = Vector2(464, 346)
-
-[node name="LeftCounters" type="Node2D" parent="Tilemap/Kitchen/Counter/Counters"]
-y_sort_enabled = true
-metadata/_edit_lock_ = true
-
-[node name="CounterArea" parent="Tilemap/Kitchen/Counter/Counters/LeftCounters" instance=ExtResource("8_vu14j")]
-position = Vector2(128, 355)
-
-[node name="CounterArea2" parent="Tilemap/Kitchen/Counter/Counters/LeftCounters" instance=ExtResource("8_vu14j")]
-position = Vector2(128, 433)
-
-[node name="CounterArea3" parent="Tilemap/Kitchen/Counter/Counters/LeftCounters" instance=ExtResource("8_vu14j")]
-position = Vector2(128, 407)
-
-[node name="CounterArea4" parent="Tilemap/Kitchen/Counter/Counters/LeftCounters" instance=ExtResource("8_vu14j")]
-position = Vector2(128, 381)
-
-[node name="Counter3" parent="Tilemap/Kitchen/Counter/Counters" instance=ExtResource("9_a8mpn")]
-position = Vector2(288, 338)
-metadata/_edit_lock_ = true
-
-[node name="Counter4" parent="Tilemap/Kitchen/Counter/Counters" instance=ExtResource("9_a8mpn")]
-position = Vector2(256, 338)
-metadata/_edit_lock_ = true
-
-[node name="Counter5" parent="Tilemap/Kitchen/Counter/Counters" instance=ExtResource("9_a8mpn")]
-position = Vector2(192, 338)
-metadata/_edit_lock_ = true
-
-[node name="Counter6" parent="Tilemap/Kitchen/Counter/Counters" instance=ExtResource("9_a8mpn")]
-position = Vector2(160, 338)
-metadata/_edit_lock_ = true
-
-[node name="Counter7" parent="Tilemap/Kitchen/Counter/Counters" instance=ExtResource("9_a8mpn")]
-position = Vector2(224, 434)
-metadata/_edit_lock_ = true
-
-[node name="Counter8" parent="Tilemap/Kitchen/Counter/Counters" instance=ExtResource("9_a8mpn")]
-position = Vector2(256, 434)
-metadata/_edit_lock_ = true
-
-[node name="Counter9" parent="Tilemap/Kitchen/Counter/Counters" instance=ExtResource("9_a8mpn")]
-position = Vector2(288, 434)
-metadata/_edit_lock_ = true
-
-[node name="Counter10" parent="Tilemap/Kitchen/Counter/Counters" instance=ExtResource("9_a8mpn")]
-position = Vector2(320, 434)
-metadata/_edit_lock_ = true
-
-[node name="Counter11" parent="Tilemap/Kitchen/Counter/Counters" instance=ExtResource("9_a8mpn")]
-position = Vector2(352, 434)
-metadata/_edit_lock_ = true
-
-[node name="Counter12" parent="Tilemap/Kitchen/Counter/Counters" instance=ExtResource("9_a8mpn")]
-position = Vector2(384, 434)
-metadata/_edit_lock_ = true
-
-[node name="Counter13" parent="Tilemap/Kitchen/Counter/Counters" instance=ExtResource("9_a8mpn")]
-position = Vector2(416, 434)
-metadata/_edit_lock_ = true
-
-[node name="Counter14" parent="Tilemap/Kitchen/Counter/Counters" instance=ExtResource("9_a8mpn")]
-position = Vector2(448, 434)
-metadata/_edit_lock_ = true
-
-[node name="Interior" type="TileMapLayer" parent="Tilemap/Kitchen"]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAANAAoAAAABAAIAAAAMAAoAAAABAAIAAAANAAsAAAABAAMAAAAMAAsAAAABAAMAAAALAAsAAAABAAMAAAAKAAsAAAABAAMAAAALAAoAAAABAAIAAAAKAAoAAAABAAIAAAAQAAsAAAACAAMAAAAQAAoAAAACAAIAAAARAAoAAAACAAIAABARAAsAAAACAAMAABAIAAoAAAAGAAMAAAAIAAsAAAAGAAQAAAAOAAoAAAAHAAEAAAAPAAoAAAAHAAEAAAAPAAsAAAAHAAIAAAAOAAsAAAAHAAIAAAA=")
-tile_set = ExtResource("5_ogj6o")
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="OvenAreas" type="Node2D" parent="Tilemap/Kitchen/Interior"]
-y_sort_enabled = true
-metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
-
-[node name="OvenArea" parent="Tilemap/Kitchen/Interior/OvenAreas" instance=ExtResource("10_x4n7j")]
-y_sort_enabled = true
-position = Vector2(432, 362)
-
-[node name="OvenArea2" parent="Tilemap/Kitchen/Interior/OvenAreas" instance=ExtResource("10_x4n7j")]
-position = Vector2(400, 362)
-
-[node name="OvenArea3" parent="Tilemap/Kitchen/Interior/OvenAreas" instance=ExtResource("10_x4n7j")]
-position = Vector2(368, 362)
-
-[node name="OvenArea4" parent="Tilemap/Kitchen/Interior/OvenAreas" instance=ExtResource("10_x4n7j")]
-position = Vector2(336, 362)
-
-[node name="Fridge" parent="Tilemap/Kitchen/Interior" instance=ExtResource("11_i1gs2")]
-position = Vector2(544, 354.5)
-scale = Vector2(2, 1.84375)
-metadata/_edit_lock_ = true
-
-[node name="Checkout" type="Node2D" parent="Tilemap"]
-y_sort_enabled = true
-
-[node name="Collision" type="TileMapLayer" parent="Tilemap/Checkout"]
-tile_map_data = PackedByteArray("AAAJABUAAAACAAEAAAAKABUAAAACAAEAAAALABUAAAACAAEAAAAMABUAAAACAAEAAAANABUAAAABAAEAAAAOABUAAAABAAEAAAAPABUAAAABAAEAAAAQABUAAAABAAEAAAARABUAAAACAAEAAAASABUAAAACAAEAAAAJABEAAAACAAEAAAAJABMAAAACAAEAAAAJABQAAAACAAEAAAASABEAAAABAAEAAAASABIAAAABAAEAAAASABMAAAACAAEAAAASABQAAAACAAEAAAA=")
-tile_set = ExtResource("3_r8u0u")
-metadata/_edit_lock_ = true
-
-[node name="Floor" type="TileMapLayer" parent="Tilemap/Checkout"]
-tile_map_data = PackedByteArray("AAAJABEAAAABAAIAAAAJABIAAAABAAIAAAAJABMAAAABAAIAAAAJABQAAAABAAIAAAAJABUAAAABAAIAAAAKABEAAAABAAIAAAAKABIAAAABAAIAAAAKABMAAAABAAIAAAAKABQAAAABAAIAAAAKABUAAAABAAIAAAALABEAAAABAAIAAAALABIAAAABAAIAAAALABMAAAABAAIAAAALABQAAAABAAIAAAALABUAAAABAAIAAAAMABEAAAABAAIAAAAMABIAAAABAAIAAAAMABMAAAABAAIAAAAMABQAAAABAAIAAAAMABUAAAABAAIAAAANABEAAAABAAIAAAANABIAAAABAAIAAAANABMAAAABAAIAAAANABQAAAABAAIAAAANABUAAAABAAIAAAAOABEAAAABAAIAAAAOABIAAAABAAIAAAAOABMAAAABAAIAAAAOABQAAAABAAIAAAAOABUAAAABAAIAAAAPABEAAAABAAIAAAAPABIAAAABAAIAAAAPABMAAAABAAIAAAAPABQAAAABAAIAAAAPABUAAAABAAIAAAAQABEAAAABAAIAAAAQABIAAAABAAIAAAAQABMAAAABAAIAAAAQABQAAAABAAIAAAAQABUAAAABAAIAAAARABEAAAABAAIAAAARABIAAAABAAIAAAARABMAAAABAAIAAAARABQAAAABAAIAAAARABUAAAABAAIAAAASABEAAAABAAIAAAASABIAAAABAAIAAAASABMAAAABAAIAAAASABQAAAABAAIAAAASABUAAAABAAIAAAA=")
-tile_set = ExtResource("3_r8u0u")
-metadata/_edit_lock_ = true
-
-[node name="Interior" type="TileMapLayer" parent="Tilemap/Checkout"]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAASABAAAAAAAAAAAAASABEAAAAAAAEAAAAPABQAAAABAAAAAAAPABUAAAABAAEAAAAQABQAAAACAAAAAAAQABUAAAACAAEAAAAOABQAAAABAAAAAAAOABUAAAABAAEAAAANABUAAAACAAEAABANABQAAAACAAAAABASABIAAAAAAAIAAAA=")
-tile_set = ExtResource("5_ogj6o")
-
-[node name="Counter" type="TileMapLayer" parent="Tilemap/Checkout"]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAKABUAAAADAAQAAAALABUAAAADAAQAAAAMABUAAAADAAQAAAASABUAAAADAAIAABASABQAAAADAAAAAAAJABMAAAADAAAAAAAJABQAAAADAAAAAAAJABUAAAADAAIAAAAJABEAAAADAAYAAAAJABAAAAADAAMAAAARABUAAAADAAQAAAASABMAAAADAAAAAAASABIAAAADAAMAAAAKABQAAAADAAMAAAALABQAAAADAAMAAAAMABQAAAADAAMAAAARABQAAAADAAMAAAAJABIAAAADAAUAAAA=")
-tile_set = ExtResource("5_ogj6o")
-
-[node name="ForCounterCorners" type="TileMapLayer" parent="Tilemap/Checkout/Counter"]
-y_sort_enabled = true
-tile_set = ExtResource("5_ogj6o")
-metadata/_edit_lock_ = true
-
-[node name="Counters" type="Node2D" parent="Tilemap/Checkout/Counter"]
-y_sort_enabled = true
-metadata/_edit_lock_ = true
-
-[node name="SideCounter" type="Node2D" parent="Tilemap/Checkout/Counter/Counters"]
-y_sort_enabled = true
-
-[node name="SideCounterArea2" parent="Tilemap/Checkout/Counter/Counters/SideCounter" instance=ExtResource("8_vu14j")]
-position = Vector2(288, 637)
-
-[node name="SideCounterArea3" parent="Tilemap/Checkout/Counter/Counters/SideCounter" instance=ExtResource("8_vu14j")]
-position = Vector2(288, 611)
-
-[node name="SideCounterArea4" parent="Tilemap/Checkout/Counter/Counters/SideCounter" instance=ExtResource("8_vu14j")]
-position = Vector2(288, 528)
-
-[node name="SideCounterArea5" parent="Tilemap/Checkout/Counter/Counters/SideCounter" instance=ExtResource("8_vu14j")]
-position = Vector2(576, 637)
-
-[node name="SideCounterArea6" parent="Tilemap/Checkout/Counter/Counters/SideCounter" instance=ExtResource("8_vu14j")]
-position = Vector2(576, 611)
-
-[node name="Counter2" parent="Tilemap/Checkout/Counter/Counters" instance=ExtResource("9_a8mpn")]
-position = Vector2(576, 658)
-scale = Vector2(1, 0.999999)
-
-[node name="Counter3" parent="Tilemap/Checkout/Counter/Counters" instance=ExtResource("9_a8mpn")]
-position = Vector2(544, 658)
-
-[node name="Counter4" parent="Tilemap/Checkout/Counter/Counters" instance=ExtResource("9_a8mpn")]
-position = Vector2(384, 658)
-
-[node name="Counter5" parent="Tilemap/Checkout/Counter/Counters" instance=ExtResource("9_a8mpn")]
-position = Vector2(352, 658)
-
-[node name="Counter6" parent="Tilemap/Checkout/Counter/Counters" instance=ExtResource("9_a8mpn")]
-position = Vector2(320, 658)
-
-[node name="Counter7" parent="Tilemap/Checkout/Counter/Counters" instance=ExtResource("9_a8mpn")]
-position = Vector2(288, 658)
-
-[node name="Lobby" type="Node2D" parent="Tilemap"]
-y_sort_enabled = true
-
-[node name="Floor" type="TileMapLayer" parent="Tilemap/Lobby"]
-tile_map_data = PackedByteArray("AAADABYAAAAAAAIAAAADABcAAAAAAAIAAAADABgAAAAAAAIAAAAEABYAAAAAAAIAAAAEABcAAAAAAAIAAAAEABgAAAAAAAIAAAAFABYAAAAAAAIAAAAFABcAAAAAAAIAAAAFABgAAAAAAAIAAAAGABYAAAAAAAIAAAAGABcAAAAAAAIAAAAGABgAAAAAAAIAAAAHABYAAAAAAAIAAAAHABcAAAAAAAIAAAAHABgAAAAAAAIAAAAIABYAAAAAAAIAAAAIABcAAAAAAAIAAAAIABgAAAAAAAIAAAAJABYAAAAAAAIAAAAJABcAAAAAAAIAAAAJABgAAAAAAAIAAAAKABYAAAAAAAIAAAAKABcAAAAAAAIAAAAKABgAAAAAAAIAAAALABYAAAAAAAIAAAALABcAAAAAAAIAAAALABgAAAAAAAIAAAAMABYAAAAAAAIAAAAMABcAAAAAAAIAAAAMABgAAAAAAAIAAAANABYAAAAAAAIAAAANABcAAAAAAAIAAAANABgAAAAAAAIAAAAOABYAAAAAAAIAAAAOABcAAAAAAAIAAAAOABgAAAAAAAIAAAAPABYAAAAAAAIAAAAPABcAAAAAAAIAAAAPABgAAAAAAAIAAAAQABYAAAAAAAIAAAAQABcAAAAAAAIAAAAQABgAAAAAAAIAAAARABYAAAAAAAIAAAARABcAAAAAAAIAAAARABgAAAAAAAIAAAASABYAAAAAAAIAAAASABcAAAAAAAIAAAASABgAAAAAAAIAAAAIABUAAAAAAAIAAAAIABQAAAAAAAIAAAAIABMAAAAAAAIAAAAIABIAAAAAAAIAAAAIABEAAAAAAAIAAAAHABEAAAAAAAIAAAAGABEAAAAAAAIAAAAFABEAAAAAAAIAAAAEABEAAAAAAAIAAAADABEAAAAAAAIAAAADABIAAAAAAAIAAAADABMAAAAAAAIAAAADABQAAAAAAAIAAAADABUAAAAAAAIAAAAEABUAAAAAAAIAAAAFABUAAAAAAAIAAAAGABUAAAAAAAIAAAAHABUAAAAAAAIAAAAHABQAAAAAAAIAAAAHABMAAAAAAAIAAAAHABIAAAAAAAIAAAAGABIAAAAAAAIAAAAFABIAAAAAAAIAAAAEABIAAAAAAAIAAAAEABMAAAAAAAIAAAAEABQAAAAAAAIAAAAFABQAAAAAAAIAAAAGABQAAAAAAAIAAAAGABMAAAAAAAIAAAAFABMAAAAAAAIAAAA=")
-tile_set = ExtResource("3_r8u0u")
 
 [node name="ItemContainer" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="PlayerCanvas" parent="." instance=ExtResource("13_syufx")]
+[editable path="Kitchen"]
+[editable path="Kitchen/Delivery"]
+[editable path="Lobby"]

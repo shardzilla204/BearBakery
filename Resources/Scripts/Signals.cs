@@ -102,4 +102,7 @@ public partial class Signals : Node
 
     [Signal]
     public delegate void WindowOpenedEventHandler(Node window);
+
+    [Signal]
+    public delegate void CameraBoundsChangedEventHandler(CollisionShape2D cameraBoundsShape);
 }

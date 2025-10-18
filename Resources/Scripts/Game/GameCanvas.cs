@@ -8,13 +8,14 @@ public partial class GameCanvas : Node2D
 	private Node2D _itemContainer;
 
 	[Export]
-	private Texture2D _alpha;
+	private PlayerInterface _playerInterface;
 
 	private CanvasType _canvasType = CanvasType.Game;
 
 	public override void _ExitTree()
 	{
 		BearBakery.Signals.PlayerThrew -= AddItemToWorld;
+		BearBakery.Signals.WindowOpened -= OnWindowOpened;
 
 		BearBakery.Signals.EmitSignal(Signals.SignalName.CanvasClosed, (int) _canvasType, this);
 	}
@@ -22,6 +23,7 @@ public partial class GameCanvas : Node2D
     public override void _EnterTree()
     {
 		BearBakery.Signals.PlayerThrew += AddItemToWorld;
+		BearBakery.Signals.WindowOpened += OnWindowOpened;
 
 		BearBakery.Signals.EmitSignal(Signals.SignalName.CanvasOpened, (int)_canvasType, this);
     }
@@ -29,11 +31,16 @@ public partial class GameCanvas : Node2D
 	public override void _Ready()
 	{
 		// Hides cursor when dragging
-		Input.SetCustomMouseCursor(_alpha, Input.CursorShape.Forbidden);
-		Input.SetCustomMouseCursor(_alpha, Input.CursorShape.CanDrop);
+		BearBakery.ToggleCursorShapeVisibility(true, Input.CursorShape.Forbidden);
+		BearBakery.ToggleCursorShapeVisibility(true, Input.CursorShape.CanDrop);
 
 		AddPlayers();
 	}
+
+	private void OnWindowOpened(Node window)
+    {
+		_playerInterface.AddWindow(window);
+    }
 
 	private void AddItemToWorld(Item item)
 	{
@@ -66,7 +73,7 @@ public partial class GameCanvas : Node2D
 		if (GameManager.PlayersInfo.Count == 0)
 		{
 			Player player = BearBakery.PackedScenes.GetPlayer();
-			player.Position = new Vector2(500, 400);
+			player.Position = new Vector2(400, 210);
 			AddChild(player);
 
 			BearBakery.Player = player;
@@ -79,7 +86,7 @@ public partial class GameCanvas : Node2D
 				Player player = BearBakery.PackedScenes.GetPlayer();
 				player.Name = playerInfo.Id.ToString();
 				player.Info = playerInfo;
-				player.Position = new Vector2(500, 400);
+				player.Position = new Vector2(400, 210);
 				AddChild(player);
 
 				// Create as Rpc
@@ -95,4 +102,5 @@ public partial class GameCanvas : Node2D
 
 		BearBakery.Signals.EmitSignal(Signals.SignalName.PlayersSpawned);
     }
+	
 }

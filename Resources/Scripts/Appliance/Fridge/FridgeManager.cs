@@ -32,12 +32,12 @@ public partial class FridgeManager : Node
 		BearBakery.Signals.IngredientAddedToFridge += AddIngredient;
 		BearBakery.Signals.IngredientRemovedFromFridge += RemoveIngredient;
 
-		_startingFood = new GC.Array<GC.Dictionary<string, Variant>>()
-		{
-			new GC.Dictionary<string, Variant>(){{ "Cookie", new GC.Array<string>(){ "Plain", "White Chocolate Chips" } }},
-			new GC.Dictionary<string, Variant>(){{ "Cheese Cake", new GC.Array<string>(){ "Plain", "Strawberry Sauce" } }},
-			new GC.Dictionary<string, Variant>(){{ "Cookie", new GC.Array<string>(){ "Chocolate", "White Chocolate Chips" } }},
-		};
+		// _startingFood = new GC.Array<GC.Dictionary<string, Variant>>()
+		// {
+		// 	new GC.Dictionary<string, Variant>(){{ "Cookie", new GC.Array<string>(){ "Plain", "White Chocolate" } }},
+		// 	new GC.Dictionary<string, Variant>(){{ "Cheese Cake", new GC.Array<string>(){ "Plain", "Strawberry Sauce" } }},
+		// 	new GC.Dictionary<string, Variant>(){{ "Cookie", new GC.Array<string>(){ "Chocolate", "White Chocolate" } }},
+		// };
 
 		MaxSlotCount = _maxSlotCount;
 	}

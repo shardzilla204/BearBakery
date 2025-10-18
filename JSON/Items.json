@@ -14,10 +14,6 @@
             "Description": "A vessel to hold ingredients."
         },
         {
-            "Name": "Cup",
-            "Description": "Can hold quite a bit of liquid. Probably around one cup."
-        },
-        {
             "Name": "Plate",
             "Description": "To place and serve food."
         }

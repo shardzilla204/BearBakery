@@ -38,6 +38,7 @@ shape = ExtResource("5_ys1m3")
 debug_color = Color(0.546663, 0.547112, 0.401943, 0.42)
 
 [node name="DisplayComponent" type="TextureRect" parent="."]
+z_index = 1
 y_sort_enabled = true
 custom_minimum_size = Vector2(32, 24)
 offset_right = 32.0

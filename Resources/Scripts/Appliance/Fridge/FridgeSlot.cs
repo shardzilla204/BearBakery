@@ -15,13 +15,23 @@ public partial class FridgeSlot : Control
 	private Color _originalColor;
 	private bool _isDragging = false;
 
+	private Label _tooltipLabel;
+
 	public override void _Ready()
 	{
-		MouseEntered += () => SetLowlight(true);
-		MouseExited += () => SetLowlight(false);
+		MouseEntered += OnMouseEntered;
+		MouseExited += OnMouseExited;
 
 		_originalColor = SelfModulate;
 	}
+
+    public override void _Process(double delta)
+    {
+		if (IsInstanceValid(_tooltipLabel))
+        {
+			_tooltipLabel.GlobalPosition = GetGlobalMousePosition() - GetOffsetPosition(_tooltipLabel);
+        }
+    }
 
 	public override void _Notification(int what)
 	{
@@ -102,6 +112,34 @@ public partial class FridgeSlot : Control
 		// }
 	}
 
+	/// <summary>
+	/// Show the custom tooltip and darken the self modulate 
+	/// </summary>
+	private void OnMouseEntered()
+	{
+		if (Item == null) return;
+
+		_tooltipLabel = BearBakery.PackedScenes.GetTooltipLabel();
+		_tooltipLabel.Text = $"{Item.Name}";
+		GetParent().GetOwner().GetParent().AddChild(_tooltipLabel);
+
+		SetLowlight(true);
+
+		BearBakery.ToggleCursorShapeVisibility(true);
+	}
+	
+	/// <summary>
+    /// Remove the custom tooltip and lighten the self modulate 
+    /// </summary>
+	private void OnMouseExited()
+    {
+		_tooltipLabel.QueueFree();
+		
+		SetLowlight(false);
+
+		BearBakery.ToggleCursorShapeVisibility(false);
+    }
+
 	public void SetItem(Item item)
 	{
 		Item = item;
@@ -122,4 +160,40 @@ public partial class FridgeSlot : Control
 	{
 		oldFridgeSlot.SetItem(oldItem);
 	}
+
+	private Vector2 GetOffsetPosition(Control control)
+	{
+		float margin = 10f;
+		Vector2 offsetPosition = Vector2.Zero;
+		Vector2 globalMousePosition = GetGlobalMousePosition();
+		Vector2 windowCenter = GetWindow().Size / 2;
+
+		if (globalMousePosition.X > windowCenter.X)
+		{
+			// Bottom Right
+			if (globalMousePosition.Y > windowCenter.Y)
+			{
+				offsetPosition = new Vector2(control.Size.X - margin, control.Size.Y + margin);
+			}
+			// Top Right
+			else if (globalMousePosition.Y <= windowCenter.Y)
+			{
+				offsetPosition = new Vector2(control.Size.X - margin, margin);
+			}
+		}
+		else if (globalMousePosition.X <= windowCenter.X)
+		{
+			// Bottom Left
+			if (globalMousePosition.Y > windowCenter.Y)
+			{
+				offsetPosition = new Vector2(margin, control.Size.Y + margin);
+			}
+			// Top Left
+			else if (globalMousePosition.Y <= windowCenter.Y)
+			{
+				offsetPosition = -new Vector2(margin, margin);
+			}
+		}
+		return offsetPosition;
+    }
 }

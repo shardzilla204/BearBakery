@@ -5,11 +5,13 @@
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f7s6h"]
 texture = ExtResource("1_m23r3")
 texture_region_size = Vector2i(32, 32)
-4:0/next_alternative_id = 3
+4:0/next_alternative_id = 4
 4:0/0 = 0
 4:0/0/y_sort_origin = -32
 4:0/2 = 2
 4:0/2/y_sort_origin = 8
+4:0/3 = 3
+4:0/3/y_sort_origin = -16
 5:0/next_alternative_id = 3
 5:0/0 = 0
 5:0/0/y_sort_origin = 8

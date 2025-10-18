@@ -85,8 +85,8 @@
             },
             "Addons": 
             {
-                "Chocolate Chips": "res://Assets/Images/Food/CookieChocolateChips.png",
-                "White Chocolate Chips": "res://Assets/Images/Food/CookieWhiteChocolateChips.png"
+                "Chocolate": "res://Assets/Images/Food/CookieChocolate.png",
+                "White Chocolate": "res://Assets/Images/Food/CookieWhiteChocolate.png"
             },
             "Container": "Bowl"
         }

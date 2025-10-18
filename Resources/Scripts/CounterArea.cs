@@ -17,6 +17,9 @@ public partial class CounterArea : Node2D
 	[Export]
 	private TextureRect _selfModulate;
 
+	[Export]
+	private string _startingItem;
+
 	public Item Item;
 
 	private Color _originalColor;
@@ -25,26 +28,38 @@ public partial class CounterArea : Node2D
 
 	public override void _Ready()
 	{
-		_interactComponent.Interacted += Interacted;
-		_interactComponent.AreaEntered += (area) =>
-		{
-			ChangeLowlight(true);
-			SetKeybindAction(true);
-			CanSwap();
-		};
-		_interactComponent.AreaExited += (area) =>
-		{
-			ChangeLowlight(false);
-			SetKeybindAction(false);
-			CanSwap();
-		};
+		_interactComponent.Interacted += OnInteracted;
+		_interactComponent.AreaEntered += OnAreaEntered;
+		_interactComponent.AreaExited += OnAreaExited;
 
-		_swapComponent.Swapped += Swapped;
+		_swapComponent.Swapped += OnSwapped;
 
 		_originalColor = _displayComponent.SelfModulate;
 	}
 
-	private async void Interacted()
+	/// <summary>
+	/// Show the keybind and darken the self modulate
+	/// </summary>
+	/// <param name="area"></param>
+	private void OnAreaEntered(Area2D area)
+	{
+		SetLowlight(true);
+		SetKeybindAction(true);
+		CanSwap();
+	}
+	
+	/// <summary>
+    /// Show the keybind and darken the self modulate
+    /// </summary>
+    /// <param name="area"></param>
+	private void OnAreaExited(Area2D area)
+    {
+        SetLowlight(false);
+		SetKeybindAction(false);
+		CanSwap();
+    }
+
+	private async void OnInteracted()
 	{
 		if (BearBakery.Player.Inventory.Items.Count != 0)
 		{
@@ -64,7 +79,7 @@ public partial class CounterArea : Node2D
 		}
 	}
 
-	private void Swapped()
+	private void OnSwapped()
 	{
 		if (BearBakery.Player.Inventory.Items.Count == 0) return;
 
@@ -144,7 +159,7 @@ public partial class CounterArea : Node2D
 		return Task.FromResult(true);
 	}
 
-	private void ChangeLowlight(bool isHovering)
+	private void SetLowlight(bool isHovering)
 	{
 		Color lowlight = Colors.Black;
 		lowlight.A = isHovering ? 0.2f : 0;
