@@ -48,8 +48,11 @@ enabled=PackedStringArray()
 [file_customization]
 
 folder_colors={
+"res://Assets/": "red",
 "res://Assets/Images/": "red",
-"res://Resources/Scripts/": "blue"
+"res://JSON/": "yellow",
+"res://Resources/Scripts/": "orange",
+"res://Scenes/": "orange"
 }
 
 [input]

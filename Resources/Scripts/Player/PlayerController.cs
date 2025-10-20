@@ -52,7 +52,14 @@ public partial class PlayerController : Node2D
 		_player.MoveAndSlide();
 
 		// * Action { C }
-        if (Input.IsActionJustPressed("Throw")) ThrowItem();
+
+		if (MultiplayerManager.Peer == null ||
+			(MultiplayerManager.Peer != null && _multiplayerSynchronizer.GetMultiplayerAuthority() == Multiplayer.GetUniqueId()))
+		{
+			if (Input.IsActionJustPressed("Interact")) BearBakery.Signals.EmitSignal(Signals.SignalName.PlayerInteracted);
+			if (Input.IsActionJustPressed("SecondaryAction")) BearBakery.Signals.EmitSignal(Signals.SignalName.PlayerSecondaryAction);
+        	if (Input.IsActionJustPressed("Throw")) ThrowItem();
+		}
 	}
 
 	public override void _Input(InputEvent @event)
@@ -71,6 +78,9 @@ public partial class PlayerController : Node2D
 		{
 			SetDirection();
 			_player.IsMoving = _player.Direction == Vector2.Zero ? false : true;
+
+			StringName playerSignal = _player.IsMoving ? Signals.SignalName.PlayerMoved : Signals.SignalName.PlayerIdle;
+			BearBakery.Signals.EmitSignal(playerSignal);
 
 			if (!_player.IsLeaping)
 			{

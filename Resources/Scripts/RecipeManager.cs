@@ -93,7 +93,11 @@ public partial class RecipeManager : Node
 
 	private void MixIngredients()
 	{
+		if (BearBakery.Player.Inventory.Items.Count == 0) return;
+
 		Item item = BearBakery.Player.Inventory.Items[0];
-		if (item is not Bowl bowl || HasRecipe(bowl.Ingredients)) return;		
+		if (item is not Bowl bowl || HasRecipe(bowl.Ingredients)) return;
+		
+			
 	}
 }

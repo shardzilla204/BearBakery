@@ -3,11 +3,19 @@ using System.Collections.Generic;
 
 namespace BearBakery;
 
-public partial class OvenArea : ObjectArea
+public partial class OvenArea : Sprite2D
 {
+	[Export]
+	private InteractComponent _interactComponent;
+
+	[Export]
+	private LowlightComponent _lowlightComponent;
+
 	public List<Timer> Timers = new List<Timer>();
 	public List<OvenRack> Racks = new List<OvenRack>();
 	public List<OvenSlot> Slots = new List<OvenSlot>();
+
+	private bool _hasInteracted = false;
 
 	public override void _EnterTree()
 	{
@@ -16,17 +24,15 @@ public partial class OvenArea : ObjectArea
 
 	public override void _Ready()
 	{
-		base._Ready();
-
-		InteractComponent.Interacted += OpenOven;
-		InteractComponent.AreaExited += (area) => CloseOven();
+		_interactComponent.Interacted += OpenOven;
+		_interactComponent.AreaExited += (area) => CloseOven();
 
 		// SetOvenTimers();
 	}
 
 	private void OpenOven()
 	{
-		HasInteracted = true;
+		_hasInteracted = true;
 
 		string openMessage = "Opening Oven";
 		PrintRich.PrintLine(TextColor.Blue, openMessage);
@@ -37,9 +43,9 @@ public partial class OvenArea : ObjectArea
 	/// <see cref="PackedScenes.GetOvenInterface">
 	public void CloseOven()
 	{
-		if (!HasInteracted) return;
+		if (!_hasInteracted) return;
 
-		HasInteracted = false;
+		_hasInteracted = false;
 
 		string closeMessage = "Closing Oven";
 		PrintRich.PrintLine(TextColor.Blue, closeMessage);

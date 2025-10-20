@@ -1,5 +1,6 @@
-using System.Threading.Tasks;
 using Godot;
+using Godot.Collections;
+using System.Threading.Tasks;
 
 namespace BearBakery;
 
@@ -15,27 +16,40 @@ public partial class CounterArea : Node2D
 	private SwapComponent _swapComponent;
 
 	[Export]
-	private TextureRect _selfModulate;
+	private LowlightComponent _lowlightComponent;
 
 	[Export]
 	private string _startingItem;
 
 	public Item Item;
 
-	private Color _originalColor;
 	private HFlowContainer _ingredientsNode;
 	private KeybindAction _keybindAction;
 
 	public override void _Ready()
 	{
 		_interactComponent.Interacted += OnInteracted;
+		_interactComponent.SecondaryAction += OnSecondaryAction;
 		_interactComponent.AreaEntered += OnAreaEntered;
 		_interactComponent.AreaExited += OnAreaExited;
 
 		_swapComponent.Swapped += OnSwapped;
 
-		_originalColor = _displayComponent.SelfModulate;
+		AddStartingItem();
 	}
+
+	private void AddStartingItem()
+    {
+		if (string.IsNullOrEmpty(_startingItem)) return;
+
+		Item item = ItemManager.GetItem(_startingItem);
+		SetItem(item);
+
+		if (item is StorageItem storageItem)
+        {
+			AddIngredientsNode(storageItem);
+        }
+    }
 
 	/// <summary>
 	/// Show the keybind and darken the self modulate
@@ -43,8 +57,12 @@ public partial class CounterArea : Node2D
 	/// <param name="area"></param>
 	private void OnAreaEntered(Area2D area)
 	{
-		SetLowlight(true);
-		SetKeybindAction(true);
+		if (BearBakery.Player.Inventory.Items.Count != 0 || Item != null)
+        {
+			_lowlightComponent.Set(true);
+			SetKeybindAction(true);
+        }
+
 		CanSwap();
 	}
 	
@@ -53,31 +71,39 @@ public partial class CounterArea : Node2D
     /// </summary>
     /// <param name="area"></param>
 	private void OnAreaExited(Area2D area)
-    {
-        SetLowlight(false);
-		SetKeybindAction(false);
+	{
+		if (BearBakery.Player.Inventory.Items.Count != 0 || Item != null)
+		{
+			_lowlightComponent.Set(false);
+			SetKeybindAction(false);
+		}
+		
 		CanSwap();
     }
 
-	private async void OnInteracted()
+	private void OnInteracted()
 	{
-		if (BearBakery.Player.Inventory.Items.Count != 0)
-		{
-			Item playerItem = BearBakery.Player.Inventory.Items[0];
-
-			bool isSuccessful = await StoreItem(playerItem);
-			if (isSuccessful) return;
-		}
-
 		if (Item != null)
 		{
 			GetItem();
+			SetKeybindAction(false);
 		}
 		else
 		{
 			SetItem();
 		}
 	}
+
+	private async void OnSecondaryAction()
+    {
+        if (BearBakery.Player.Inventory.Items.Count != 0)
+		{
+			Item playerItem = BearBakery.Player.Inventory.Items[0];
+
+			bool isSuccessful = await StoreItem(playerItem);
+			if (isSuccessful) return;
+		}
+    }
 
 	private void OnSwapped()
 	{
@@ -129,19 +155,36 @@ public partial class CounterArea : Node2D
 	{
 		Item = item;
 		_displayComponent.SetTexture(item);
-		_selfModulate.Texture = item == null ? null : item.Texture;
 	}
 
 	private void SetKeybindAction(bool isHovering)
 	{
-		if (!isHovering)
+		Dictionary<string, int> keybindsDictionary = new Dictionary<string, int>()
 		{
-			BearBakery.Signals.EmitSignal(Signals.SignalName.HideKeybind, 69 /* Key.E */);
-		}
-		else
+			{ "Interact", (int) Key.E }
+		};
+
+		if (Item is StorageItem && BearBakery.Player.Inventory.Items.Count != 0)
 		{
-			BearBakery.Signals.EmitSignal(Signals.SignalName.ShowKeybind, 69 /* Key.E */, "Interact");
+			Item item = BearBakery.Player.Inventory.Items[0];
+			if (item is Ingredient)
+            {
+				keybindsDictionary.Add("Store", (int) Key.F);
+            }
 		}
+		
+		foreach (string keybindName in keybindsDictionary.Keys)
+		{
+			int keyIndex = keybindsDictionary[keybindName];
+            if (!isHovering)
+			{
+				BearBakery.Signals.EmitSignal(Signals.SignalName.HideKeybind, keyIndex);
+			}
+			else
+			{
+				BearBakery.Signals.EmitSignal(Signals.SignalName.ShowKeybind, keyIndex, keybindName);
+			}
+        }
 	}
 
 	private Task<bool> StoreItem(Item playerItem)
@@ -157,19 +200,6 @@ public partial class CounterArea : Node2D
 
 		BearBakery.Signals.EmitSignal(Signals.SignalName.ItemRemovedFromInventory, ingredient);
 		return Task.FromResult(true);
-	}
-
-	private void SetLowlight(bool isHovering)
-	{
-		Color lowlight = Colors.Black;
-		lowlight.A = isHovering ? 0.2f : 0;
-		TweenOpacity(lowlight);
-	}
-
-	private void TweenOpacity(Color targetColor)
-	{
-		Tween tween = CreateTween().SetTrans(Tween.TransitionType.Quad);
-		tween.TweenProperty(_selfModulate, "self_modulate", targetColor, 0.25f);
 	}
 
 	private void AddIngredientsNode(StorageItem storageItem)

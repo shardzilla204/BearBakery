@@ -72,16 +72,6 @@ public partial class Player : CharacterBody2D
 		SetPlayerItem();
 	}
 
-	public override void _Process(double delta)
-	{
-		if (MultiplayerManager.Peer == null ||
-			(MultiplayerManager.Peer != null && _multiplayerSynchronizer.GetMultiplayerAuthority() == Multiplayer.GetUniqueId()))
-		{
-			if (Input.IsActionJustPressed("Interact")) BearBakery.Signals.EmitSignal(Signals.SignalName.PlayerInteracted);
-			if (Input.IsActionJustPressed("SecondaryAction")) BearBakery.Signals.EmitSignal(Signals.SignalName.PlayerSecondaryAction);
-		}
-	}
-
 	private void UpdateInteractCollision()
 	{
 		float distance = 20;

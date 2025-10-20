@@ -33,17 +33,7 @@ public partial class PlayerInventory : Node2D
         AddStartingItems();
     }
 
-    public override void _Process(double delta)
-    {
-        int maxIndex = Items.Count - 1;
-        // * Action { Right Arrow, Mouse Wheel Down }
-        if (Input.IsActionJustPressed("CycleClockwise")) CycleItems(0, maxIndex);
-
-        // * Action { Left Arrow, Mouse Wheel Up }
-        if (Input.IsActionJustPressed("CycleCounterClockwise")) CycleItems(maxIndex, 0);
-    }
-
-    private void CycleItems(int itemIndex, int insertIndex)
+    public void CycleItems(int itemIndex, int insertIndex)
     {
         if (Items.Count == 0) return;
 
@@ -78,8 +68,14 @@ public partial class PlayerInventory : Node2D
             string itemName = itemDictionary.Keys.ToList().First();
             if (itemName == "Bowl")
             {
+                Bowl bowl = ItemManager.GetItem(itemName) as Bowl;
+                
                 GC.Array<string> ingredientNames = itemDictionary[itemName].As<GC.Array<string>>();
-                Bowl bowl = GetBowl(ingredientNames);
+                foreach (string ingredientName in ingredientNames)
+                {
+                    Ingredient ingredient = IngredientManager.GetIngredient(ingredientName);
+                    bowl.AddIngredient(ingredient);
+                }
                 Items.Add(bowl);
             }
             else
@@ -88,17 +84,5 @@ public partial class PlayerInventory : Node2D
                 Items.Add(item);
             }
         }
-    }
-
-    private Bowl GetBowl(GC.Array<string> ingredientNames)
-    {
-        Bowl bowl = new Bowl();
-        foreach (string ingredientName in ingredientNames)
-        {
-            Ingredient ingredient = IngredientManager.GetIngredient(ingredientName);
-            bowl.AddIngredient(ingredient);
-        }
-
-        return bowl;
     }
 }

@@ -29,7 +29,18 @@ public partial class ItemManager : Node
     {
         foreach (GC.Dictionary<string, Variant> itemDictionary in itemDictionaries)
         {
-            Item item = new Item(itemDictionary);
+            Item item;
+            string itemName = itemDictionary["Name"].As<string>();
+            switch (itemName)
+            {
+                case "Bowl":
+                    item = new Bowl(itemDictionary);
+                    break;
+                
+                default:
+                    item = new Item(itemDictionary);
+                    break;
+            }
             Items.Add(item);
         }
     }

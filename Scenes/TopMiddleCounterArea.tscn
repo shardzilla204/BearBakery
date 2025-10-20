@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce01qbgny4jmx"]
+
+[ext_resource type="PackedScene" uid="uid://cq6adeknsii4q" path="res://Scenes/CounterArea.tscn" id="1_anu23"]
+[ext_resource type="Shape2D" uid="uid://1xpqmkxahhjo" path="res://Resources/Area/TopMiddleCounterArea.tres" id="2_gbuwf"]
+
+[node name="TopMiddleCounterArea" instance=ExtResource("1_anu23")]
+
+[node name="CollisionShape2D" parent="InteractComponent" index="0"]
+position = Vector2(16, 28)
+shape = ExtResource("2_gbuwf")
+
+[node name="CollisionShape2D" parent="SwapComponent" index="0"]
+position = Vector2(16, 28)
+shape = ExtResource("2_gbuwf")

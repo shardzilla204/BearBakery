@@ -15,7 +15,7 @@ public partial class CustomButton : Button
 		_textureColor = _texture.SelfModulate;
 		MouseEntered += () => 
 		{
-			_texture.SelfModulate = _textureColor.Darkened(0.025f);
+			_texture.SelfModulate = _textureColor.Darkened(0.2f);
 		};
 		MouseExited += () =>
 		{

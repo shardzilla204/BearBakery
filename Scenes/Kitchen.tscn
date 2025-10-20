@@ -1,15 +1,24 @@
-[gd_scene load_steps=13 format=4 uid="uid://exmdl8usq3fg"]
+[gd_scene load_steps=22 format=4 uid="uid://exmdl8usq3fg"]
 
 [ext_resource type="TileSet" uid="uid://nc2qb8ln6brs" path="res://Scenes/Tilemap/Building.tres" id="1_yp2dn"]
 [ext_resource type="Script" uid="uid://dsilrfqy2bypw" path="res://Resources/Scripts/WallArea.cs" id="2_0sqtt"]
 [ext_resource type="TileSet" uid="uid://br2miilfhv0i2" path="res://Scenes/Tilemap/Interior.tres" id="3_digll"]
-[ext_resource type="PackedScene" uid="uid://sardrnwqwn2g" path="res://Scenes/TopMiddleCounter.tscn" id="4_57t66"]
+[ext_resource type="PackedScene" uid="uid://ce01qbgny4jmx" path="res://Scenes/TopMiddleCounterArea.tscn" id="5_0sqtt"]
 [ext_resource type="PackedScene" uid="uid://b7ypnxm5omyhm" path="res://Scenes/Mixer.tscn" id="5_mxqhq"]
+[ext_resource type="Script" uid="uid://dltp28vm4q8mm" path="res://Resources/Scripts/CounterArea.cs" id="5_vo3np"]
 [ext_resource type="PackedScene" uid="uid://curox557xawcm" path="res://Scenes/SideCounterArea.tscn" id="6_6rl12"]
+[ext_resource type="Script" uid="uid://cxm3e0cjll3h" path="res://Resources/Scripts/Component/InteractComponent.cs" id="6_bap62"]
+[ext_resource type="Texture2D" uid="uid://pqr6u2ux1ffg" path="res://Assets/Images/CounterCornerMask.png" id="6_digll"]
 [ext_resource type="PackedScene" uid="uid://cq6adeknsii4q" path="res://Scenes/CounterArea.tscn" id="7_f2n2i"]
+[ext_resource type="Shape2D" uid="uid://1xpqmkxahhjo" path="res://Resources/Area/TopMiddleCounterArea.tres" id="7_vpw7v"]
+[ext_resource type="Script" uid="uid://lokw58u7uiet" path="res://Resources/Scripts/Component/SwapComponent.cs" id="8_kte2b"]
 [ext_resource type="PackedScene" uid="uid://rqrua578fsgd" path="res://Scenes/Appliance/OvenArea.tscn" id="8_th3l3"]
+[ext_resource type="Texture2D" uid="uid://1oxcl51tjvxf" path="res://Assets/Images/Square.png" id="9_kjilo"]
 [ext_resource type="PackedScene" uid="uid://dox6i6kwslrxn" path="res://Scenes/FridgeArea.tscn" id="9_vo3np"]
 [ext_resource type="PackedScene" uid="uid://ccrs4nm332dvc" path="res://Scenes/Delivery.tscn" id="10_0sqtt"]
+[ext_resource type="Script" uid="uid://rk0rclvtbw53" path="res://Resources/Scripts/Component/DisplayComponent.cs" id="10_n8gw7"]
+[ext_resource type="Script" uid="uid://bxkaah6q6uu4g" path="res://Resources/Scripts/LowlightComponent.cs" id="11_wpu4e"]
+[ext_resource type="Shape2D" uid="uid://j7xh4786icy2" path="res://Resources/Area/NormalCounterArea.tres" id="16_vpw7v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a0eo8"]
 size = Vector2(448, 144)
@@ -37,6 +46,7 @@ tile_map_data = PackedByteArray("AAADAAkAAAAEAAAAAAAEAAkAAAAEAAAAAAAFAAkAAAAEAAA
 tile_set = ExtResource("1_yp2dn")
 
 [node name="WallArea" type="Area2D" parent="." node_paths=PackedStringArray("_layer", "_cameraBounds")]
+visible = false
 top_level = true
 z_index = 1
 collision_layer = 0
@@ -74,36 +84,160 @@ z_index = 1
 
 [node name="TopMiddleCounters" type="Node2D" parent="Counter/Counters"]
 y_sort_enabled = true
-position = Vector2(-96, -224)
+position = Vector2(153, 183)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
-[node name="TopMiddleCounter" parent="Counter/Counters/TopMiddleCounters" instance=ExtResource("4_57t66")]
-position = Vector2(448, 398)
+[node name="TopMiddleCounterArea" type="Node2D" parent="Counter/Counters/TopMiddleCounters" node_paths=PackedStringArray("_displayComponent", "_interactComponent", "_swapComponent", "_lowlightComponent")]
+y_sort_enabled = true
+position = Vector2(-25, -9)
+script = ExtResource("5_vo3np")
+_displayComponent = NodePath("CounterMask/DisplayComponent")
+_interactComponent = NodePath("InteractComponent")
+_swapComponent = NodePath("SwapComponent")
+_lowlightComponent = NodePath("CounterMask/DisplayComponent/LowlightComponent")
 
-[node name="TopMiddleCounter2" parent="Counter/Counters/TopMiddleCounters" instance=ExtResource("4_57t66")]
-position = Vector2(416, 398)
+[node name="InteractComponent" type="Area2D" parent="Counter/Counters/TopMiddleCounters/TopMiddleCounterArea"]
+y_sort_enabled = true
+collision_layer = 0
+collision_mask = 64
+script = ExtResource("6_bap62")
 
-[node name="TopMiddleCounter3" parent="Counter/Counters/TopMiddleCounters" instance=ExtResource("4_57t66")]
-position = Vector2(384, 398)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Counter/Counters/TopMiddleCounters/TopMiddleCounterArea/InteractComponent"]
+y_sort_enabled = true
+position = Vector2(16, 28)
+shape = ExtResource("7_vpw7v")
 
-[node name="TopMiddleCounter4" parent="Counter/Counters/TopMiddleCounters" instance=ExtResource("4_57t66")]
-position = Vector2(352, 398)
+[node name="SwapComponent" type="Area2D" parent="Counter/Counters/TopMiddleCounters/TopMiddleCounterArea"]
+y_sort_enabled = true
+collision_layer = 0
+collision_mask = 64
+script = ExtResource("8_kte2b")
 
-[node name="TopMiddleCounter5" parent="Counter/Counters/TopMiddleCounters" instance=ExtResource("4_57t66")]
-position = Vector2(320, 398)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Counter/Counters/TopMiddleCounters/TopMiddleCounterArea/SwapComponent"]
+y_sort_enabled = true
+position = Vector2(16, 28)
+shape = ExtResource("7_vpw7v")
+debug_color = Color(0.546663, 0.547112, 0.401943, 0.42)
 
-[node name="TopMiddleCounter6" parent="Counter/Counters/TopMiddleCounters" instance=ExtResource("4_57t66")]
-position = Vector2(288, 398)
+[node name="CounterMask" type="TextureRect" parent="Counter/Counters/TopMiddleCounters/TopMiddleCounterArea"]
+clip_children = 1
+offset_top = 12.0
+offset_right = 32.0
+offset_bottom = 36.0
+texture = ExtResource("6_digll")
+expand_mode = 1
 
-[node name="TopMiddleCounter7" parent="Counter/Counters/TopMiddleCounters" instance=ExtResource("4_57t66")]
-position = Vector2(256, 398)
+[node name="DisplayComponent" type="TextureRect" parent="Counter/Counters/TopMiddleCounters/TopMiddleCounterArea/CounterMask"]
+clip_children = 2
+custom_minimum_size = Vector2(32, 24)
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 24.0
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("10_n8gw7")
+metadata/_edit_use_anchors_ = true
 
-[node name="TopMiddleCounter8" parent="Counter/Counters/TopMiddleCounters" instance=ExtResource("4_57t66")]
-position = Vector2(224, 398)
+[node name="LowlightComponent" type="TextureRect" parent="Counter/Counters/TopMiddleCounters/TopMiddleCounterArea/CounterMask/DisplayComponent"]
+self_modulate = Color(0, 0, 0, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_kjilo")
+expand_mode = 1
+script = ExtResource("11_wpu4e")
+
+[node name="TopMiddleCounterArea2" parent="Counter/Counters/TopMiddleCounters" instance=ExtResource("5_0sqtt")]
+position = Vector2(7, -9)
+
+[node name="TopMiddleCounterArea3" parent="Counter/Counters/TopMiddleCounters" instance=ExtResource("5_0sqtt")]
+position = Vector2(39, -9)
+
+[node name="TopMiddleCounterArea4" parent="Counter/Counters/TopMiddleCounters" instance=ExtResource("5_0sqtt")]
+position = Vector2(71, -9)
+
+[node name="TopMiddleCounterArea5" parent="Counter/Counters/TopMiddleCounters" instance=ExtResource("5_0sqtt")]
+position = Vector2(103, -9)
+
+[node name="TopMiddleCounterArea6" parent="Counter/Counters/TopMiddleCounters" instance=ExtResource("5_0sqtt")]
+position = Vector2(135, -9)
+
+[node name="TopMiddleCounterArea7" parent="Counter/Counters/TopMiddleCounters" instance=ExtResource("5_0sqtt")]
+position = Vector2(167, -9)
+
+[node name="TopMiddleCounterArea8" type="Node2D" parent="Counter/Counters/TopMiddleCounters" node_paths=PackedStringArray("_displayComponent", "_interactComponent", "_swapComponent", "_lowlightComponent")]
+y_sort_enabled = true
+position = Vector2(199, -9)
+script = ExtResource("5_vo3np")
+_displayComponent = NodePath("CounterMask/DisplayComponent")
+_interactComponent = NodePath("InteractComponent")
+_swapComponent = NodePath("SwapComponent")
+_lowlightComponent = NodePath("CounterMask/DisplayComponent/LowlightComponent")
+
+[node name="InteractComponent" type="Area2D" parent="Counter/Counters/TopMiddleCounters/TopMiddleCounterArea8"]
+y_sort_enabled = true
+collision_layer = 0
+collision_mask = 64
+script = ExtResource("6_bap62")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Counter/Counters/TopMiddleCounters/TopMiddleCounterArea8/InteractComponent"]
+y_sort_enabled = true
+position = Vector2(16, 28)
+shape = ExtResource("7_vpw7v")
+
+[node name="SwapComponent" type="Area2D" parent="Counter/Counters/TopMiddleCounters/TopMiddleCounterArea8"]
+y_sort_enabled = true
+collision_layer = 0
+collision_mask = 64
+script = ExtResource("8_kte2b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Counter/Counters/TopMiddleCounters/TopMiddleCounterArea8/SwapComponent"]
+y_sort_enabled = true
+position = Vector2(16, 28)
+shape = ExtResource("7_vpw7v")
+debug_color = Color(0.546663, 0.547112, 0.401943, 0.42)
+
+[node name="CounterMask" type="TextureRect" parent="Counter/Counters/TopMiddleCounters/TopMiddleCounterArea8"]
+clip_children = 1
+offset_top = 12.0
+offset_right = 32.0
+offset_bottom = 36.0
+texture = ExtResource("6_digll")
+expand_mode = 1
+flip_h = true
+
+[node name="DisplayComponent" type="TextureRect" parent="Counter/Counters/TopMiddleCounters/TopMiddleCounterArea8/CounterMask"]
+clip_children = 2
+custom_minimum_size = Vector2(32, 24)
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 24.0
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("10_n8gw7")
+metadata/_edit_use_anchors_ = true
+
+[node name="LowlightComponent" type="TextureRect" parent="Counter/Counters/TopMiddleCounters/TopMiddleCounterArea8/CounterMask/DisplayComponent"]
+self_modulate = Color(0, 0, 0, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_kjilo")
+expand_mode = 1
+script = ExtResource("11_wpu4e")
 
 [node name="LeftCounters" type="Node2D" parent="Counter/Counters"]
 y_sort_enabled = true
 position = Vector2(-96, -224)
 metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="SideCounterArea" parent="Counter/Counters/LeftCounters" instance=ExtResource("6_6rl12")]
 position = Vector2(128, 355)
@@ -133,9 +267,72 @@ metadata/_edit_lock_ = true
 position = Vector2(64, 114)
 metadata/_edit_lock_ = true
 
-[node name="CounterArea5" parent="Counter/Counters" instance=ExtResource("7_f2n2i")]
+[node name="CounterArea5" type="Node2D" parent="Counter/Counters" node_paths=PackedStringArray("_displayComponent", "_interactComponent", "_swapComponent", "_lowlightComponent")]
+y_sort_enabled = true
 position = Vector2(128, 210)
+script = ExtResource("5_vo3np")
+_displayComponent = NodePath("CounterMask/DisplayComponent")
+_interactComponent = NodePath("InteractComponent")
+_swapComponent = NodePath("SwapComponent")
+_lowlightComponent = NodePath("CounterMask/DisplayComponent/LowlightComponent")
 metadata/_edit_lock_ = true
+
+[node name="InteractComponent" type="Area2D" parent="Counter/Counters/CounterArea5"]
+y_sort_enabled = true
+collision_layer = 0
+collision_mask = 64
+script = ExtResource("6_bap62")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Counter/Counters/CounterArea5/InteractComponent"]
+y_sort_enabled = true
+position = Vector2(16, 26)
+shape = ExtResource("16_vpw7v")
+
+[node name="SwapComponent" type="Area2D" parent="Counter/Counters/CounterArea5"]
+y_sort_enabled = true
+collision_layer = 0
+collision_mask = 64
+script = ExtResource("8_kte2b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Counter/Counters/CounterArea5/SwapComponent"]
+y_sort_enabled = true
+position = Vector2(16, 26)
+shape = ExtResource("16_vpw7v")
+debug_color = Color(0.546663, 0.547112, 0.401943, 0.42)
+
+[node name="CounterMask" type="TextureRect" parent="Counter/Counters/CounterArea5"]
+clip_children = 1
+offset_right = 32.0
+offset_bottom = 24.0
+texture = ExtResource("6_digll")
+expand_mode = 1
+flip_v = true
+
+[node name="DisplayComponent" type="TextureRect" parent="Counter/Counters/CounterArea5/CounterMask"]
+clip_children = 2
+custom_minimum_size = Vector2(32, 24)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("10_n8gw7")
+metadata/_edit_use_anchors_ = true
+
+[node name="LowlightComponent" type="TextureRect" parent="Counter/Counters/CounterArea5/CounterMask/DisplayComponent"]
+self_modulate = Color(0, 0, 0, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_kjilo")
+expand_mode = 1
+script = ExtResource("11_wpu4e")
 
 [node name="CounterArea6" parent="Counter/Counters" instance=ExtResource("7_f2n2i")]
 position = Vector2(160, 210)
@@ -161,9 +358,73 @@ metadata/_edit_lock_ = true
 position = Vector2(320, 210)
 metadata/_edit_lock_ = true
 
-[node name="Counter14" parent="Counter/Counters" instance=ExtResource("7_f2n2i")]
+[node name="Counter14" type="Node2D" parent="Counter/Counters" node_paths=PackedStringArray("_displayComponent", "_interactComponent", "_swapComponent", "_lowlightComponent")]
+y_sort_enabled = true
 position = Vector2(352, 210)
+script = ExtResource("5_vo3np")
+_displayComponent = NodePath("CounterMask/DisplayComponent")
+_interactComponent = NodePath("InteractComponent")
+_swapComponent = NodePath("SwapComponent")
+_lowlightComponent = NodePath("CounterMask/DisplayComponent/LowlightComponent")
 metadata/_edit_lock_ = true
+
+[node name="InteractComponent" type="Area2D" parent="Counter/Counters/Counter14"]
+y_sort_enabled = true
+collision_layer = 0
+collision_mask = 64
+script = ExtResource("6_bap62")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Counter/Counters/Counter14/InteractComponent"]
+y_sort_enabled = true
+position = Vector2(16, 26)
+shape = ExtResource("16_vpw7v")
+
+[node name="SwapComponent" type="Area2D" parent="Counter/Counters/Counter14"]
+y_sort_enabled = true
+collision_layer = 0
+collision_mask = 64
+script = ExtResource("8_kte2b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Counter/Counters/Counter14/SwapComponent"]
+y_sort_enabled = true
+position = Vector2(16, 26)
+shape = ExtResource("16_vpw7v")
+debug_color = Color(0.546663, 0.547112, 0.401943, 0.42)
+
+[node name="CounterMask" type="TextureRect" parent="Counter/Counters/Counter14"]
+clip_children = 1
+offset_right = 32.0
+offset_bottom = 24.0
+texture = ExtResource("6_digll")
+expand_mode = 1
+flip_h = true
+flip_v = true
+
+[node name="DisplayComponent" type="TextureRect" parent="Counter/Counters/Counter14/CounterMask"]
+clip_children = 2
+custom_minimum_size = Vector2(32, 24)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("10_n8gw7")
+metadata/_edit_use_anchors_ = true
+
+[node name="LowlightComponent" type="TextureRect" parent="Counter/Counters/Counter14/CounterMask/DisplayComponent"]
+self_modulate = Color(0, 0, 0, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_kjilo")
+expand_mode = 1
+script = ExtResource("11_wpu4e")
 
 [node name="Interior" type="TileMapLayer" parent="."]
 y_sort_enabled = true
@@ -195,6 +456,7 @@ scale = Vector2(2, 1.84375)
 position = Vector2(256, 168)
 scale = Vector2(15, 8.5)
 shape = SubResource("RectangleShape2D_0sqtt")
+metadata/_edit_lock_ = true
 
 [node name="Delivery" parent="." instance=ExtResource("10_0sqtt")]
 position = Vector2(-288, 32)

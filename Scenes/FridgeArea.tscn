@@ -1,20 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://dox6i6kwslrxn"]
+[gd_scene load_steps=6 format=3 uid="uid://dox6i6kwslrxn"]
 
 [ext_resource type="Texture2D" uid="uid://1oxcl51tjvxf" path="res://Assets/Images/Square.png" id="1_mxex6"]
 [ext_resource type="Script" uid="uid://cop3kk654wxh0" path="res://Resources/Scripts/Appliance/Fridge/FridgeArea.cs" id="2_pshbp"]
 [ext_resource type="Script" uid="uid://cxm3e0cjll3h" path="res://Resources/Scripts/Component/InteractComponent.cs" id="3_017op"]
+[ext_resource type="Script" uid="uid://bxkaah6q6uu4g" path="res://Resources/Scripts/LowlightComponent.cs" id="4_pshbp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sqy2p"]
 size = Vector2(31, 31)
 
-[node name="FridgeArea" type="Sprite2D" node_paths=PackedStringArray("_interactComponent")]
+[node name="FridgeArea" type="Sprite2D" node_paths=PackedStringArray("_interactComponent", "_lowlightComponent")]
 self_modulate = Color(1, 1, 1, 0)
 position = Vector2(544, 352)
 scale = Vector2(2, 2)
 texture = ExtResource("1_mxex6")
 script = ExtResource("2_pshbp")
 _interactComponent = NodePath("InteractComponent")
-metadata/_edit_group_ = true
+_lowlightComponent = NodePath("LowlightComponent")
 
 [node name="InteractComponent" type="Area2D" parent="."]
 collision_layer = 0
@@ -23,3 +24,13 @@ script = ExtResource("3_017op")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractComponent"]
 shape = SubResource("RectangleShape2D_sqy2p")
+
+[node name="LowlightComponent" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("1_mxex6")
+expand_mode = 1
+script = ExtResource("4_pshbp")

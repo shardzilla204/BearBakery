@@ -1,13 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://dw4wostth7mk6"]
+[gd_scene load_steps=7 format=3 uid="uid://dw4wostth7mk6"]
 
 [ext_resource type="Texture2D" uid="uid://da5uig1sjdm3n" path="res://Assets/Images/RoundSquare.png" id="1_a71d6"]
 [ext_resource type="Script" uid="uid://djcheb5ox7bkk" path="res://Resources/Scripts/Appliance/Fridge/FridgeSlot.cs" id="2_0r4ta"]
 [ext_resource type="Script" uid="uid://rk0rclvtbw53" path="res://Resources/Scripts/Component/DisplayComponent.cs" id="3_4133l"]
 [ext_resource type="Script" uid="uid://c48iv3do3j0dl" path="res://Resources/Scripts/Component/SlotComponent.cs" id="3_gyhgb"]
-[ext_resource type="Texture2D" uid="uid://drgxylhox4pvo" path="res://Assets/Images/Items/Blueberry.png" id="4_m3nhv"]
+[ext_resource type="Texture2D" uid="uid://1oxcl51tjvxf" path="res://Assets/Images/Square.png" id="6_c8x3c"]
+[ext_resource type="Script" uid="uid://bxkaah6q6uu4g" path="res://Resources/Scripts/LowlightComponent.cs" id="6_dk437"]
 
-[node name="FridgeSlot" type="NinePatchRect" node_paths=PackedStringArray("_slotComponent")]
+[node name="FridgeSlot" type="NinePatchRect" node_paths=PackedStringArray("_slotComponent", "_lowlightComponent")]
 self_modulate = Color(0.75, 0.65375, 0.4875, 1)
+clip_children = 2
 clip_contents = true
 custom_minimum_size = Vector2(74, 74)
 offset_right = 50.0
@@ -20,6 +22,7 @@ patch_margin_right = 10
 patch_margin_bottom = 10
 script = ExtResource("2_0r4ta")
 _slotComponent = NodePath("SlotComponent")
+_lowlightComponent = NodePath("LowlightComponent")
 
 [node name="SlotComponent" type="MarginContainer" parent="." node_paths=PackedStringArray("_displayComponent")]
 layout_mode = 1
@@ -37,7 +40,18 @@ _displayComponent = NodePath("DisplayComponent")
 
 [node name="DisplayComponent" type="TextureRect" parent="SlotComponent"]
 layout_mode = 2
-texture = ExtResource("4_m3nhv")
 expand_mode = 1
 stretch_mode = 5
 script = ExtResource("3_4133l")
+
+[node name="LowlightComponent" type="TextureRect" parent="."]
+self_modulate = Color(0, 0, 0, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_c8x3c")
+expand_mode = 1
+script = ExtResource("6_dk437")

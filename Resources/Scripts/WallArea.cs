@@ -22,8 +22,6 @@ public partial class WallArea : Area2D
 	{
 		BearBakery.Signals.EmitSignal(Signals.SignalName.CameraBoundsChanged, _cameraBounds);
 		SetLayerOpacity(true);
-
-		GD.Print(GetParent().Name);
     }
 
 	private void SetLayerOpacity(bool hasEntered)

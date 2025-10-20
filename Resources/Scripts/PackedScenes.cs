@@ -148,7 +148,7 @@ public partial class PackedScenes : Node
     public ItemContentInterface GetItemContentInterface(StorageItem storageItem)
     {
         ItemContentInterface itemContentInterface = _itemContentInterface.Instantiate<ItemContentInterface>();
-        itemContentInterface.SetStorageItem(storageItem);
+        itemContentInterface.StorageItem = storageItem;
         return itemContentInterface;
     }
 

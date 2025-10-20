@@ -65,6 +65,7 @@ public partial class PlayerInterface : Node
 
 		_itemContentInterface = BearBakery.PackedScenes.GetItemContentInterface(storageItem);
 		_interfaceContainer.AddChild(_itemContentInterface);
+		_interfaceContainer.MoveChild(_itemContentInterface, 0); // Make sure it doesn't show in front of a window
 
 		if (storageItem is Bowl bowl)
 		{

@@ -11,13 +11,36 @@ public partial class PlayerInventoryInterface : Control
 	[Export]
 	private GC.Array<SlotComponent> _inventorySlots = new GC.Array<SlotComponent>();
 
+	private bool _isHovering = false;
+
 	public override async void _Ready()
 	{
+		MouseEntered += () => _isHovering = true;
+		MouseExited += () => _isHovering = false;
+
 		InventoryManager.Slots = _inventorySlots.ToList();
 
 		await ToSignal(BearBakery.Signals, Signals.SignalName.PlayersSpawned);
 		SetInventory();
 	}
+
+	public override void _Process(double delta)
+    {
+        if (BearBakery.Player.Inventory.Items.Count <= 1 || !_isHovering) return;
+        
+        int maxIndex = BearBakery.Player.Inventory.Items.Count - 1;
+        // * Action { Right Arrow, Mouse Wheel Down }
+        if (Input.IsActionJustPressed("CycleClockwise"))
+		{
+        	BearBakery.Player.Inventory.CycleItems(0, maxIndex);
+        }
+
+		// * Action { Left Arrow, Mouse Wheel Up }
+		if (Input.IsActionJustPressed("CycleCounterClockwise"))
+		{
+			BearBakery.Player.Inventory.CycleItems(maxIndex, 0);
+		}
+    }
 
     public override void _Notification(int what)
     {

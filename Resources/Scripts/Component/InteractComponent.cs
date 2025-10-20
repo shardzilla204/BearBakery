@@ -7,6 +7,9 @@ public partial class InteractComponent : Area2D
 	[Signal]
 	public delegate void InteractedEventHandler();
 
+	[Signal]
+	public delegate void SecondaryActionEventHandler();
+
 	private bool _canInteract = false;
 	
 	public bool IsInteracting = false;
@@ -21,6 +24,7 @@ public partial class InteractComponent : Area2D
     {
 		// * Actions = { E }
 		if (Input.IsActionJustPressed("Interact") && _canInteract) EmitSignal(SignalName.Interacted);
+		if (Input.IsActionJustPressed("SecondaryAction") && _canInteract) EmitSignal(SignalName.SecondaryAction);
     }
 
     private void AreaDetection(bool value)

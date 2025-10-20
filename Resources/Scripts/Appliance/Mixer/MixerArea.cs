@@ -2,15 +2,24 @@ using Godot;
 
 namespace BearBakery;
 
-public partial class MixerArea : ObjectArea
+public partial class MixerArea : Sprite2D
 {
-    public Bowl Bowl;
+	[Export]
+	private InteractComponent _interactComponent;
+
+	[Export]
+	private LowlightComponent _lowlightComponent;
+
+	public Bowl Bowl;
+
+	private bool _hasInteracted = false;
+	
     public override void _Ready()
     {
         base._Ready();
 
-        InteractComponent.Interacted += OpenMixer;
-		InteractComponent.AreaExited += (area) => CloseMixer();
+        _interactComponent.Interacted += OpenMixer;
+		_interactComponent.AreaExited += (area) => CloseMixer();
     }
 
     private void UseMixer()
@@ -26,20 +35,20 @@ public partial class MixerArea : ObjectArea
 
     private void OpenMixer()
 	{
-		HasInteracted = true;
+		_hasInteracted = true;
 
 		string openMessage = "Opening Mixer";
 		PrintRich.PrintLine(TextColor.Blue, openMessage);
 
-		BearBakery.Signals.EmitSignal(Signals.SignalName.MixerOpened, this);
+		// BearBakery.Signals.EmitSignal(Signals.SignalName.Mixer, this);
 	}
 
 	/// <see cref="PackedScenes.GetMixerInterface">
 	public void CloseMixer()
 	{
-		if (!HasInteracted) return;
+		if (!_hasInteracted) return;
 
-		HasInteracted = false;
+		_hasInteracted = false;
 
 		string closeMessage = "Closing Mixer";
 		PrintRich.PrintLine(TextColor.Blue, closeMessage);

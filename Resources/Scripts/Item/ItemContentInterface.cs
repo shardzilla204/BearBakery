@@ -15,19 +15,16 @@ public partial class ItemContentInterface : Control
 
     private int _maxHeight = 340;
 
+    public StorageItem StorageItem;
+
     public override void _Ready()
     {
-        _marginContainer.Visible = false;
+        _itemSprite.Texture = StorageItem.Texture;
+        _marginContainer.Visible = StorageItem.Ingredients.Count != 0;
+
+        if (StorageItem.Ingredients.Count != 0) SetContent(StorageItem);
     }
-
-    public void SetStorageItem(StorageItem storageItem)
-    {
-        _itemSprite.Texture = storageItem.Texture;
-        _marginContainer.Visible = storageItem.Ingredients.Count != 0;
-
-        if (storageItem.Ingredients.Count != 0) SetContent(storageItem);
-    }
-
+    
     private void RemoveContent()
     {
         foreach (Node child in _content.GetChildren())

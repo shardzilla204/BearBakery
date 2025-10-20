@@ -1,15 +1,14 @@
 using Godot;
+using Godot.Collections;
 
 namespace BearBakery;
 
 public partial class Bowl : StorageItem
 {
-    public Bowl()
+    public Bowl(Dictionary<string, Variant> itemDictionary)
     {
-        Item bowl = ItemManager.GetItem("Bowl");
-
-        Name = bowl.Name;
-		Description = bowl.Description;
+        Name = itemDictionary["Name"].As<string>(); ;
+        Description = itemDictionary["Description"].As<string>();
 
 		string textureFileName = Name.Replace(" ", "");
 		Texture2D texture = BearBakery.GetTexture(textureFileName, "Items");

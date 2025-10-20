@@ -15,6 +15,9 @@ _playerInterface = NodePath("PlayerInterface")
 
 [node name="Kitchen" parent="." instance=ExtResource("2_5jovf")]
 
+[node name="Counter14" parent="Kitchen/Counter/Counters" index="13"]
+_startingItem = "Bowl"
+
 [node name="Lobby" parent="." instance=ExtResource("4_1nkt7")]
 position = Vector2(-96, 160)
 
@@ -28,5 +31,7 @@ metadata/_edit_lock_ = true
 y_sort_enabled = true
 
 [editable path="Kitchen"]
+[editable path="Kitchen/Counter/Counters/TopMiddleCounters/TopMiddleCounterArea"]
+[editable path="Kitchen/Counter/Counters/TopMiddleCounters/TopMiddleCounterArea8"]
 [editable path="Kitchen/Delivery"]
 [editable path="Lobby"]

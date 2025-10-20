@@ -9,10 +9,12 @@ public partial class FridgeSlot : Control
 	[Export]
 	private SlotComponent _slotComponent;
 
+	[Export]
+	private LowlightComponent _lowlightComponent;
+
 	public int ID = -1;
 	public Item Item = null;
 
-	private Color _originalColor;
 	private bool _isDragging = false;
 
 	private Label _tooltipLabel;
@@ -21,8 +23,6 @@ public partial class FridgeSlot : Control
 	{
 		MouseEntered += OnMouseEntered;
 		MouseExited += OnMouseExited;
-
-		_originalColor = SelfModulate;
 	}
 
     public override void _Process(double delta)
@@ -60,11 +60,8 @@ public partial class FridgeSlot : Control
 	{
 		try
 		{
-			float amount = 0.1f;
 			Dictionary<string, Variant> dragDictionary = data.As<Dictionary<string, Variant>>();
 			Item item = dragDictionary["Item"].As<Item>();
-
-			SelfModulate = item != null ? _originalColor.Darkened(amount) : _originalColor;
 
 			/// Check if item can cast to specified classes | <see cref="Ingredient"> && <see cref="Food">
 			return item is Ingredient || item is Food;
@@ -102,18 +99,19 @@ public partial class FridgeSlot : Control
 		FridgeContainer fridgeContainer = GetParentOrNull<FridgeContainer>();
 		fridgeContainer.RefreshItems();
 
-		// Item targetItem = BearBakery.Player.Inventory.Items.Find(item => item == newItem);
-		// if (targetItem == null) return;
+		Item targetItem = BearBakery.Player.Inventory.Items.Find(item => item == newItem);
+		if (targetItem == null) return;
 
-		// BearBakery.Signals.EmitSignal(Signals.SignalName.ItemRemovedFromInventory, targetItem);
-		// if (origin is PlayerInventoryInterface)
-		// {
-		// 	BearBakery.Signals.EmitSignal(Signals.SignalName.ItemAddedToInventory, oldItem);
-		// }
+		BearBakery.Signals.EmitSignal(Signals.SignalName.ItemRemovedFromInventory, targetItem);
+		if (origin is PlayerInventoryInterface)
+		{
+			BearBakery.Signals.EmitSignal(Signals.SignalName.ItemAddedToInventory, oldItem);
+		}
 	}
 
 	/// <summary>
 	/// Show the custom tooltip and darken the self modulate 
+	/// Hover without object over while filled, lowlights
 	/// </summary>
 	private void OnMouseEntered()
 	{
@@ -123,19 +121,21 @@ public partial class FridgeSlot : Control
 		_tooltipLabel.Text = $"{Item.Name}";
 		GetParent().GetOwner().GetParent().AddChild(_tooltipLabel);
 
-		SetLowlight(true);
+		bool canDarken = Item != null;
+		_lowlightComponent.Set(canDarken);
 
 		BearBakery.ToggleCursorShapeVisibility(true);
 	}
 	
 	/// <summary>
     /// Remove the custom tooltip and lighten the self modulate 
+	/// Hover with object over while not filled, lowlights | <see cref="_CanDropData"/>
     /// </summary>
 	private void OnMouseExited()
     {
 		_tooltipLabel.QueueFree();
-		
-		SetLowlight(false);
+
+		_lowlightComponent.Set(false);
 
 		BearBakery.ToggleCursorShapeVisibility(false);
     }
@@ -144,15 +144,6 @@ public partial class FridgeSlot : Control
 	{
 		Item = item;
 		_slotComponent.SetItem(item);
-	}
-
-	private void SetLowlight(bool isHovering)
-	{
-		// Hover without object over while filled, highlights
-		/// Hover with object over while not filled, highlights | <see cref="_CanDropData"/>
-
-		float amount = 0.1f;
-		SelfModulate = isHovering && Item != null ? _originalColor.Darkened(amount) : _originalColor;
 	}
 
 	/// Only swaps the items visually | <see cref="FridgeContainer.RefreshItems"/>
